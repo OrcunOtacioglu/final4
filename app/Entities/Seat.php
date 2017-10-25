@@ -10,9 +10,9 @@ class Seat extends Model
 
     protected $fillable = [
         'rate_id',
+        'zone_id',
         'order_id',
         'reference',
-        'zone',
         'row',
         'seat',
         'status',
@@ -21,6 +21,11 @@ class Seat extends Model
     public function rate()
     {
         return $this->belongsTo(Rate::class);
+    }
+
+    public function zone()
+    {
+        return $this->belongsTo(Zone::class);
     }
 
     public function order()
