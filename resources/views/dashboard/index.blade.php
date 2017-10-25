@@ -1,1 +1,1 @@
-<h1>Welcome {{ \Illuminate\Support\Facades\Auth::user()->name }}</h1>
+@extends('dashboard.base')
