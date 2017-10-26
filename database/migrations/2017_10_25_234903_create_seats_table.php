@@ -16,7 +16,7 @@ class CreateSeatsTable extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('rate_id')->unsigned();
+            $table->integer('rate_id')->unsigned()->nullable();
             $table->foreign('rate_id')->references('id')->on('rates')->onDelete('cascade');
 
             $table->integer('zone_id')->unsigned();

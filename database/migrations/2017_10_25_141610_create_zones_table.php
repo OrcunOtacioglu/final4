@@ -17,6 +17,7 @@ class CreateZonesTable extends Migration
             $table->increments('id');
 
             $table->string('name');
+            $table->string('screen_name');
             $table->string('image_path')->nullable();
 
             $table->jsonb('objects')->nullable();
