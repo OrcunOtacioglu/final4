@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\HotelRoom;
 use Illuminate\Http\Request;
 
 class HotelRoomController extends Controller
@@ -34,7 +35,9 @@ class HotelRoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $room = HotelRoom::createNew($request);
+
+        return redirect()->action('HotelController@edit', ['id' => $room->hotel_id]);
     }
 
     /**

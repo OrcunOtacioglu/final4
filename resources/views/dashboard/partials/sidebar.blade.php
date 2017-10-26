@@ -11,6 +11,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/hotel') ? 'active' : '' }}" href="{{ action('HotelController@index') }}">
+                <i class="icon wb-home"></i> Hotels
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/analytic') ? 'active' : '' }}" href="#">
                 <i class="icon-bar wb-stats-bars"></i> Analytics
             </a>
