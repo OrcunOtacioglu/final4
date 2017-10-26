@@ -28,8 +28,16 @@
                         <img src="{{ $zone->image_path }}" alt="" class="img-fluid">
                     </td>
                     <td class="text-nowrap">
-                        <a href="{{ action('ZoneController@edit', ['id' => $zone->id]) }}" class="text-muted">Edit</a>
-                        <a href="#" class="text-danger">Delete</a>
+                        <a href="{{ action('ZoneController@edit', ['id' => $zone->id]) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <form action="{{ action('ZoneController@generateSeats', ['id' => $zone->id]) }}" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-sm btn-secondary">Generate Seats</button>
+                        </form>
+                        <form action="{{ action('ZoneController@destroy', ['id' => $zone->id]) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

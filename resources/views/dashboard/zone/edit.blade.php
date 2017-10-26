@@ -1,5 +1,9 @@
 @extends('dashboard.base')
 
+@section('custom.meta')
+    <meta name="zone" content="{{ $zone->id }}">
+@stop
+
 @section('title')
     Draw & Edit {{ ucfirst($zone->name) }}
 @stop
@@ -7,11 +11,19 @@
 @section('content')
     <div class="row">
         <div class="col-md-9" id="canvasZone">
-            <canvas id="c"></canvas>
+            <canvas id="{{ $zone->id }}"></canvas>
         </div>
         <div class="col-md-3">
             <form action="{{ action('ZoneController@addSeats', ['id' => $zone->id]) }}" method="POST">
                 {{ csrf_field() }}
+
+                <div class="form-group">
+                    <label for="direction">Direction</label>
+                    <select name="direction" id="direction" class="form-control">
+                        <option value="0">Left to Right</option>
+                        <option value="1">Right to Left</option>
+                    </select>
+                </div>
 
                 <div class="form-group">
                     <label for="left">Left Start Point</label>
@@ -66,6 +78,8 @@
 @stop
 
 @section('footer.scripts')
+    <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/fabric.min.js') }}"></script>
+    <script src="{{ asset('js/seatbit/seat.class.js') }}"></script>
     <script src="{{ asset('js/seatbit/seat-generator.js') }}"></script>
 @stop
