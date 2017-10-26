@@ -22,5 +22,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/rate', 'RateController');
     Route::resource('/zone', 'ZoneController');
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');
+    Route::post('/zone/generate-seats/{id}', 'ZoneController@generateSeats');
     Route::get('/event', 'EventController@index');
 });
+
+/**
+ * API ROUTES
+ */
+Route::get('/zone/data/{id}', 'ZoneController@getData');
