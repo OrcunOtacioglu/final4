@@ -41,6 +41,7 @@ class Rate extends Model
         $rate->name = $request->name;
         $rate->color_code = $request->color_code;
         $rate->price = $request->price;
+        $rate->zones = $request->zones;
 
         $rate->available = self::calculateAvailable($request->zones);
         $rate->available_online = $request->available_online;
@@ -68,6 +69,7 @@ class Rate extends Model
         $rate->name = $request->name;
         $rate->color_code = $request->color_code;
         $rate->price = $request->price;
+        $rate->zones = $request->zones;
 
         $rate->available = self::calculateAvailable($request->zones);
         $rate->available_online = $request->available_online;
@@ -88,8 +90,23 @@ class Rate extends Model
     }
 
     // @TODO IMPLEMENT THIS FUNCTIONALITY
-    public static function calculateAvailable($zones)
+    public static function calculateAvailable($data)
     {
-        return 0;
+        $zones = explode('.', $data);
+        $available = 0;
+
+        foreach ($zones as $zone)
+        {
+            $dbZone = Zone::where('name', '=', $zone)->first();
+            $seats = Seat::where('zone_id', '=', $dbZone->id)->get();
+
+            foreach ($seats as $seat) {
+                if ($seat->status == 1) {
+                    $available = $available + 1;
+                }
+            }
+        }
+
+        return $available;
     }
 }

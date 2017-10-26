@@ -94,11 +94,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="zones">Zones</label>
-                    <select name="zones" id="zones" class="form-control" multiple>
-                        @foreach($zones as $zone)
-                            <option value="{{ $zone->id }}">{{ $zone->name }}</option>
-                        @endforeach
-                    </select>
+                    <input type="text" name="zones" id="zones" class="form-control" value="{{ $rate->zones }}">
                 </div>
             </div>
         </div>
