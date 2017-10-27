@@ -91,7 +91,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="zones">Zones</label>
-                    <input type="text" name="zones" id="zones" class="form-control" value="{{ $rate->zones }}">
+                    <input type="text" name="zones" id="zones" class="form-control">
                 </div>
             </div>
         </div>

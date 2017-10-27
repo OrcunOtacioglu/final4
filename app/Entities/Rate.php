@@ -43,7 +43,9 @@ class Rate extends Model
         $rate->price = $request->price;
         $rate->zones = $request->zones;
 
-        $rate->available = self::calculateAvailable($request->zones);
+        $rate->available = $request->zones != null
+            ? self::calculateAvailable($request->zones)
+            : 0;
         $rate->available_online = $request->available_online;
         $rate->available_box_office = $request->available_box_office;
 
@@ -71,7 +73,9 @@ class Rate extends Model
         $rate->price = $request->price;
         $rate->zones = $request->zones;
 
-        $rate->available = self::calculateAvailable($request->zones);
+        $rate->available = $request->zones != null
+            ? self::calculateAvailable($request->zones)
+            : 0;
         $rate->available_online = $request->available_online;
         $rate->available_box_office = $request->available_box_office;
 
