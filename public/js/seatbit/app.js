@@ -1,4 +1,8 @@
 /**
+ * FRONT-END SEAT MAP JS FUNCTIONS
+ **/
+
+/**
  * Canvas initializer.
  */
 var canvas = new fabric.Canvas('venue', {
@@ -52,6 +56,41 @@ function setCategoriesHeight()
     return $('#categories').height(responsiveHeight() - 71);
 }
 
+var cart = new Vue({
+    el: '#sidebar',
+    data: {
+        items: []
+    },
+    computed: {
+        total: function () {
+            var total = 0;
+            for (var i = 0; i < this.items.length; i++) {
+                total += this.items[i].price;
+            }
+
+            return total;
+        },
+        showCart: function () {
+            return this.items.length > 0;
+        }
+    },
+    methods: {
+        add: function (item) {
+            this.items.push(item);
+        },
+        remove: function (item) {
+            this.items.splice(this.items.indexOf(item), 1);
+        },
+        removeFromCart: function (item) {
+            item.set('stroke', '#46BE8A');
+            item.set('fill', '#46BE8A');
+            item.set('status', '1');
+            canvas.renderAll();
+
+            this.items.splice(this.items.indexOf(item), 1);
+        }
+    }
+});
 
 /**
  * Draws Zones and Seats
@@ -66,7 +105,6 @@ function getSeatsOf(zone) {
         });
 }
 
-// @TODO REFACTOR THIS CODE AND MAKE IT DYNAMIC
 function drawSeats(objects) {
     var width = $(window).width();
     var categoriesWidth = $('#categories').width();
@@ -74,7 +112,7 @@ function drawSeats(objects) {
 
     var remaining = width - (categoriesWidth + sidebarWidth);
 
-    var leftPadding = remaining - 505;
+    var leftPadding = remaining - 305;
 
     var seats = JSON.parse(objects);
 
@@ -89,14 +127,16 @@ function drawSeats(objects) {
         var seat = el.target;
 
         if (seat.status === '1') {
-            seat.setStatus('5');
+            seat.set('status', '5');
             seat.set('stroke', '#89BCEB');
             seat.set('fill', '#89BCEB');
+            cart.add(seat);
             canvas.renderAll();
         } else if (seat.status === '5') {
             seat.setStatus('1');
             seat.set('stroke', '#46BE8A');
             seat.set('fill', '#46BE8A');
+            cart.remove(seat);
             canvas.renderAll();
         }
     })

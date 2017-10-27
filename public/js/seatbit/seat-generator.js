@@ -1,3 +1,6 @@
+/**
+ * DASHBOARD ACTIONS OF SEAT MAP
+ **/
 $(document).ready(function () {
     var width = detectWidth();
     var height = detectHeight();

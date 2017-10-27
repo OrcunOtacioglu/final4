@@ -1,3 +1,7 @@
+/**
+ * Seat Class extended from Fabric
+ * @type {fabric.util.createClass}
+ */
 fabric.Seat = new fabric.util.createClass(fabric.Circle, {
     type: 'seat',
 
@@ -51,7 +55,7 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
             case '2':
                 this.set('stroke', options.stroke || '#46BE8A');
                 this.set('fill', options.fill || '#46BE8A');
-                this.set('selectable', options.selectable || true)
+                this.set('selectable', options.selectable || true);
                 break;
             case '5':
                 this.set('stroke', options.stroke || '#89BCEB');
