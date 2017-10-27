@@ -157,6 +157,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Availability</th>
+                        <th scope="col">Type</th>
                         <th scope="col" class="text-nowrap">Actions</th>
                     </tr>
                     </thead>
@@ -166,6 +167,7 @@
                             <td>{{ $room->name }}</td>
                             <td>{{ $room->price }}</td>
                             <td>{{ $room->availability }}</td>
+                            <td>{{ $room->type }}</td>
                             <td class="text-nowrap">
                                 <a href="{{ action('HotelRoomController@edit', ['id' => $room->id]) }}" class="text-muted">Edit</a>
                                 <a href="#" class="text-danger">Delete</a>

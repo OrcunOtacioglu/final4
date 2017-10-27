@@ -28,7 +28,6 @@ function drawSeats(canvas, zoneID) {
     axios.get('/zone/data/' + zoneID)
         .then(function (response) {
             canvas.loadFromJSON(response.data.objects);
-            // console.log(response.data.objects);
         })
         .catch(function (error) {
             console.log(error);

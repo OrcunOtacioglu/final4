@@ -1,4 +1,4 @@
-<div class="sidebar-wrapper" id="sidebar">
+<div class="sidebar-wrapper is-hidden" id="sidebar">
     <div class="info-pane">
 
     </div>
