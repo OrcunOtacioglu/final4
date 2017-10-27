@@ -1,5 +1,6 @@
 <?php
 
+// @TODO ADD RATES ON THE LEFT SIDEBAR AND DRAW THE MAP
 Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
@@ -30,3 +31,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
  * API ROUTES
  */
 Route::get('/zone/data/{id}', 'ZoneController@getData');
+Route::get('/get-seats/{id}', 'SeatController@getSeats');
