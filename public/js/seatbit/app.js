@@ -88,6 +88,9 @@ var cart = new Vue({
             canvas.renderAll();
 
             this.items.splice(this.items.indexOf(item), 1);
+        },
+        getItemCount: function () {
+            return this.items.length;
         }
     }
 });
@@ -106,6 +109,7 @@ function getSeatsOf(zone) {
 }
 
 function drawSeats(objects) {
+
     var width = $(window).width();
     var categoriesWidth = $('#categories').width();
     var sidebarWidth = $('#sidebar').width();
@@ -121,23 +125,34 @@ function drawSeats(objects) {
     }
 
     canvas.loadFromJSON(seats);
+
+    canvas.setZoom(0.66);
     canvas.setZoom(canvas.getZoom() * 1.5);
 
     canvas.on('mouse:down', function (el) {
         var seat = el.target;
 
-        if (seat.status === '1') {
-            seat.set('status', '5');
-            seat.set('stroke', '#89BCEB');
-            seat.set('fill', '#89BCEB');
-            cart.add(seat);
-            canvas.renderAll();
-        } else if (seat.status === '5') {
-            seat.setStatus('1');
-            seat.set('stroke', '#46BE8A');
-            seat.set('fill', '#46BE8A');
-            cart.remove(seat);
-            canvas.renderAll();
+        // @TODO MAKE THIS COUNT DYNAMICALLY SETABLE FROM DASHBOARD.
+        if (seat === null) {
+            return false;
+        } else {
+            if (seat.status === '1') {
+                if (cart.getItemCount() >= 10) {
+                    swal('Oops!', 'You can not purchase more than 10 tickets per purchase!', 'warning');
+                } else {
+                    seat.set('status', '5');
+                    seat.set('stroke', '#89BCEB');
+                    seat.set('fill', '#89BCEB');
+                    cart.add(seat);
+                    canvas.renderAll();
+                }
+            } else if (seat.status === '5') {
+                seat.setStatus('1');
+                seat.set('stroke', '#46BE8A');
+                seat.set('fill', '#46BE8A');
+                cart.remove(seat);
+                canvas.renderAll();
+            }
         }
     })
 }
