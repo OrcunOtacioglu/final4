@@ -23,13 +23,13 @@
                 @if(Auth::user()->isAdmin())
                     <li class="nav-item">
                         <a href="{{ action('ApplicationController@dashboard') }}" class="nav-link">
-                            <i class="ti-dashboard text-success"></i>
+                            <i class="wb-dashboard text-success"></i>
                         </a>
                     </li>
                 @endif
                 <li class="nav-item">
                     <a href="/" class="nav-link">
-                        <i class="ti-user"></i>
+                        <i class="wb-user-circle"></i>
                     </a>
                 </li>
             @else
@@ -42,7 +42,7 @@
             @endif
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="ti-shopping-cart-full"></i>
+                    <i class="wb-shopping-cart"></i>
                 </a>
             </li>
         </ul>
