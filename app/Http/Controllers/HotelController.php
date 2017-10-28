@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
+
+    public function all()
+    {
+        $hotels = Hotel::all();
+
+        return view('frontend.entities.hotel.index', compact('hotels'));
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,9 @@ class HotelController extends Controller
      */
     public function index()
     {
-        //
+        $hotels = Hotel::all();
+
+        return view('dashboard.hotel.index', compact('hotels'));
     }
 
     /**
@@ -23,7 +34,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.hotel.create');
     }
 
     /**
@@ -34,7 +45,9 @@ class HotelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $hotel = Hotel::createNew($request);
+
+        return redirect()->action('HotelController@edit', ['id' => $hotel->id]);
     }
 
     /**
@@ -56,7 +69,9 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        $hotel = Hotel::where('id', '=', $id)->with('rooms')->firstOrFail();
+
+        return view('dashboard.hotel.edit', compact('hotel'));
     }
 
     /**

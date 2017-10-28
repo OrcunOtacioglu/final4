@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Rate;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $rates = Rate::all();
+
+        return view('frontend.index', compact('rates'));
     }
 
     public function dashboard()

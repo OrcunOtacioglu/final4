@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Entities\HotelRoom;
+use App\Entities\Rate;
+use App\Entities\Zone;
 use Illuminate\Http\Request;
 
-class HotelRoomController extends Controller
+class RateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class HotelRoomController extends Controller
      */
     public function index()
     {
-        //
+        $rates = Rate::all();
+
+        return view('dashboard.rate.index', compact('rates'));
     }
 
     /**
@@ -24,7 +27,9 @@ class HotelRoomController extends Controller
      */
     public function create()
     {
-        //
+        $zones = Zone::all();
+
+        return view('dashboard.rate.create', compact('zones'));
     }
 
     /**
@@ -35,9 +40,9 @@ class HotelRoomController extends Controller
      */
     public function store(Request $request)
     {
-        $room = HotelRoom::createNew($request);
+        $rate = Rate::createNew($request);
 
-        return redirect()->action('HotelController@edit', ['id' => $room->hotel_id]);
+        return redirect()->action('RateController@edit', ['id' => $rate->id]);
     }
 
     /**
@@ -59,7 +64,10 @@ class HotelRoomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rate = Rate::findOrFail($id);
+        $zones = Zone::all();
+
+        return view('dashboard.rate.edit', compact('rate', 'zones'));
     }
 
     /**
@@ -71,7 +79,9 @@ class HotelRoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rate = Rate::updateEntity($request, $id);
+
+        return redirect()->action('RateController@edit', ['id' => $rate->id]);
     }
 
     /**

@@ -3,14 +3,20 @@
 @section('title', 'Final Four Packages')
 
 @section('content')
-    @include('frontend.partials.categories')
-    <div class="app">
-        <canvas id="venue"></canvas>
+    <div id="root">
+        @include('frontend.partials.categories')
+        <div class="app">
+            <canvas id="venue"></canvas>
+        </div>
+        @include('frontend.partials.sidebar')
     </div>
-    @include('frontend.partials.sidebar')
 @stop
 
 @section('footer.scripts')
+    <script src="https://unpkg.com/vue"></script>
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/fabric.min.js') }}"></script>
+    <script src="{{ asset('js/seatbit/seat.class.js') }}"></script>
     <script src="{{ asset('js/seatbit/app.js') }}"></script>
 @stop

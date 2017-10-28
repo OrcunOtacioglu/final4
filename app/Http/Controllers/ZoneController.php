@@ -1,0 +1,210 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Entities\Rate;
+use App\Entities\Seat;
+use App\Entities\Zone;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+
+class ZoneController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $zones = Zone::all();
+
+        return view('dashboard.zone.index', compact('zones'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('dashboard.zone.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $zone = new Zone();
+
+        $zone->name = $request->name;
+        $zone->screen_name = $request->screen_name;
+        // @TODO IMPLEMENT IMAGE UPLOADER
+        $zone->image_path = null;
+
+        $zone->created_at = Carbon::now();
+        $zone->updated_at = Carbon::now();
+
+        $zone->save();
+
+        return redirect()->action('ZoneController@edit', ['id' => $zone->id]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $zone = Zone::findOrFail($id);
+        $rates = Rate::all();
+
+        return view('dashboard.zone.edit', compact('zone', 'rates'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $zone = Zone::findOrFail($id);
+        $zone->delete();
+
+        return redirect()->action('ZoneController@index');
+    }
+
+    public function addSeats(Request $request, $id)
+    {
+        $zone = Zone::findOrFail($id);
+        $rate = Rate::find($request->rate_id);
+
+        if ($rate == null) {
+            $price = 0;
+            $categoryID = 0;
+            $colorCode = '76838F';
+        } else {
+            $price = $rate->price;
+            $categoryID = $rate->id;
+            $colorCode = $rate->color_code;
+        }
+
+        $zone->objects != null
+            ? $data = json_decode($zone->objects, true)
+            : $data = ['objects' => []];
+
+        if ($request->direction == 0) {
+            for ($i = 0; $i < $request->seat_count; $i++) {
+                $seat = [
+                    'type'  => 'seat',
+                    'left'  => intval($request->left + ($i * 25)),
+                    'top'   => intval($request->top),
+                    'number' => $request->start_number + $i,
+                    'row'   => $request->row,
+                    'status' => $request->status,
+                    'zone'  => $zone->name,
+                    'price' => intval($price),
+                    'reference' => 'S_' . $zone->name . '_' . $request->row . '_' . ($request->start_number + $i),
+                    'categoryColor' => $colorCode,
+                    'categoryID' => intval($categoryID)
+                ];
+
+                array_push($data['objects'], $seat);
+            }
+        } else {
+            $rightSeatNumber = $request->start_number - $request->seat_count;
+            for ($i = $request->start_number; $i > $rightSeatNumber; $i--) {
+                $seat = [
+                    'type'  => 'seat',
+                    'left'  => intval($request->left + (($request->start_number - $i) * 25)),
+                    'top'   => intval($request->top),
+                    'number' => $i,
+                    'row'   => $request->row,
+                    'status' => $request->status,
+                    'zone'  => $zone->name,
+                    'price' => intval($price),
+                    'reference' => 'S_' . $zone->name . '_' . $request->row . '_' . $i,
+                    'categoryColor' => $colorCode,
+                    'categoryID' => intval($categoryID)
+                ];
+
+                array_push($data['objects'], $seat);
+            }
+        }
+
+        $objects = json_encode($data, true);
+
+        $zone->previous_objects == null
+            ? $zone->previous_objects = $objects
+            : $zone->previous_objects = $zone->objects;
+
+        $zone->objects = $objects;
+        $zone->save();
+
+        return redirect()->action('ZoneController@edit', ['id' => $zone->id]);
+    }
+
+    public function getData($id)
+    {
+        $zone = Zone::findOrFail($id);
+
+        return $zone;
+    }
+
+    public function generateSeats($id)
+    {
+        $zone = Zone::findOrFail($id);
+        $seats = json_decode($zone->objects, true);
+
+        foreach ($seats['objects'] as $object) {
+            $seat = new Seat();
+
+            $seat->rate_id = $object['categoryID'] == 0 ? null : $object['categoryID'];
+            $seat->zone_id = $id;
+            $seat->order_id = null;
+            $seat->reference = $object['reference'];
+            $seat->row = $object['row'];
+            $seat->seat = $object['number'];
+            $seat->status = $object['status'];
+
+            $seat->created_at = Carbon::now();
+            $seat->updated_at = Carbon::now();
+
+            $seat->save();
+        }
+
+        return redirect()->action('ZoneController@index');
+    }
+}
