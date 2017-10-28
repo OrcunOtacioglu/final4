@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class HotelController extends Controller
 {
+
+    public function all()
+    {
+        $hotels = Hotel::all();
+
+        return view('frontend.entities.hotel.index', compact('hotels'));
+    }
+
     /**
      * Display a listing of the resource.
      *
