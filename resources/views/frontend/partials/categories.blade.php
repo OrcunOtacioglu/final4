@@ -10,7 +10,7 @@
 
                 <li class="category-item mb-15" style="border-color: #e7983b;">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-12 col-md-8">
                             <div class="category-info">
                                 <p class="category-name mb-0">
                                     <i class="ti-ticket"></i> Hospitality Package
@@ -18,7 +18,7 @@
                                 <span class="category-availability">Available</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-12 col-md-4">
                             <div class="category-price">
                                 <small class="text-muted">Get in touch</small>
                                 <p>More Info</p>

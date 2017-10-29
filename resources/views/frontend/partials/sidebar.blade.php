@@ -68,7 +68,7 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ action('HotelController@index') }}" class="btn btn-block btn-detur">PROCEED</a>
+                    <a href="#" onclick="cart.sendCardData()" class="btn btn-block btn-detur">PROCEED</a>
                 </div>
             </div>
         </div>
