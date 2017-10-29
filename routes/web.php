@@ -32,3 +32,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
  */
 Route::get('/zone/data/{id}', 'ZoneController@getData');
 Route::get('/get-seats/{id}', 'SeatController@getSeats');
+Route::post('/add-hotel/{id}', 'HotelController@addHotel');
