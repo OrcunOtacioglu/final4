@@ -33,7 +33,9 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (Auth::user()->isAdmin()) {
+        if (request()->hasCookie('orderRef')) {
+            return '/order/' . request()->cookie('orderRef');
+        } else if (Auth::user()->isAdmin()) {
             return '/dashboard';
         } else {
             return url(request()->headers->get('referer'));
