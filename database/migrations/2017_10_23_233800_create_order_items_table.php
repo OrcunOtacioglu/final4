@@ -22,7 +22,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('type');
             $table->string('reference');
             $table->integer('quantity');
-
+            // @TODO ADD OPTIONS JSONB TO SHOW EXTRA INFO SUCH AS EVENT NAME ETC.
             $table->decimal('unit_price');
             $table->decimal('subtotal');
 
