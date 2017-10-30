@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @yield('custom.meta')
 
     <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
 
@@ -17,6 +18,7 @@
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
     @yield('custom.fonts')
 </head>
 <body>
