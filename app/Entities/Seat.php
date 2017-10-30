@@ -32,4 +32,15 @@ class Seat extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public static function checkIfAvailable($item)
+    {
+        $seat = Seat::where('reference', '=', $item['reference'])->first();
+
+        if ($seat->status === 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
