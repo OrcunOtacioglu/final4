@@ -87,16 +87,22 @@ class OrderController extends Controller
         $order = Order::where('reference', '=', $reference)->first();
 
         if (!Order::hasHotel($order)) {
-            $hotels = Hotel::all();
 
+            $hotels = Hotel::all();
             return view('frontend.entities.hotel.index', compact('hotels'));
+
         } else {
             if (Auth::guest()) {
+
                 return view('frontend.entities.order.index', compact('order'));
+
             } else {
+
                 $user = Auth::user();
                 Order::appendUser($order, $user);
-                return view('frontend.entities.order.show', compact('order'));
+                $paymentData = Order::prepareOrder($order);
+
+                return view('frontend.entities.order.show', compact('order', 'paymentData'));
             }
         }
     }
@@ -132,5 +138,62 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function validatePayment(Request $request)
+    {
+        $hashParams = $request->HASHPARAMS;
+        $hashParamsVal = $request->HASHPARAMSVAL;
+        $hashParam = $request->HASH;
+
+        $storekey = "123456";
+        $paramsval = "";
+        $index1=0;
+        $index2=0;
+
+        while($index1 < strlen($hashParams))
+        {
+            $index2 = strpos($hashParams,":",$index1);
+            $vl = $_POST[substr($hashParams,$index1,$index2- $index1)];
+            if($vl == null)
+                $vl = "";
+            $paramsval = $paramsval . $vl;
+            $index1 = $index2 + 1;
+        }
+        $storekey = "123456";
+        $hashval = $paramsval.$storekey;
+
+        $hash = base64_encode(pack('H*',sha1($hashval)));
+
+        if ($paramsval != $hashParamsVal || $hashParam != $hash) {
+            $error = 'Güvenlik Uyarisi. Sayisal Imza Geçerli Degil';
+
+            return view('frontend.entities.order.fail', compact('error'));
+        }
+
+        $mdStatus = $_POST["mdStatus"];
+        $error = $_POST["ErrMsg"];
+
+        if ($mdStatus == 1 || $mdStatus == 2 || $mdStatus == 3 || $mdStatus == 4) {
+            $response = $_POST["Response"];
+
+            if ($response == "Approved")
+            {
+                $order = Order::where('reference', '=', $request->oid)->first();
+
+                return view('frontend.entities.order.success', compact('order'));
+            }
+            else
+            {
+                echo "Ödeme Islemi Basarisiz. Hata = " . $error;
+
+                return view('frontend.entities.order.fail', compact('error'));
+            }
+
+        } else {
+            $error = '3D İşlemi Başarısız!';
+
+            return view('frontend.entities.order.fail', compact('error'));
+        }
     }
 }

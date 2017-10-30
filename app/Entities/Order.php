@@ -138,4 +138,44 @@ class Order extends Model
         $order->updated_at = Carbon::now();
         $order->save();
     }
+
+    public static function prepareOrder($order)
+    {
+        $clientId = "600300000";      //Banka tarafindan magazaya verilen isyeri numarasi
+        $amount = $order->total;             //tutar
+        $oid = $order->reference;                    //Siparis numarasi
+        $okUrl = env('APP_URL') . '/order-complete';      //Islem basariliysa dönülecek isyeri sayfasi  (3D isleminin ve ödeme isleminin sonucu)
+        $failUrl = env('APP_URL') . '/order-complete';    //Islem basarisizsa dönülecek isyeri sayfasi  (3D isleminin ve ödeme isleminin sonucu)
+        $rnd = microtime();                                     //Tarih ve zaman gibi sürekli degisen bir deger güvenlik amaçli kullaniliyor
+
+        $taksit = "";    					//Taksit sayisi
+        $islemtipi="Auth";					//Islem tipi
+        $storekey = "123456";					//Isyeri anahtari
+
+        $hashstr = $clientId . $oid . $amount . $okUrl . $failUrl . $islemtipi . $taksit . $rnd . $storekey; //güvenlik amaçli hashli deger
+
+        $hash = base64_encode(pack('H*',sha1($hashstr)));
+
+        return [
+            'clientid' => $clientId,
+            'amount' => $amount,
+            'oid' => $oid,
+            'okUrl' => $okUrl,
+            'failUrl' => $failUrl,
+            'rnd' => $rnd,
+            'taksit' => $taksit,
+            'islemtipi' => $islemtipi,
+            'storekey' => $storekey,
+            'hash' => $hash
+        ];
+    }
+
+    public static function prepareHash($paymentData)
+    {
+        $storekey = "123456";
+//        $storekey = 'KUTU7513';
+        $hashstr = $paymentData['clientid'] . $paymentData['oid'] . $paymentData['amount'] . $paymentData['okUrl'] . $paymentData['failUrl'] . $paymentData['islemtipi'] . "" . $paymentData['rnd'] . $storekey;
+
+        return base64_encode(pack('H*',sha1($hashstr)));
+    }
 }

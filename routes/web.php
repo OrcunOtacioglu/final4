@@ -12,6 +12,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/hotel', 'HotelController@all');
 Route::get('/hotel/{name}', 'HotelController@show');
 Route::resource('/order', 'OrderController');
+Route::post('/order-complete', 'OrderController@validatePayment');
 
 /**
  * DASHBOARD ROUTES
