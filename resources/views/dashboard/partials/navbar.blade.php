@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Settings</a>
+                    <a class="nav-link" href="{{ action('SettingsController@index') }}">Settings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Profile</a>
