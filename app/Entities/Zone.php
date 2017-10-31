@@ -6,19 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Zone extends Model
 {
+    /**
+     * Table name
+     *
+     * @var string
+     */
     protected $table = 'zones';
 
+    /**
+     * Mass assignable fields.
+     *
+     * @var array
+     */
     protected $fillable = [
         'name',
         'objects',
         'previous_objects'
     ];
 
-    public function rate()
-    {
-        return $this->belongsToMany(Rate::class);
-    }
-
+    /**
+     * Returns related Seat entities.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function seats()
     {
         return $this->hasMany(Seat::class);

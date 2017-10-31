@@ -7,27 +7,52 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    /**
+     * Table name
+     *
+     * @var string
+     */
     protected $table = 'orders';
 
+    /**
+     * Mass assignable fields
+     *
+     * @var array
+     */
     protected $fillable = [
         'reference',
         'user_id',
         'status',
+        'cost',
         'subtotal',
         'comission',
+        'fee',
+        'tax',
         'total',
         'currency_code',
     ];
 
+    /**
+     * Returns associated OrderItem entities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany(OrderItem::class);
     }
 
+    /**
+     * Creates a new Order entity.
+     *
+     * @param $items
+     * @return Order
+     */
     public static function createNew($items)
     {
 
-        // Creates a new Order
+        // Creates a new Order with default values
+        // to be changed after adding OrderItem instances.
         $order = new Order();
         $order->reference = str_random(6);
         $order->status = 0;
@@ -58,6 +83,13 @@ class Order extends Model
         return $order;
     }
 
+    /**
+     * Updates an existing Order entity.
+     *
+     * @param $reference
+     * @param $items
+     * @return mixed
+     */
     public static function updateOrder($reference, $items)
     {
         $order = Order::where('reference', '=', $reference)->first();
@@ -77,6 +109,11 @@ class Order extends Model
         return $order;
     }
 
+    /**
+     * Calculates financial parts of the Order entity.
+     *
+     * @param $order
+     */
     public static function calculateTotal($order)
     {
         $subtotal = 0;
@@ -98,6 +135,12 @@ class Order extends Model
         $order->save();
     }
 
+    /**
+     * Check whether an Order has Hotel or not.
+     *
+     * @param $order
+     * @return bool
+     */
     public static function hasHotel($order)
     {
         $hotels = [];
@@ -115,6 +158,12 @@ class Order extends Model
         }
     }
 
+    /**
+     * Appends Order to a User.
+     *
+     * @param $order
+     * @param $user
+     */
     public static function appendUser($order, $user)
     {
         $order->user_id = $user->id;
@@ -122,6 +171,13 @@ class Order extends Model
         $order->save();
     }
 
+    /**
+     * Prepares the Order for payment based on Payment Processor needs.
+     *
+     * @param $order
+     * @param $settings
+     * @return array
+     */
     public static function prepareOrder($order, $settings)
     {
         $clientId = $settings->client_id;      //Banka tarafindan magazaya verilen isyeri numarasi
@@ -153,6 +209,13 @@ class Order extends Model
         ];
     }
 
+    /**
+     * Hashing Algorithm for Asseco
+     *
+     * @param $paymentData
+     * @param $settings
+     * @return string
+     */
     public static function prepareHash($paymentData, $settings)
     {
         $storekey = $settings->storekey;
