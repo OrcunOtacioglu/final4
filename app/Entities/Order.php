@@ -139,9 +139,9 @@ class Order extends Model
         $order->save();
     }
 
-    public static function prepareOrder($order)
+    public static function prepareOrder($order, $settings)
     {
-        $clientId = "600300000";      //Banka tarafindan magazaya verilen isyeri numarasi
+        $clientId = $settings->client_id;      //Banka tarafindan magazaya verilen isyeri numarasi
         $amount = $order->total;             //tutar
         $oid = $order->reference;                    //Siparis numarasi
         $okUrl = env('APP_URL') . '/order-complete';      //Islem basariliysa dönülecek isyeri sayfasi  (3D isleminin ve ödeme isleminin sonucu)
@@ -150,7 +150,7 @@ class Order extends Model
 
         $taksit = "";    					//Taksit sayisi
         $islemtipi="Auth";					//Islem tipi
-        $storekey = "123456";					//Isyeri anahtari
+        $storekey = $settings->storekey;					//Isyeri anahtari
 
         $hashstr = $clientId . $oid . $amount . $okUrl . $failUrl . $islemtipi . $taksit . $rnd . $storekey; //güvenlik amaçli hashli deger
 
@@ -170,9 +170,9 @@ class Order extends Model
         ];
     }
 
-    public static function prepareHash($paymentData)
+    public static function prepareHash($paymentData, $settings)
     {
-        $storekey = "123456";
+        $storekey = $settings->storekey;
 //        $storekey = 'KUTU7513';
         $hashstr = $paymentData['clientid'] . $paymentData['oid'] . $paymentData['amount'] . $paymentData['okUrl'] . $paymentData['failUrl'] . $paymentData['islemtipi'] . "" . $paymentData['rnd'] . $storekey;
 

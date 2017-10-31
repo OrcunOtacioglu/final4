@@ -50,9 +50,9 @@
             <div class="col-12 col-md-4 col-sm-12 col-xs-12">
                 <h3>Payment Options</h3>
                 <p>By pressing "Pay Now" button or by using this website you agreed the <a href="#" target="_blank">Terms & Conditions</a></p>
-                <form action="https://entegrasyon.asseco-see.com.tr/fim/est3Dgate" method="POST">
+                <form action="https://www.fbwebpos.com/fim/est3Dgate" method="POST">
                     {{ csrf_field() }}
-                    <input type="hidden" name="clientid" value="600300000">
+                    <input type="hidden" name="clientid" value="{{ $settings->client_id }}">
                     <input type="hidden" name="amount" value="{{ $paymentData['amount'] }}">
                     <input type="hidden" name="oid" value="{{ $paymentData['oid'] }}">
                     <input type="hidden" name="okUrl" value="{{ $paymentData['okUrl'] }}">
@@ -66,7 +66,7 @@
 
                     <input type="hidden" name="refreshtime" value="5" >
                     <input type="hidden" name="lang" value="en">
-                    <input type="hidden" name="currency" value="978">
+                    <input type="hidden" name="currency" value="{{ $settings->currency_code }}">
 
                     <input type="hidden" name="firmaadi" value="Tatil Seyahat Turizm A.S.">
                     <input type="hidden" name="Fismi" value="is">

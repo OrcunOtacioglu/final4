@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Hotel;
 use App\Entities\Order;
 use App\Entities\Seat;
+use App\Entities\Settings;
 use App\Events\OrderCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,6 +86,7 @@ class OrderController extends Controller
     public function show($reference)
     {
         $order = Order::where('reference', '=', $reference)->first();
+        $settings = Settings::where('profile_name', '=', 'finansbank')->first();
 
         if (!Order::hasHotel($order)) {
 
@@ -100,9 +102,9 @@ class OrderController extends Controller
 
                 $user = Auth::user();
                 Order::appendUser($order, $user);
-                $paymentData = Order::prepareOrder($order);
+                $paymentData = Order::prepareOrder($order, $settings);
 
-                return view('frontend.entities.order.show', compact('order', 'paymentData'));
+                return view('frontend.entities.order.show', compact('order', 'paymentData', 'settings'));
             }
         }
     }
