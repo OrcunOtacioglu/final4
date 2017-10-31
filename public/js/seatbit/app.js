@@ -9,7 +9,7 @@ var canvas = new fabric.Canvas('venue', {
     backgroundColor: '#f8f8fa',
     containerClass: 'venue-wrapper',
     enableRetinaScaling: true,
-    height: responsiveHeight() -71,
+    height: responsiveHeight(),
     width: responsiveWidth(),
     selection: false
 });
@@ -30,13 +30,13 @@ function responsiveHeight() {
 }
 
 function responsiveWidth() {
-    return $(window).width();
+    return $('#wrapper').width() - $('.col-3').width();
 }
 
 function watchResponsive() {
     var venue = $('#venue');
     $(window).resize(function () {
-        $('#sidebar').height(responsiveHeight() - 71);
+        $('#sidebar').height(responsiveHeight());
         venue.height(responsiveHeight());
         venue.width(responsiveWidth());
     });
@@ -48,12 +48,12 @@ function watchResponsive() {
  */
 function setSidebarHeight()
 {
-    return $('#sidebar').height(responsiveHeight() - 71);
+    return $('#sidebar').height(responsiveHeight());
 }
 
 function setCategoriesHeight()
 {
-    return $('#categories').height(responsiveHeight() - 71);
+    return $('#categories').height(responsiveHeight());
 }
 
 var cart = new Vue({
@@ -155,7 +155,7 @@ function drawSeats(objects) {
             return false;
         } else {
             if (seat.status === '1') {
-                if (cart.getItemCount() >= 10) {
+                if (cart.getItemCount() >= 8) {
                     swal('Oops!', 'You can not purchase more than 10 tickets per purchase!', 'warning');
                 } else {
                     seat.set('status', '5');
