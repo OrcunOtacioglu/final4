@@ -14,6 +14,7 @@ class AdditionalFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->string('surname')->after('name');
             $table->boolean('is_admin')->after('password');
             $table->string('phone')->after('email');
             $table->string('citizenship')->after('phone');
@@ -33,6 +34,7 @@ class AdditionalFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('surname');
             $table->dropColumn('is_admin');
             $table->dropColumn('phone');
             $table->dropColumn('citizenship');

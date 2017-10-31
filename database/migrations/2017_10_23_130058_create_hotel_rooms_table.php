@@ -21,13 +21,13 @@ class CreateHotelRoomsTable extends Migration
 
             $table->string('name');
 
-            $table->double('price');
+            $table->decimal('cost');
+            $table->decimal('price')->nullable();
             $table->float('comission');
             $table->float('fee');
             $table->float('tax_percentage');
 
             $table->integer('type');
-            $table->integer('availability');
             $table->jsonb('misc')->nullable();
 
             $table->timestamps();

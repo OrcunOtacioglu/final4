@@ -26,9 +26,12 @@ class CreateSeatsTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
             $table->string('reference');
-            // @TODO ADD LEFT AND RIGHT FIELDS FOR DRAWING
+            $table->string('category');
             $table->string('row');
             $table->string('seat');
+
+            $table->string('top');
+            $table->string('left');
 
             $table->integer('status');
 

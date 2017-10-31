@@ -19,7 +19,12 @@ class CreateRatesTable extends Migration
             $table->string('name');
             $table->string('color_code')->nullable();
 
-            $table->decimal('price');
+            $table->decimal('cost');
+            $table->decimal('profit_margin');
+            $table->decimal('price')->nullable();
+            $table->decimal('minimum_profit_amount')->nullable();
+
+            $table->string('zones');
             $table->integer('available');
 
             $table->boolean('available_online');

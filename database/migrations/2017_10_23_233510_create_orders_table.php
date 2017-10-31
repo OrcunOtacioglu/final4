@@ -22,6 +22,7 @@ class CreateOrdersTable extends Migration
 
             $table->integer('status');
 
+            $table->decimal('cost');
             $table->decimal('subtotal');
             $table->decimal('comission');
             $table->decimal('fee');

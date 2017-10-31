@@ -16,8 +16,9 @@ class CreateHotelsTable extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('uuid');
+            $table->string('reference');
             $table->string('name');
+            $table->integer('availability');
             $table->string('media_path');
             $table->integer('stars');
             $table->float('review_point');
