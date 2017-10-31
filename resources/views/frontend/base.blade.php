@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    @yield('custom.meta')
 
     <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
 
@@ -13,14 +14,16 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/froala_blocks.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
     @yield('custom.css')
 
     <!-- Custom Fonts -->
     <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
     @yield('custom.fonts')
 </head>
 <body>
-    @include('frontend.partials.navbar')
+    @include('frontend.partials.header')
 
     @yield('content')
 
@@ -30,6 +33,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     @yield('footer.scripts')
 </body>
 </html>

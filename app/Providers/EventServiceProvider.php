@@ -16,6 +16,12 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Event' => [
             'App\Listeners\EventListener',
         ],
+        'App\Events\OrderCreated' => [
+            'App\Listeners\ChangeSeatStatus',
+        ],
+        'App\Events\ZoneUpdated' => [
+            'App\Listeners\DrawNewZoneMap',
+        ],
     ];
 
     /**

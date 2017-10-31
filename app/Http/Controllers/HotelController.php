@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Hotel;
+use App\Entities\HotelRoom;
+use App\Entities\Order;
+use App\Entities\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -95,5 +99,29 @@ class HotelController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addHotel(Request $request, $id)
+    {
+        $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();
+        $room = HotelRoom::where([
+            ['type', '=', $request->roomType],
+            ['hotel_id', '=', $id]
+        ])->first();
+
+        if ($order === null) {
+            // @TODO INDICATE THAT THEIR SESSION IS ENDED.
+            return redirect()->to('/');
+        }
+
+        $details = [
+            'info' => $room->misc
+        ];
+
+        OrderItem::createNew($order, 2, $room, $details);
+
+        Order::calculateTotal($order);
+
+        return redirect()->action('OrderController@show', ['reference' => $order->reference]);
     }
 }

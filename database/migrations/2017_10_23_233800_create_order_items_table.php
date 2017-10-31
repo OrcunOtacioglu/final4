@@ -20,9 +20,13 @@ class CreateOrderItemsTable extends Migration
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
 
             $table->integer('type');
-            $table->string('reference');
-            $table->integer('quantity');
 
+            $table->string('name');
+            $table->string('reference');
+
+            $table->jsonb('details')->nullable();
+
+            $table->integer('quantity');
             $table->decimal('unit_price');
             $table->decimal('subtotal');
 

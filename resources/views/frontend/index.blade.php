@@ -1,15 +1,33 @@
 @extends('frontend.base')
 
+@section('custom.meta')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@stop
+
 @section('title', 'Final Four Packages')
 
 @section('content')
     <div id="root">
-        @include('frontend.partials.categories')
-        <div class="app">
-            <canvas id="venue"></canvas>
+        <div class="container-fluid">
+            <div class="row" id="wrapper">
+                <div class="col-3 p0">
+                    @include('frontend.partials.categories')
+                </div>
+                <div class="col-6 p0">
+                    <div class="app">
+                        <canvas id="venue"></canvas>
+                    </div>
+                </div>
+                <div class="col-3 p0">
+                    @include('frontend.partials.sidebar')
+                </div>
+            </div>
         </div>
-        @include('frontend.partials.sidebar')
     </div>
+@stop
+
+@section('custom.html')
+    @include('frontend.partials.footer')
 @stop
 
 @section('footer.scripts')
