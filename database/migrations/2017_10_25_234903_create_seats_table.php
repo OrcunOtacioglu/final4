@@ -34,6 +34,7 @@ class CreateSeatsTable extends Migration
             $table->string('left');
 
             $table->integer('status');
+            $table->decimal('cost');
 
             $table->timestamps();
         });
