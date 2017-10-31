@@ -45,19 +45,11 @@ class Order extends Model
         foreach ($items as $seat) {
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
-            $orderItem = new OrderItem();
-            $orderItem->order_id = $order->id;
-            $orderItem->type = 1;
-            $orderItem->reference = $seat->reference;
-            $orderItem->quantity = 1;
+            $details = [
+                'info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade'
+            ];
 
-            $orderItem->unit_price = $seat->rate->price;
-            $orderItem->subtotal = $orderItem->quantity * $orderItem->unit_price;
-
-            $orderItem->created_at = Carbon::now();
-            $orderItem->updated_at = Carbon::now();
-
-            $orderItem->save();
+            OrderItem::createNew($order, 1, $seat, $details);
         }
 
         // Calculate Order financials
@@ -164,7 +156,6 @@ class Order extends Model
     public static function prepareHash($paymentData, $settings)
     {
         $storekey = $settings->storekey;
-//        $storekey = 'KUTU7513';
         $hashstr = $paymentData['clientid'] . $paymentData['oid'] . $paymentData['amount'] . $paymentData['okUrl'] . $paymentData['failUrl'] . $paymentData['islemtipi'] . "" . $paymentData['rnd'] . $storekey;
 
         return base64_encode(pack('H*',sha1($hashstr)));

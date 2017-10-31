@@ -113,7 +113,7 @@ class HotelController extends Controller
             // @TODO INDICATE THAT THEIR SESSION IS ENDED.
             return redirect()->to('/');
         }
-        
+
         $details = [
             'info' => $room->misc
         ];

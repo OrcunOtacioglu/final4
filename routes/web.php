@@ -1,6 +1,5 @@
 <?php
 
-// @TODO ADD RATES ON THE LEFT SIDEBAR AND DRAW THE MAP
 Route::get('/', 'ApplicationController@index');
 
 Auth::routes();

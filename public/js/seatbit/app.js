@@ -156,7 +156,7 @@ function drawSeats(objects) {
         } else {
             if (seat.status === '1') {
                 if (cart.getItemCount() >= 8) {
-                    swal('Oops!', 'You can not purchase more than 10 tickets per purchase!', 'warning');
+                    swal('Oops!', 'You can not purchase more than 8 tickets per purchase!', 'warning');
                 } else {
                     seat.set('status', '5');
                     seat.set('stroke', '#89BCEB');

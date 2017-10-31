@@ -93,7 +93,6 @@ class Rate extends Model
         return $rate;
     }
 
-    // @TODO IMPLEMENT THIS FUNCTIONALITY
     public static function calculateAvailable($data)
     {
         $zones = explode('.', $data);
