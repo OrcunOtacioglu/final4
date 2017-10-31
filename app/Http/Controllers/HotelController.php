@@ -104,7 +104,6 @@ class HotelController extends Controller
     public function addHotel(Request $request, $id)
     {
         $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();
-        $hotel = Hotel::find($id);
         $room = HotelRoom::where([
             ['type', '=', $request->roomType],
             ['hotel_id', '=', $id]
@@ -114,19 +113,12 @@ class HotelController extends Controller
             // @TODO INDICATE THAT THEIR SESSION IS ENDED.
             return redirect()->to('/');
         }
+        
+        $details = [
+            'info' => $room->misc
+        ];
 
-        $orderItem = new OrderItem();
-        $orderItem->order_id = $order->id;
-        $orderItem->type = 2;
-        $orderItem->reference = $hotel->uuid;
-        $orderItem->quantity = 1;
-        $orderItem->unit_price = $room->price * 3;
-        $orderItem->subtotal = $orderItem->quantity * $orderItem->unit_price;
-
-        $orderItem->created_at = Carbon::now();
-        $orderItem->updated_at = Carbon::now();
-
-        $orderItem->save();
+        OrderItem::createNew($order, 2, $room, $details);
 
         Order::calculateTotal($order);
 
