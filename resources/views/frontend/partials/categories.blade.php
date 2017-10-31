@@ -35,7 +35,7 @@
                                     <p class="category-name mb-0">
                                         <i class="ti-ticket"></i> {{ $rate->name }}
                                     </p>
-                                    <span class="category-availability">Available {{ $rate->available }}</span>
+                                    <span class="category-availability">Available</span>
                                 </div>
                             </div>
                             <div class="col-md-4 text-center">

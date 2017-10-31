@@ -9,7 +9,7 @@
 @section('content')
     <div id="root">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" id="wrapper">
                 <div class="col-3 p0">
                     @include('frontend.partials.categories')
                 </div>
@@ -24,6 +24,10 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('custom.html')
+    @include('frontend.partials.footer')
 @stop
 
 @section('footer.scripts')

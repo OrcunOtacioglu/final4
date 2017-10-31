@@ -60,3 +60,11 @@
 @section('custom.html')
     @include('frontend.partials.footer')
 @stop
+
+@section('footer.scripts')
+    <script>
+        $(document).ready(function() {
+            $('#country').select2();
+        });
+    </script>
+@stop

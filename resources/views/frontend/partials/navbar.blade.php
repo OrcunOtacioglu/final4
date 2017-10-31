@@ -26,10 +26,14 @@
                 </li>
             @else
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    <a class="nav-link" href="{{ route('login') }}">
+                        <i class="wb-unlock"></i> Login
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    <a class="nav-link" href="{{ route('register') }}">
+                        <i class="wb-user-add"></i> Register
+                    </a>
                 </li>
             @endif
         </ul>
