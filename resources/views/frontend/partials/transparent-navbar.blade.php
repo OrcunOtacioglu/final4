@@ -45,8 +45,9 @@
                 </li>
             @endif
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('register') }}">
-                    <i class="wb-user-add"></i> Register
+                <a class="nav-link" href="#" onclick="cart.displayCart = !cart.displayCart">
+                    <span class="badge badge-pill badge-detur up"><i class="icon wb-bell"></i></span>
+                    <i class="ti-shopping-cart-full"></i> Package
                 </a>
             </li>
         </ul>
