@@ -1,7 +1,9 @@
 @extends('dashboard.base')
 
 @section('header.right')
-    <a href="{{ action('HotelController@create') }}" class="btn btn-secondary">Create Hotel</a>
+    <a href="{{ action('HotelController@create') }}" class="btn btn-dashboard">
+        <i class="icon wb-plus-circle"></i> Add Hotel
+    </a>
 @stop
 
 @section('title', 'Manage Hotels')
@@ -16,9 +18,10 @@
             <thead>
             <tr>
                 <th scope="col">Name</th>
-                <th scope="col">Image</th>
-                <th scope="col">Stars</th>
-                <th scope="col">Location</th>
+                <th scope="col">Availabilty</th>
+                <th scope="col">Online Availability</th>
+                <th scope="col">Offline Availabilty</th>
+                <th scope="col">Is Available Online?</th>
                 <th scope="col" class="text-nowrap">Actions</th>
             </tr>
             </thead>
@@ -26,11 +29,10 @@
             @foreach($hotels as $hotel)
                 <tr>
                     <td>{{ $hotel->name }}</td>
-                    <td>
-                        <img src="{{ $hotel->media_path }}/1.jpg" alt="">
-                    </td>
-                    <td>{{ $hotel->stars }}</td>
-                    <td>{{ $hotel->location }}</td>
+                    <td>{{ $hotel->total_availabity }}</td>
+                    <td>{{ $hotel->online_availability }}</td>
+                    <td>{{ $hotel->box_office_availability }}</td>
+                    <td>{{ $hotel->available_online }}</td>
                     <td class="text-nowrap">
                         <a href="{{ action('HotelController@edit', ['id' => $hotel->id]) }}" class="text-muted">Edit</a>
                         <a href="#" class="text-danger">Delete</a>

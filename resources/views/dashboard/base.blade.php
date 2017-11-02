@@ -16,6 +16,7 @@
     @yield('custom.css')
 
     <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
     @yield('custom.fonts')
 </head>
 

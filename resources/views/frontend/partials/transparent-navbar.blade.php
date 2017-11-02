@@ -11,14 +11,26 @@
                 @if(Auth::user()->isAdmin())
                     <li class="nav-item">
                         <a href="{{ action('ApplicationController@dashboard') }}" class="nav-link">
-                            <i class="wb-dashboard text-success"></i> Dashboard
+                            <i class="icon ti-dashboard text-success"></i> Dashboard
                         </a>
                     </li>
                 @endif
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        <i class="wb-user-circle"></i> Profile
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon ti-user"></i> {{ Auth::user()->name }}
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item"
+                           href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                            <i class="icon ti-lock"></i> Logout
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </div>
                 </li>
             @else
                 <li class="nav-item">
@@ -32,6 +44,11 @@
                     </a>
                 </li>
             @endif
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">
+                    <i class="wb-user-add"></i> Register
+                </a>
+            </li>
         </ul>
     </div>
 </nav>

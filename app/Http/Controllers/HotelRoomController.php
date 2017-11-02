@@ -71,7 +71,9 @@ class HotelRoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $room = HotelRoom::updateEntity($request, $id);
+
+        return redirect()->action('HotelController@edit', ['id' => $room->hotel_id]);
     }
 
     /**

@@ -3,7 +3,9 @@
 @section('title', 'Manage Rates')
 
 @section('header.right')
-    <a href="{{ action('RateController@create') }}" class="btn btn-secondary">Add Rate</a>
+    <a href="{{ action('RateController@create') }}" class="btn btn-dashboard">
+        <i class="icon wb-plus-circle"></i> Add Rate
+    </a>
 @stop
 
 @section('content')

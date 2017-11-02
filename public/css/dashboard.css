@@ -49,6 +49,23 @@ h1 {
   border-radius: 0;
 }
 
+.bg-custom {
+  background: #34425A;
+}
+
+.sidebar a {
+  color: #899dc1;
+}
+
+.sidebar a:hover {
+  color: #FFFFFF;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background: #263349;
+  color: #FFFFFF;
+}
+
 /*
  * Dashboard
  */
@@ -61,4 +78,19 @@ h1 {
 .placeholder img {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
+}
+
+/**
+ * Custom Button
+ */
+.btn-dashboard {
+  color: #fff;
+  background-color: #34425A;
+  border-color: #34425A;
+}
+
+.btn-dashboard:hover {
+  color: #34425A;
+  background-color: #FFFFFF;
+  border-color: #34425A;
 }

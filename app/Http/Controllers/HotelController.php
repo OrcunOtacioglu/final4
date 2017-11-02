@@ -87,7 +87,9 @@ class HotelController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Hotel::updateEntity($request, $id);
+
+        return redirect()->action('HotelController@edit', ['id' => $id]);
     }
 
     /**
@@ -101,6 +103,7 @@ class HotelController extends Controller
         //
     }
 
+    // @TODO REFACTOR THIS CODE TO REFLECT UNIFIED SHOPPING CART
     public function addHotel(Request $request, $id)
     {
         $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();

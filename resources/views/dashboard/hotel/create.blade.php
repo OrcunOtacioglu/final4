@@ -22,6 +22,30 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Total_availability Form Input -->
+                <div class="form-group">
+                    <label for="total_availability">Total Availability</label>
+                    <input type="text" class="form-control" id="total_availability" name="total_availability">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Online_availability Form Input -->
+                <div class="form-group">
+                    <label for="online_availability">Online Availability</label>
+                    <input type="text" class="form-control" id="online_availability" name="online_availability">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Box_office_availability Form Input -->
+                <div class="form-group">
+                    <label for="box_office_availability">Box Office Availability</label>
+                    <input type="text" class="form-control" id="box_office_availability" name="box_office_availability">
+                </div>
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-4">
@@ -46,18 +70,39 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-3">
                 <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="available_online">Available Online?</label>
+                    <select name="available_online" id="available_online" class="form-control">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="available_box_office">Available Box Office?</label>
+                    <select name="available_box_office" id="available_box_office" class="form-control">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="facilities">Facilities</label>
-                    <textarea name="facilities" id="facilities" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="facilities" id="facilities" cols="30" rows="5" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
                 </div>
             </div>
         </div>

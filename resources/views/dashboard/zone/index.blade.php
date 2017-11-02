@@ -3,7 +3,9 @@
 @section('title', 'Manage Zones')
 
 @section('header.right')
-    <a href="{{ action('ZoneController@create') }}" class="btn btn-secondary">Add Zone</a>
+    <a href="{{ action('ZoneController@create') }}" class="btn btn-dashboard">
+        <i class="icon wb-plus-circle"></i> Add Zone
+    </a>
 @stop
 
 @section('content')

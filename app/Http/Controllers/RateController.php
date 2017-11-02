@@ -27,9 +27,7 @@ class RateController extends Controller
      */
     public function create()
     {
-        $zones = Zone::all();
-
-        return view('dashboard.rate.create', compact('zones'));
+        return view('dashboard.rate.create');
     }
 
     /**
