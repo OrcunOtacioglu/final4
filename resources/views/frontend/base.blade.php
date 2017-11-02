@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="order" content="{{ request()->hasCookie('orderRef') ? request()->cookie('orderRef') : 'not-set' }}">
     @yield('custom.meta')
 
     <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
