@@ -9,7 +9,7 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        $rates = Rate::all();
+        $rates = Rate::where('available_online', '=', true)->get()->sortByDesc('price');
 
         return view('frontend.index', compact('rates'));
     }
