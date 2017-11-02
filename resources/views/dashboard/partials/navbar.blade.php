@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-light fixed-top bg-light">
         <a class="navbar-brand" href="{{ route('dashboard') }}">Dashboard</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,8 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ action('SettingsController@index') }}">Settings</a>
+                    <a class="nav-link" href="{{ action('SettingsController@index') }}">
+                        <i class="icon ti-settings"></i> Settings</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Profile</a>

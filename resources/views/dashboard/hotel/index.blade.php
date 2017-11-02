@@ -1,7 +1,9 @@
 @extends('dashboard.base')
 
 @section('header.right')
-    <a href="{{ action('HotelController@create') }}" class="btn btn-secondary">Create Hotel</a>
+    <a href="{{ action('HotelController@create') }}" class="btn btn-dashboard">
+        <i class="icon wb-plus-circle"></i> Add Hotel
+    </a>
 @stop
 
 @section('title', 'Manage Hotels')
