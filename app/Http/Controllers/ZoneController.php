@@ -112,12 +112,12 @@ class ZoneController extends Controller
         $rate = Rate::find($request->rate_id);
 
         if ($rate == null) {
-            $price = 0;
             $categoryID = 0;
+            $category = '';
             $colorCode = '76838F';
         } else {
-            $price = $rate->price;
             $categoryID = $rate->id;
+            $category = $rate->name;
             $colorCode = $rate->color_code;
         }
 
@@ -135,10 +135,10 @@ class ZoneController extends Controller
                     'row'   => $request->row,
                     'status' => $request->status,
                     'zone'  => $zone->name,
-                    'price' => intval($price),
                     'reference' => 'S_' . $zone->name . '_' . $request->row . '_' . ($request->start_number + $i),
                     'categoryColor' => $colorCode,
-                    'categoryID' => intval($categoryID)
+                    'category' => $category,
+                    'categoryID' => $categoryID
                 ];
 
                 array_push($data['objects'], $seat);
@@ -154,10 +154,10 @@ class ZoneController extends Controller
                     'row'   => $request->row,
                     'status' => $request->status,
                     'zone'  => $zone->name,
-                    'price' => intval($price),
                     'reference' => 'S_' . $zone->name . '_' . $request->row . '_' . $i,
                     'categoryColor' => $colorCode,
-                    'categoryID' => intval($categoryID)
+                    'category' => $category,
+                    'categoryID' => $categoryID
                 ];
 
                 array_push($data['objects'], $seat);
@@ -189,15 +189,20 @@ class ZoneController extends Controller
         $seats = json_decode($zone->objects, true);
 
         foreach ($seats['objects'] as $object) {
+            $rate = Rate::find($object['categoryID']);
             $seat = new Seat();
 
             $seat->rate_id = $object['categoryID'] == 0 ? null : $object['categoryID'];
             $seat->zone_id = $id;
             $seat->order_id = null;
             $seat->reference = $object['reference'];
+            $seat->category = $object['category'];
             $seat->row = $object['row'];
             $seat->seat = $object['number'];
+            $seat->top = $object['top'];
+            $seat->left = $object['left'];
             $seat->status = $object['status'];
+            $seat->cost = $rate->cost;
 
             $seat->created_at = Carbon::now();
             $seat->updated_at = Carbon::now();
