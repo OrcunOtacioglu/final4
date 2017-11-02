@@ -59,7 +59,10 @@ class OrderItem extends Model
         $item->name = $entity->category;
         $item->reference = $entity->reference;
 
-        $item->details = $details;
+        $item->details = json_encode($details, true);
+
+        $item->profit_margin = $entity->rate != null ? $entity->rate->profit_margin : null;
+        $item->minimum_profit_amount = $entity->rate != null ? $entity->rate->minimum_profit_amount : null;
 
         $item->quantity = 1;
         $item->unit_price = $entity->cost;

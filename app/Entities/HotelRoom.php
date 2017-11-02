@@ -59,7 +59,7 @@ class HotelRoom extends Model
         $room->hotel_id = $request->hotel_id;
 
         $room->name = $request->room_name;
-        $room->category = $hotel->room_category;
+        $room->category = $hotel->name;
         $room->reference = str_random(6);
 
         $room->cost = $request->room_cost;
