@@ -46,7 +46,7 @@
                     <input type="text" name="minimum_profit_amount" id="minimum_profit_amount" class="form-control">
                 </div>
             </div>
-        </div>v
+        </div>
 
         <div class="row">
             <div class="col-md-4">
