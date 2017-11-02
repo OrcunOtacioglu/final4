@@ -24,8 +24,29 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    <label for="cost">Cost</label>
+                    <input type="text" name="cost" id="cost" class="form-control" value="{{ $rate->price }}">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="profit_margin">Profit Margin</label>
+                    <input type="text" name="profit_margin" id="profit_margin" class="form-control" value="{{ $rate->profit_margin }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
                     <label for="price">Price</label>
                     <input type="text" name="price" id="price" class="form-control" value="{{ $rate->price }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="minimum_profit_amount">Minimum Profit Amoun</label>
+                    <input type="text" name="minimum_profit_amount" id="minimum_profit_amount" class="form-control" value="{{ $rate->minimum_profit_amount }}">
                 </div>
             </div>
         </div>

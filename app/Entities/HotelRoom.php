@@ -59,22 +59,22 @@ class HotelRoom extends Model
         $room->hotel_id = $request->hotel_id;
 
         $room->name = $request->room_name;
-        $room->category = $hotel->name;
+        $room->category = $hotel->room_category;
         $room->reference = str_random(6);
 
-        $room->cost = $request->cost;
+        $room->cost = $request->room_cost;
         $room->price = $request->room_price;
-        $room->comission = $request->comission != null
-            ? $request->comission
+        $room->comission = $request->room_comission != null
+            ? $request->room_comission
             : 0;
-        $room->fee = $request->fee != null
-            ? $request->fee
+        $room->fee = $request->room_fee != null
+            ? $request->room_fee
             : 0;
-        $room->tax_percentage = $request->tax_percentage != null
-            ? $request->tax_percentage
+        $room->tax_percentage = $request->room_tax_percentage != null
+            ? $request->room_tax_percentage
             : 0;
 
-        $room->type = $request->type;
+        $room->type = $request->room_type;
 
         $room->misc = $request->misc;
 
@@ -98,19 +98,19 @@ class HotelRoom extends Model
 
         $room->name = $request->room_name;
 
-        $room->cost = $request->cost;
+        $room->cost = $request->room_cost;
         $room->price = $request->room_price;
-        $room->comission = $request->comission != null
-            ? $request->comission
+        $room->comission = $request->room_comission != null
+            ? $request->room_comission
             : 0;
-        $room->fee = $request->fee != null
-            ? $request->fee
+        $room->fee = $request->room_fee != null
+            ? $request->room_fee
             : 0;
-        $room->tax_percentage = $request->tax_percentage != null
-            ? $request->tax_percentage
+        $room->tax_percentage = $request->room_tax_percentage != null
+            ? $request->room_tax_percentage
             : 0;
 
-        $room->type = $request->type;
+        $room->type = $request->room_type;
 
         $room->misc = $request->misc;
 

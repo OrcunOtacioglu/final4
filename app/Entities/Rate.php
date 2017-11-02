@@ -106,7 +106,7 @@ class Rate extends Model
         $rate->cost = $request->cost;
         $rate->profit_margin = $request->profit_margin;
         $rate->price = $request->price;
-        $rate->minimum_profit_margin = $request->minimum_profit_margin;
+        $rate->minimum_profit_amount = $request->minimum_profit_amount;
 
         $rate->zones = $request->zones;
         $rate->available = $request->zones != null

@@ -6,6 +6,11 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/rate') ? 'active' : '' }}" href="{{ action('RateController@index') }}">
+                <i class="icon wb-calendar"></i> Rates
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/event') ? 'active' : '' }}" href="{{ action('EventController@index') }}">
                 <i class="icon wb-calendar"></i> Events
             </a>
