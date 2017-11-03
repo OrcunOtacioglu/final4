@@ -46,9 +46,10 @@ class OrderItem extends Model
      * @param $order
      * @param $type
      * @param $entity
+     * @param int $qty
      * @param null $details
      */
-    public static function createNew($order, $type, $entity, $details = null)
+    public static function createNew($order, $type, $entity, $details = null, $qty = 1)
     {
         $item = new OrderItem();
 
@@ -64,8 +65,9 @@ class OrderItem extends Model
         $item->profit_margin = $entity->rate != null ? $entity->rate->profit_margin : null;
         $item->minimum_profit_amount = $entity->rate != null ? $entity->rate->minimum_profit_amount : null;
 
-        $item->quantity = 1;
+        $item->quantity = $qty;
         $item->unit_price = $entity->cost;
+
         $item->subtotal = $item->quantity * $item->unit_price;
 
         $item->created_at = Carbon::now();

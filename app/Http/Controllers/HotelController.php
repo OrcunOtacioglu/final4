@@ -121,7 +121,7 @@ class HotelController extends Controller
             'info' => $room->misc
         ];
 
-        OrderItem::createNew($order, 2, $room, $details);
+        OrderItem::createNew($order, 2, $room, $details, $request->roomQty);
 
         Order::calculateTotal($order);
 
