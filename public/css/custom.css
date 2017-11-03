@@ -384,6 +384,10 @@ a.sidebar-footer-anchor:hover {
     margin-bottom: 15px;
 }
 
+.mb-10 {
+    margin-bottom: 10px;
+}
+
 .pl5 {
     padding-left: 5px;
 }
@@ -394,6 +398,10 @@ a.sidebar-footer-anchor:hover {
 
 .pt10 {
     padding-top: 10px;
+}
+
+.pr10 {
+    padding-right: 10px;
 }
 
 .pt15 {
@@ -474,4 +482,12 @@ a.sidebar-footer-anchor:hover {
 }
 .badge-detur {
     background: #16b7cd;
+}
+
+/**
+    ORDER DETAIL
+ **/
+#order-detail {
+    position: sticky;
+    top: 15px;
 }
