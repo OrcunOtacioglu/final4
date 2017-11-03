@@ -330,34 +330,42 @@ a.sidebar-footer-anchor:hover {
 
 .btn-success {
     background: #46be8a;
+    border: #46be8a;
 }
 
 .btn-success:hover {
     background: #5cd29d;
+    border: #5cd29d;
 }
 
 .btn-info {
     background: #57c7d4;
+    border: #57c7d4;
 }
 
 .btn-info:hover {
     background: #77d6e1;
+    border: #77d6e1;
 }
 
 .btn-warning {
     background: #f2a654;
+    border: #f2a654;
 }
 
 .btn-warning:hover {
     background: #f4b066;
+    border: #f4b066;
 }
 
 .btn-danger {
     background: #f96868;
+    border: #f96868;
 }
 
 .btn-danger:hover {
     background: #fa7a7a;
+    border: #fa7a7a;
 }
 
 /**

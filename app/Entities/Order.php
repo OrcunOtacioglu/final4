@@ -57,6 +57,7 @@ class Order extends Model
         $order->reference = str_random(6);
         $order->status = 0;
         $order->cost = 0;
+        $order->profit = 0;
         $order->subtotal = 0;
         $order->comission = 0;
         $order->fee = 0;

@@ -38,7 +38,7 @@
                 <!-- Online_availability Form Input -->
                 <div class="form-group">
                     <label for="online_availability">Online Availability</label>
-                    <input type="text" class="form-control" id="online_availability" name="online_availability" value="{{ $hotel->online_availabilty }}">
+                    <input type="text" class="form-control" id="online_availability" name="online_availability" value="{{ $hotel->online_availability }}">
                 </div>
             </div>
             <div class="col-md-4">
