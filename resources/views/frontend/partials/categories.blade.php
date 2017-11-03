@@ -28,7 +28,7 @@
                 </li>
 
                 @foreach($rates as $rate)
-                    <li onclick="getSeatsOf('1')" class="category-item mb-15" style="border-color: {{ '#' . $rate->color_code }};">
+                    <li onclick="getSeatsOf('2')" class="category-item mb-15" style="border-color: {{ '#' . $rate->color_code }};">
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="category-info">

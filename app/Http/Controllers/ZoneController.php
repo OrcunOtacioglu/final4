@@ -7,6 +7,7 @@ use App\Entities\Seat;
 use App\Entities\Zone;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ZoneController extends Controller
 {
@@ -209,6 +210,15 @@ class ZoneController extends Controller
 
             $seat->save();
         }
+
+        return redirect()->action('ZoneController@index');
+    }
+
+    public function getBackup($id)
+    {
+        $zone = Zone::findOrFail($id);
+
+        Storage::disk('local')->put('backups/' . $zone->name . '.json', $zone->objects);
 
         return redirect()->action('ZoneController@index');
     }
