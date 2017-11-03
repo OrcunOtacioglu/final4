@@ -120,45 +120,15 @@
 
             </div>
             <div class="col-4">
-                <div id="order-detail">
-                    <table class="table text-left">
-                        <thead class="detur-thead">
-                        <tr>
-                            <th colspan="3">Item</th>
-                            <th class="text-center">Qty</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($order->items as $item)
-                            <tr>
-                                <td colspan="3" class="bt-none">{{ $item->name }}</td>
-                                <td class="bt-none text-center">{{ $item->quantity }}</td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                        <tfoot class="detur-details">
-                        <tr>
-                            <td colspan="3">Subtotal</td>
-                            <td class="text-center">{{ $order->subtotal }}€</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="bt-none">Service Fees</td>
-                            <td class="bt-none text-center">{{ $order->fee }}€</td>
-                        </tr>
-                        <tr class="detur-summary">
-                            <td colspan="3">TOTAL</td>
-                            <td class="text-center">{{ $order->total }}€</td>
-                        </tr>
-                        </tfoot>
-                    </table>
-                    @if(!\App\Entities\Order::hasHotel($order))
-                        <div class="alert alert-warning" role="alert">
-                            <i class="wb-warning"></i> Please add at least one hotel to your package!
-                        </div>
-                    @else
-                        <a href="#" class="btn btn-block btn-success">Proceed to Checkout</a>
-                    @endif
-                </div>
+                @include('frontend.partials.order-detail')
+
+                @if(!\App\Entities\Order::hasHotel($order))
+                    <div class="alert alert-warning" role="alert">
+                        <i class="wb-warning"></i> Please add at least one hotel to your package!
+                    </div>
+                @else
+                    <a href="{{ action('OrderController@completeOrder', ['reference' => $order->reference]) }}" class="btn btn-block btn-success">Proceed to Checkout</a>
+                @endif
             </div>
         </div>
     </div>

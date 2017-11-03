@@ -18,40 +18,7 @@
                 @include('auth.partials.authenticate')
             </div>
             <div class="col-12 col-md-4 col-sm-12 col-xs-12">
-                <table class="table text-left">
-                    <thead class="detur-thead">
-                        <tr>
-                            <th>Item</th>
-                            <th>Price</th>
-                            <th>Qty</th>
-                            <th>Subtotal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($order->items as $item)
-                            <tr>
-                                <td class="bt-none">{{ $item->type }}</td>
-                                <td class="bt-none">{{ $item->unit_price }}€</td>
-                                <td class="bt-none">{{ $item->quantity }}</td>
-                                <td class="bt-none text-center">{{ $item->subtotal }}€</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot class="detur-details">
-                        <tr>
-                            <td colspan="3">Subtotal</td>
-                            <td class="text-center">{{ $order->subtotal }}€</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="bt-none">Service Fees</td>
-                            <td class="bt-none text-center">{{ $order->fee }}€</td>
-                        </tr>
-                        <tr class="detur-summary">
-                            <td colspan="3">TOTAL</td>
-                            <td class="text-center">{{ $order->total }}€</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                @include('frontend.partials.order-detail')
             </div>
         </div>
     </div>
