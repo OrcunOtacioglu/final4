@@ -101,6 +101,9 @@ class OrderController extends Controller
             return redirect()->action('OrderController@show', ['reference' => $reference]);
         }
 
+        $order->status = 2;
+        $order->save();
+
         if (Auth::guest()) {
 
             return view('frontend.entities.order.index', compact('order'));
