@@ -46,7 +46,9 @@
             @endif
             <li class="nav-item">
                 <a class="nav-link" href="#" onclick="cart.displayCart = !cart.displayCart">
-                    <span class="badge badge-pill badge-detur up"><i class="icon wb-bell"></i></span>
+                    @if(request()->hasCookie('orderRef'))
+                        <span class="badge badge-pill badge-detur up"><i class="icon wb-bell"></i></span>
+                    @endif
                     <i class="ti-shopping-cart-full"></i> Package
                 </a>
             </li>

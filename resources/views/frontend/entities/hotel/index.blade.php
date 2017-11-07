@@ -100,9 +100,9 @@
 
                                             <div class="col-4 col-md-4">
                                                 <select name="roomQty" id="roomQty" class="form-control">
-                                                    <option value="0">0</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
+                                                    @for($i = 0; $i <= \App\Entities\Hotel::calculateRoomAvailability($hotel, $order); $i++)
+                                                        <option value="{{ $i }}">{{ $i }}</option>
+                                                    @endfor
                                                 </select>
                                             </div>
 
@@ -121,14 +121,6 @@
             </div>
             <div class="col-4">
                 @include('frontend.partials.order-detail')
-
-                @if(!\App\Entities\Order::hasHotel($order))
-                    <div class="alert alert-warning" role="alert">
-                        <i class="wb-warning"></i> Please add at least one hotel to your package!
-                    </div>
-                @else
-                    <a href="{{ action('OrderController@completeOrder', ['reference' => $order->reference]) }}" class="btn btn-block btn-success">Proceed to Checkout</a>
-                @endif
             </div>
         </div>
     </div>

@@ -36,5 +36,7 @@
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/fabric.min.js') }}"></script>
     <script src="{{ asset('js/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/seatbit/zone.class.js') }}"></script>
     <script src="{{ asset('js/seatbit/app.js') }}"></script>
+    <script src="{{ asset('js/fabricjs_viewport.js') }}"></script>
 @stop
