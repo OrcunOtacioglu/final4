@@ -222,4 +222,75 @@ class ZoneController extends Controller
 
         return redirect()->action('ZoneController@index');
     }
+
+    public function addZoneName(Request $request, $zone)
+    {
+        $zone = Zone::findOrFail($zone);
+        $rate = Rate::find($request->zone_rate);
+        $zoneName = $rate->name . '-' . $zone->name;
+
+        $data = json_decode($zone->objects, true);
+
+        $viewName = [
+            'angle' => 180,
+            'backgroundColor' => "",
+            'charSpacing' => 0,
+            'clipTo' => null,
+            'fill' => 'rgb(40,44,53)',
+            'fillRule' => 'nonzero',
+            'flipX' => 'false',
+            'flipY' => 'false',
+            'fontFamily' => 'Times New Roman',
+            "fontSize"=> 40,
+   			"fontStyle"=> "normal",
+   			"fontWeight"=> "normal",
+   			"hasControls"=> false,
+   			"hasBorders"=> false,
+   			"height"=> 45,
+   			"left"=> 1500,
+   			"lineHeight"=> 1.2,
+   			"linethrough"=> false,
+   			"lockMovementX"=> true,
+   			"lockMovementY"=> true,
+   			"lockRotation"=> true,
+   			"opacity"=> 1,
+   			"originX"=> "left",
+   			"originY"=> "top",
+   			"overline"=> false,
+   			"scaleX"=> 1,
+   			"scaleY"=> 1,
+   			"shadow"=> null,
+   			"skewX"=> 0,
+   			"skewY"=> 0,
+   			"stroke"=> null,
+   			"strokeDashArray"=> null,
+   			"strokeLineCap"=> "butt",
+   			"strokeLineJoin"=> "miter",
+   			"strokeMitterLimit"=> 10,
+   			"strokeWidth"=> 1,
+   			"text"=> $zoneName,
+   			"textAlign"=> "left",
+   			"textBackgroundColor"=> "",
+   			"top"=> 75,
+   			"transformMatrix"=> null,
+   			"type"=> "text",
+   			"underline"=> false,
+   			"version"=> "2.0.0-beta7",
+   			"visible"=> true,
+   			"width"=> 185
+        ];
+
+        array_push($data['objects'], $viewName);
+
+        $objects = json_encode($data, true);
+
+        $zone->previous_objects == null
+            ? $zone->previous_objects = $objects
+            : $zone->previous_objects = $zone->objects;
+
+        $zone->objects = $objects;
+        $zone->save();
+
+        return redirect()->action('ZoneController@index');
+    }
 }

@@ -88,6 +88,12 @@ class OrderController extends Controller
         $order = Order::where('reference', '=', $reference)->first();
         $hotels = Hotel::where('available_online', '=', true)->get();
 
+        if (Order::getTicketCount($order) == Order::getHotelCount($order)) {
+
+            return redirect()->action('OrderController@completeOrder', ['reference' => $order->reference]);
+
+        }
+
         return view('frontend.entities.hotel.index', compact('hotels', 'order'));
 
     }

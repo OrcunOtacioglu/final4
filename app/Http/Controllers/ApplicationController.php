@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Rate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
@@ -17,5 +18,11 @@ class ApplicationController extends Controller
     public function dashboard()
     {
         return view('dashboard.index');
+    }
+
+    public function getVenue()
+    {
+        $venue = Storage::read('/venue/venue.json');
+        return $venue;
     }
 }
