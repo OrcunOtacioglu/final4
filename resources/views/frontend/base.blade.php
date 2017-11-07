@@ -24,6 +24,12 @@
     @yield('custom.fonts')
 </head>
 <body>
+    <div class="powered-by text-right">
+        <div class="row">
+            <img src="{{ asset('img/ag-small-logo-dark.png') }}" alt="" height="25" class="mr5">
+            <small style="color: #fff; padding-top: 5px;">Powered by AçıkGişe</small>
+        </div>
+    </div>
     @include('frontend.partials.header')
 
     @yield('content')

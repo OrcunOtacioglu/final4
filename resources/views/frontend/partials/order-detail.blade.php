@@ -7,12 +7,36 @@
         </tr>
         </thead>
         <tbody>
-        @foreach($order->items as $item)
+        <tr style="background: #fbfbfb;">
+            <td colspan="3">
+                <i class="icon ti-ticket"></i> Final Four Weekend Pass
+            </td>
+            <td class="bt-none text-center">{{ \App\Entities\Order::getTicketCount($order) }}</td>
+        </tr>
+        @foreach(\App\Entities\Order::listTickets($order) as $ticket)
             <tr>
-                <td colspan="3" class="bt-none">{{ $item->name }}</td>
-                <td class="bt-none text-center">{{ $item->quantity }}</td>
+                <td colspan="4" class="bt-none">
+                    <p class="mb-0">{{ $ticket->name }}</p>
+                    <small>Section: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Zone') }} Row: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Row') }} Seat: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Number') }}</small>
+                </td>
             </tr>
         @endforeach
+        @if(\App\Entities\Order::hasHotel($order))
+            <tr style="background: #fbfbfb;">
+                <td colspan="3">
+                    <i class="icon ti-home"></i> Hotel Accommodations
+                </td>
+                <td class="bt-none text-center">{{ \App\Entities\Order::getHotelCount($order) }}</td>
+            </tr>
+            @foreach(\App\Entities\Order::listHotels($order) as $hotel)
+                <tr>
+                    <td colspan="4" class="bt-none">
+                        <p class="mb-0">{{ $hotel->name }}</p>
+                        <small>{{ \App\Entities\OrderItem::listDetailOf($hotel, 'Use') }}</small>
+                    </td>
+                </tr>
+            @endforeach
+        @endif
         </tbody>
         <tfoot class="detur-details">
         <tr>
@@ -29,4 +53,12 @@
         </tr>
         </tfoot>
     </table>
+
+    @if(!\App\Entities\Order::hasHotel($order))
+        <div class="alert alert-warning" role="alert">
+            <i class="wb-warning"></i> Please add at least one hotel to your package!
+        </div>
+    @else
+        <a href="{{ action('OrderController@completeOrder', ['reference' => $order->reference]) }}" class="btn btn-block btn-success">Proceed to Checkout</a>
+    @endif
 </div>

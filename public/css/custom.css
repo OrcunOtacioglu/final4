@@ -388,6 +388,10 @@ a.sidebar-footer-anchor:hover {
     margin-bottom: 0;
 }
 
+.mr5 {
+    margin-right: 5px;
+}
+
 .mb-15 {
     margin-bottom: 15px;
 }
@@ -498,4 +502,15 @@ a.sidebar-footer-anchor:hover {
 #order-detail {
     position: sticky;
     top: 15px;
+    margin-bottom: 10px;
+}
+
+/**
+    POWERED-BY
+ **/
+.powered-by {
+    position: absolute;
+    display: block;
+    top: 350px;
+    right: 20px;
 }
