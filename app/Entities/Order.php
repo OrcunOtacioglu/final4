@@ -73,7 +73,10 @@ class Order extends Model
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
             $details = [
-                'info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade'
+                'Info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade',
+                'Row'  => $seat->row,
+                'Zone' => $seat->zone->screen_name,
+                'Number' => $seat->seat
             ];
 
             OrderItem::createNew($order, 1, $seat, $details);
@@ -100,7 +103,10 @@ class Order extends Model
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
             $details = [
-                'info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade'
+                'Info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade',
+                'Row'  => $seat->row,
+                'Zone' => $seat->zone,
+                'Number' => $seat->number
             ];
 
             OrderItem::createNew($order, 1, $seat, $details);
@@ -256,5 +262,47 @@ class Order extends Model
         $hashstr = $paymentData['clientid'] . $paymentData['oid'] . $paymentData['amount'] . $paymentData['okUrl'] . $paymentData['failUrl'] . $paymentData['islemtipi'] . "" . $paymentData['rnd'] . $storekey;
 
         return base64_encode(pack('H*',sha1($hashstr)));
+    }
+
+    public static function getTicketCount($order)
+    {
+        $ticketCount = 0;
+
+        foreach ($order->items as $item) {
+            if ($item->type === 1) {
+                $ticketCount = $ticketCount +1;
+            }
+        }
+
+        return $ticketCount;
+    }
+
+    public static function getHotelCount($order)
+    {
+        $hotelCount = 0;
+
+        foreach ($order->items as $item) {
+            if ($item->type === 2) {
+                $hotelCount = $hotelCount + 1;
+            }
+        }
+
+        return $hotelCount;
+    }
+
+    public static function listTickets($order)
+    {
+        $allItems = $order->items;
+        $tickets = $allItems->where('type', '=', 1);
+
+        return $tickets->all();
+    }
+
+    public static function listHotels($order)
+    {
+        $allItems = $order->items;
+        $hotels = $allItems->where('type', '=', 2);
+
+        return $hotels->all();
     }
 }
