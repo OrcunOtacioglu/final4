@@ -95,5 +95,5 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
 });
 
 fabric.Seat.fromObject = function (object, callback, forceAsync) {
-    return fabric.Object._fromObject('Seat', object, callback,  forceAsync)
+    return fabric.Object._fromObject('Seat', object, callback, forceAsync)
 };
