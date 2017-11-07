@@ -4,6 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="order" content="{{ request()->hasCookie('orderRef') ? request()->cookie('orderRef') : 'not-set' }}">
     @yield('custom.meta')
 
     <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
@@ -23,6 +24,12 @@
     @yield('custom.fonts')
 </head>
 <body>
+    <div class="powered-by text-right">
+        <div class="row">
+            <img src="{{ asset('img/ag-small-logo-dark.png') }}" alt="" height="25" class="mr5">
+            <small style="color: #fff; padding-top: 5px;">Powered by AçıkGişe</small>
+        </div>
+    </div>
     @include('frontend.partials.header')
 
     @yield('content')

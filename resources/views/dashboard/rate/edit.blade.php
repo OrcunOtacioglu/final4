@@ -25,7 +25,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="cost">Cost</label>
-                    <input type="text" name="cost" id="cost" class="form-control" value="{{ $rate->price }}">
+                    <input type="text" name="cost" id="cost" class="form-control" value="{{ $rate->cost }}">
                 </div>
             </div>
         </div>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="minimum_profit_amount">Minimum Profit Amoun</label>
+                    <label for="minimum_profit_amount">Minimum Profit Amount</label>
                     <input type="text" name="minimum_profit_amount" id="minimum_profit_amount" class="form-control" value="{{ $rate->minimum_profit_amount }}">
                 </div>
             </div>

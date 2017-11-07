@@ -56,6 +56,8 @@ class Order extends Model
         $order = new Order();
         $order->reference = str_random(6);
         $order->status = 0;
+        $order->cost = 0;
+        $order->profit = 0;
         $order->subtotal = 0;
         $order->comission = 0;
         $order->fee = 0;
@@ -71,7 +73,10 @@ class Order extends Model
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
             $details = [
-                'info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade'
+                'Info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade',
+                'Row'  => $seat->row,
+                'Zone' => $seat->zone->screen_name,
+                'Number' => $seat->seat
             ];
 
             OrderItem::createNew($order, 1, $seat, $details);
@@ -98,7 +103,10 @@ class Order extends Model
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
             $details = [
-                'info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade'
+                'Info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade',
+                'Row'  => $seat->row,
+                'Zone' => $seat->zone,
+                'Number' => $seat->number
             ];
 
             OrderItem::createNew($order, 1, $seat, $details);
@@ -116,17 +124,49 @@ class Order extends Model
      */
     public static function calculateTotal($order)
     {
-        $subtotal = 0;
+        $cost = 0;
+        $ticketCount = 0;
+        $totalProfitMargin = 0;
+        $minimumProfitAmount = 0;
 
         foreach ($order->items as $item) {
-            $subtotal = $subtotal + $item->subtotal;
 
-            // Only calculate ticket comissions for Euroleague
+            // Calculate total cost
+            $cost += $item->unit_price;
+
             if ($item->type === 1) {
-                $order->comission = $order->comission + $subtotal * 0.05;
+
+                $ticketCount = $ticketCount + 1;
+                $totalProfitMargin += $item->profit_margin;
+
+                // Calculate EB comission for reporting purposes.
+                $order->comission = $order->comission + $item->unit_price * 0.048;
+
+                // Get the highest minimum_profit_amount
+                $minimumProfitAmount = $item->minimum_profit_amount > $minimumProfitAmount
+                    ? $item->minimum_profit_amount
+                    : $minimumProfitAmount;
             }
         }
 
+        // Calculate average profit margin based on only tickets
+        $averageProfitMargin = $totalProfitMargin / $ticketCount;
+
+        // Calculate subtotal (total cost * profit_margin)
+        $subtotal = $cost * $averageProfitMargin;
+
+        // Calculate profit (subtotal - cost)
+        $profit = $subtotal - $cost;
+        $profitPerItem = $profit / $ticketCount;
+
+        // Divide profit to ticket count to find whether we are making profit more than minimum profit amount
+        // If we are not making more than minimum_profit_amount then calculate new subtotal (subtotal + ((minimum_profit_amount - profit per item) * ticket_count))
+        if ($profitPerItem < $minimumProfitAmount) {
+            $subtotal = $subtotal + (($minimumProfitAmount - $profitPerItem) * $ticketCount);
+        }
+
+        $order->cost = $cost;
+        $order->profit = $profit;
         $order->subtotal = $subtotal;
         $order->fee = $subtotal * 0.02;
         $order->tax = $subtotal * 0.18;
@@ -222,5 +262,47 @@ class Order extends Model
         $hashstr = $paymentData['clientid'] . $paymentData['oid'] . $paymentData['amount'] . $paymentData['okUrl'] . $paymentData['failUrl'] . $paymentData['islemtipi'] . "" . $paymentData['rnd'] . $storekey;
 
         return base64_encode(pack('H*',sha1($hashstr)));
+    }
+
+    public static function getTicketCount($order)
+    {
+        $ticketCount = 0;
+
+        foreach ($order->items as $item) {
+            if ($item->type === 1) {
+                $ticketCount = $ticketCount +1;
+            }
+        }
+
+        return $ticketCount;
+    }
+
+    public static function getHotelCount($order)
+    {
+        $hotelCount = 0;
+
+        foreach ($order->items as $item) {
+            if ($item->type === 2) {
+                $hotelCount = $hotelCount + 1;
+            }
+        }
+
+        return $hotelCount;
+    }
+
+    public static function listTickets($order)
+    {
+        $allItems = $order->items;
+        $tickets = $allItems->where('type', '=', 1);
+
+        return $tickets->all();
+    }
+
+    public static function listHotels($order)
+    {
+        $allItems = $order->items;
+        $hotels = $allItems->where('type', '=', 2);
+
+        return $hotels->all();
     }
 }

@@ -26,6 +26,9 @@ class CreateOrderItemsTable extends Migration
 
             $table->jsonb('details')->nullable();
 
+            $table->decimal('profit_margin')->nullable();
+            $table->decimal('minimum_profit_amount')->nullable();
+
             $table->integer('quantity');
             $table->decimal('unit_price');
             $table->decimal('subtotal');

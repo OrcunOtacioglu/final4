@@ -94,3 +94,43 @@ h1 {
   background-color: #FFFFFF;
   border-color: #34425A;
 }
+
+.btn-success {
+  background: #46be8a;
+  border-color: #46be8a;
+}
+
+.btn-success:hover {
+  background: #5cd29d;
+  border-color: #5cd29d;
+}
+
+.btn-info {
+  background: #57c7d4;
+  border-color: #57c7d4;
+}
+
+.btn-info:hover {
+  background: #77d6e1;
+  border-color: #77d6e1;
+}
+
+.btn-warning {
+  background: #f2a654;
+  border-color: #f2a654;
+}
+
+.btn-warning:hover {
+  background: #f4b066;
+  border-color: #f4b066;
+}
+
+.btn-danger {
+  background: #f96868;
+  border-color: #f96868;
+}
+
+.btn-danger:hover {
+  background: #fa7a7a;
+  border-color: #fa7a7a;
+}

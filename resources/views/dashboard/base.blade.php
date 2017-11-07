@@ -32,7 +32,7 @@
                     <div class="col-md-10">
                         <h1 class="float-left">@yield('title', 'Dashboard')</h1>
                     </div>
-                    <div class="col-md-2 clearfix">
+                    <div class="col-md-2 clearfix text-right">
                         <div class="folat-right">
                             @yield('header.right')
                         </div>

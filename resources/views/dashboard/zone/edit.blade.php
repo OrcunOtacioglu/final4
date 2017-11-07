@@ -73,6 +73,20 @@
 
                 <input type="submit" class="btn btn-secondary" value="Add Seats">
             </form>
+            <form action="{{ action('ZoneController@addZoneName', ['zone' => $zone->id]) }}" method="POST">
+                {{ csrf_field() }}
+
+                <div class="form-group">
+                    <label for="zone_rate">View Name</label>
+                    <select name="zone_rate" id="zone_rate" class="form-control">
+                        @foreach($rates as $rate)
+                            <option value="{{ $rate->id }}">{{ $rate->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <input type="submit" class="btn btn-dashboard" value="Add View Name">
+            </form>
         </div>
     </div>
 @stop

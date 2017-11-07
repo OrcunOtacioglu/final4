@@ -103,7 +103,6 @@ class HotelController extends Controller
         //
     }
 
-    // @TODO REFACTOR THIS CODE TO REFLECT UNIFIED SHOPPING CART
     public function addHotel(Request $request, $id)
     {
         $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();
@@ -118,10 +117,13 @@ class HotelController extends Controller
         }
 
         $details = [
-            'info' => $room->misc
+            'Info' => $room->misc,
+            'Use' => $room->name
         ];
 
-        OrderItem::createNew($order, 2, $room, $details);
+        for($i = 1; $i <= $request->roomQty; $i++) {
+            OrderItem::createNew($order, 2, $room, $details, 1);
+        }
 
         Order::calculateTotal($order);
 

@@ -15,7 +15,7 @@ class RateController extends Controller
      */
     public function index()
     {
-        $rates = Rate::all();
+        $rates = Rate::all()->sortByDesc('price');
 
         return view('dashboard.rate.index', compact('rates'));
     }

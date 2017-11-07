@@ -15,11 +15,16 @@ var canvas = new fabric.Canvas('venue', {
 });
 
 // @TODO CHANGE THIS PART TO IMPLEMENT DRAWING
-fabric.loadSVGFromURL('/img/kombank.svg', function (objects, options) {
-    var obj = fabric.util.groupSVGElements(objects, options);
-    canvas.add(obj).renderAll();
-    canvas.setZoom(canvas.getZoom() / 1.5);
-});
+axios({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    method: 'get',
+    url: '/get-venue'
+})
+    .then(function (response) {
+        canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
+    });
 
 /**
  * Sets height and width of canvas for responsive changes.
@@ -59,27 +64,26 @@ function setCategoriesHeight()
 var cart = new Vue({
     el: '#sidebar',
     data: {
-        items: []
+        items: [],
+        displayCart: false
     },
     computed: {
         total: function () {
             var total = 0;
             for (var i = 0; i < this.items.length; i++) {
-                total += this.items[i].price;
             }
 
             return total;
-        },
-        showCart: function () {
-            return this.items.length > 0;
         }
     },
     methods: {
         add: function (item) {
             this.items.push(item);
+            this.cartVisibility();
         },
         remove: function (item) {
             this.items.splice(this.items.indexOf(item), 1);
+            this.cartVisibility();
         },
         removeFromCart: function (item) {
             item.set('stroke', '#46BE8A');
@@ -91,6 +95,9 @@ var cart = new Vue({
         },
         getItemCount: function () {
             return this.items.length;
+        },
+        cartVisibility: function () {
+            this.displayCart = this.items.length > 0;
         },
         sendCardData: function () {
             axios({
@@ -107,7 +114,11 @@ var cart = new Vue({
                     if (response.data.status === 0) {
                         swal(response.data.message, 'Please try again!', 'warning');
                     } else {
-                        window.location.replace('/order/' + response.data.reference);
+                        if (response.data.reference === undefined) {
+                            swal('Problem occured!', 'Please try again!', 'error');
+                        } else {
+                            window.location.replace('/order/' + response.data.reference);
+                        }
                     }
                 })
                 .catch(function (response) {
@@ -139,9 +150,21 @@ function drawSeats(objects) {
     var seats = JSON.parse(objects);
 
     for (var i = 0; i < seats.objects.length; i++) {
-        seats.objects[i]['left'] = seats.objects[i]['left'] + leftPadding;
+        if (seats.objects[i]['type'] === "text") {
+            seats.objects[i]['left'] = 575;
+            seats.objects[i]['top'] = 75;
+            seats.objects[i].hasControls = false;
+            seats.objects[i].hasBorders = false;
+            seats.objects[i].lockMovementX = true;
+            seats.objects[i].lockMovementY = true;
+            seats.objects[i].lockRotation = true;
+            seats.objects[i].hoverCursor = 'default';
+        } else {
+            seats.objects[i]['left'] = seats.objects[i]['left'] + leftPadding;
+        }
     }
 
+    canvas.clear();
     canvas.loadFromJSON(seats);
 
     canvas.setZoom(0.66);
@@ -182,4 +205,5 @@ $(document).ready(function () {
     setSidebarHeight();
     watchResponsive();
     setCategoriesHeight();
+    canvas.setZoom(canvas.getZoom() / 1.5);
 });

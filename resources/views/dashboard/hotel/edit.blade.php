@@ -14,7 +14,7 @@
                 <!-- Name Form Input -->
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="{{ $hotel->image }}">
+                    <input type="text" class="form-control" id="name" name="name" value="{{ $hotel->name }}">
                 </div>
             </div>
             <div class="col-md-6">
@@ -38,7 +38,7 @@
                 <!-- Online_availability Form Input -->
                 <div class="form-group">
                     <label for="online_availability">Online Availability</label>
-                    <input type="text" class="form-control" id="online_availability" name="online_availability" value="{{ $hotel->online_availabilty }}">
+                    <input type="text" class="form-control" id="online_availability" name="online_availability" value="{{ $hotel->online_availability }}">
                 </div>
             </div>
             <div class="col-md-4">
@@ -105,12 +105,12 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $hotel->descripion }}</textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $hotel->description }}</textarea>
                 </div>
             </div>
         </div>
 
-        <input type="submit" class="btn btn-success" value="Create">
+        <input type="submit" class="btn btn-success" value="Update">
         <a href="{{ action('HotelController@index') }}" class="text-muted">Cancel</a>
     </form>
 

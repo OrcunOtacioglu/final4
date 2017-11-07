@@ -120,4 +120,16 @@ class Hotel extends Model
 
         return $hotel;
     }
+
+    public static function calculateRoomAvailability($hotel, $order)
+    {
+        $hotelAvailability = $hotel->online_availability;
+        $ticketCount = Order::getTicketCount($order);
+
+        if ($ticketCount > $hotelAvailability) {
+            return $hotelAvailability;
+        } else {
+            return $ticketCount;
+        }
+    }
 }

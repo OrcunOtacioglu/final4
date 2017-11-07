@@ -86,26 +86,41 @@ class OrderController extends Controller
     public function show($reference)
     {
         $order = Order::where('reference', '=', $reference)->first();
+        $hotels = Hotel::where('available_online', '=', true)->get();
+
+        if (Order::getTicketCount($order) == Order::getHotelCount($order)) {
+
+            return redirect()->action('OrderController@completeOrder', ['reference' => $order->reference]);
+
+        }
+
+        return view('frontend.entities.hotel.index', compact('hotels', 'order'));
+
+    }
+
+    public function completeOrder($reference)
+    {
+        $order = Order::where('reference', '=', $reference)->first();
         $settings = Settings::where('profile_name', '=', 'finansbank')->first();
 
         if (!Order::hasHotel($order)) {
+            return redirect()->action('OrderController@show', ['reference' => $reference]);
+        }
 
-            $hotels = Hotel::all();
-            return view('frontend.entities.hotel.index', compact('hotels'));
+        $order->status = 2;
+        $order->save();
+
+        if (Auth::guest()) {
+
+            return view('frontend.entities.order.index', compact('order'));
 
         } else {
-            if (Auth::guest()) {
 
-                return view('frontend.entities.order.index', compact('order'));
+            $user = Auth::user();
+            Order::appendUser($order, $user);
+            $paymentData = Order::prepareOrder($order, $settings);
 
-            } else {
-
-                $user = Auth::user();
-                Order::appendUser($order, $user);
-                $paymentData = Order::prepareOrder($order, $settings);
-
-                return view('frontend.entities.order.show', compact('order', 'paymentData', 'settings'));
-            }
+            return view('frontend.entities.order.show', compact('order', 'paymentData', 'settings'));
         }
     }
 

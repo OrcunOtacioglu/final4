@@ -16,36 +16,7 @@
             <div class="col-12 col-md-8 col-sm-12 col-xs-12">
                 <h3>Your Order</h3>
 
-                @foreach($order->items as $item)
-                    <div class="col-12 item-card" style="border-left: 5px solid #f04f51; border-radius: 6px;">
-                        <div class="row">
-                            <div class="col-2">
-                                <img src="#" class="img-fluid" alt="">
-                            </div>
-                            <div class="col-10">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h5>EuroLeague Final Four 2018 Belgrade Weekend Pass</h5>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="mb-0">Category: Central Lower Bowl</p>
-                                        <p>Zone: 216</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="mb-0">Row: Z</p>
-                                        <p>Seat: 6</p>
-                                    </div>
-                                    <div class="col-3">
-                                        <p class="mb-0">Price: {{ $item->subtotal }}</p>
-                                        <a href="#" class="text-danger">REMOVE</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+                @include('frontend.partials.order-detail')
             </div>
             <div class="col-12 col-md-4 col-sm-12 col-xs-12">
                 <h3>Payment Options</h3>
@@ -93,11 +64,6 @@
                         <img id="imgVisaLogo" src="{{ asset('img/visaMastercard.png') }}" alt="Visa">
                     </li>
                 </ul>
-                <div class="row">
-                    <div class="col-12">
-                        <a href="{{ action('HotelController@all') }}" class="btn btn-primary">Add Another Hotel</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

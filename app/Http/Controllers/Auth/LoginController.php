@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Entities\Order;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,13 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (request()->hasCookie('orderRef')) {
-            return '/order/' . request()->cookie('orderRef');
+            $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();
+
+            if ($order->status === 2) {
+                return '/complete-order/' . $order->reference;
+            } else {
+                return '/order/' . $order->reference;
+            }
         } else if (Auth::user()->isAdmin()) {
             return '/dashboard';
         } else {

@@ -2,7 +2,7 @@
     <div class="categories">
         <div class="categories-header">
             <h3 class="sidebar-text">
-                <i class="ti-money"></i> Price Categories
+                Package Categories
             </h3>
         </div>
         <div class="categories-content">

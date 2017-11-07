@@ -13,10 +13,10 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
         this.set('row', options.row || 'Row is not set!');
         this.set('status', options.status || '0');
         this.set('zone', options.zone || 'Zone number is not set!');
-        this.set('price', options.price || 'Price not set!');
         this.set('reference', options.reference || '');
-        this.set('categoryColor', options.categoryColor || '#000000');
+        this.set('category', options.category || '');
         this.set('categoryID', options.categoryID || 0);
+        this.set('categoryColor', options.categoryColor || '#000000');
 
         // Defaults
         this.set('fill', options.fill || '#fff');
@@ -74,9 +74,9 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
             row: this.get('row'),
             status: this.get('status'),
             zone: this.get('zone'),
-            price: this.get('price'),
             categoryID: this.get('categoryID'),
             categoryColor: this.get('categoryColor'),
+            category: this.get('category'),
             reference: this.get('reference')
         });
     },
@@ -95,5 +95,5 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
 });
 
 fabric.Seat.fromObject = function (object, callback, forceAsync) {
-    return fabric.Object._fromObject('Seat', object, callback,  forceAsync)
+    return fabric.Object._fromObject('Seat', object, callback, forceAsync)
 };
