@@ -150,28 +150,19 @@ function drawSeats(objects) {
     var seats = JSON.parse(objects);
 
     for (var i = 0; i < seats.objects.length; i++) {
-        if (seats.objects[i]['type'] === "text") {
-            seats.objects[i]['left'] = 575;
-            seats.objects[i]['top'] = 75;
-            seats.objects[i].hasControls = false;
-            seats.objects[i].hasBorders = false;
-            seats.objects[i].lockMovementX = true;
-            seats.objects[i].lockMovementY = true;
-            seats.objects[i].lockRotation = true;
-            seats.objects[i].hoverCursor = 'default';
-        } else {
-            seats.objects[i]['left'] = seats.objects[i]['left'] + leftPadding;
-        }
+        seats.objects[i]['left'] = seats.objects[i]['left'] + leftPadding;
     }
 
     canvas.clear();
-    canvas.loadFromJSON(seats);
+    canvas.off('mouse:down');
+    canvas.loadFromJSON(seats, canvas.renderAll.bind(canvas));
 
     canvas.setZoom(0.66);
-    canvas.setZoom(canvas.getZoom() * 1.5);
+    canvas.setZoom(canvas.getZoom() * 1.3);
 
     canvas.on('mouse:down', function (el) {
         var seat = el.target;
+        console.log('Evented!');
 
         // @TODO MAKE THIS COUNT DYNAMICALLY SETABLE FROM DASHBOARD.
         if (seat === null) {
