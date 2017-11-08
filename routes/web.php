@@ -24,7 +24,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/rate', 'RateController');
     Route::resource('/zone', 'ZoneController');
     Route::post('/zone-backup/{id}', 'ZoneController@getBackup');
-    Route::post('/add-zone-name/{id}', 'ZoneController@addZoneName');
     Route::resource('/settings', 'SettingsController');
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');
     Route::post('/zone/generate-seats/{id}', 'ZoneController@generateSeats');
