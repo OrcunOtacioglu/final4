@@ -177,9 +177,9 @@ class ZoneController extends Controller
         return redirect()->action('ZoneController@edit', ['id' => $zone->id]);
     }
 
-    public function getData($id)
+    public function getData($zoneName)
     {
-        $zone = Zone::findOrFail($id);
+        $zone = Zone::where('name', '=', $zoneName)->first();
 
         return $zone;
     }

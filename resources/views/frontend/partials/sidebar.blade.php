@@ -47,7 +47,7 @@
                                 <div class="col-md-5 p0 pl10">
                                 </div>
                                 <div class="col-md-3 text-right">
-                                    <a href="#" @click="removeFromCart(item)" class="text-danger">
+                                    <a href="javascript:void(0)" @click="removeFromCart(item)" class="text-danger">
                                         <i class="ti-trash"></i>
                                     </a>
                                 </div>
