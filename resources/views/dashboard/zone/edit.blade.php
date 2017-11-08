@@ -15,12 +15,6 @@
         </div>
         <div class="col-md-3" style="background: #EEEEEE;">
             @include('dashboard.zone.partials.add-seats')
-            <hr>
-            @include('dashboard.zone.partials.zone-name')
-            <hr>
-            @include('dashboard.zone.partials.add-court')
-            <hr>
-            @include('dashboard.zone.partials.add-row')
         </div>
     </div>
 @stop
