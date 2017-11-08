@@ -35,6 +35,5 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
  * API ROUTES
  */
 Route::get('/zone/data/{id}', 'ZoneController@getData');
-Route::get('/get-seats/{id}', 'SeatController@getSeats');
 Route::post('/add-hotel/{id}', 'HotelController@addHotel');
 Route::get('/get-venue', 'ApplicationController@getVenue');
