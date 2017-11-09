@@ -1,5 +1,5 @@
 *
 !public/
-!backups
-!venue
+!backups/*
+!venue/venue.json
 !.gitignore
