@@ -22,7 +22,7 @@ class ApplicationController extends Controller
 
     public function getVenue()
     {
-        $venue = Storage::read('/venue/venue.json');
+        $venue = Storage::read('/public/venue.json');
         return $venue;
     }
 }
