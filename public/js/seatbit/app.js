@@ -28,6 +28,10 @@ axios({
         canvas.on('mouse:down', function (el) {
             var zone = el.target;
 
+            if (zone === null) {
+                return false;
+            }
+
             if (zone.type === 'zone') {
                 getSeatsOf(zone.name);
             }

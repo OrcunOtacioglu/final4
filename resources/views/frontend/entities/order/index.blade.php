@@ -29,9 +29,8 @@
 @stop
 
 @section('footer.scripts')
-    <script>
-        $(document).ready(function() {
-            $('#country').select2();
-        });
-    </script>
+    <script src="{{ asset('js/formValidation/formatter.min.js') }}"></script>
+    <script src="{{ asset('js/formValidation/formValidation.min.js') }}"></script>
+    <script src="{{ asset('js/formValidation/framework/bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/formValidation/validate-register.js') }}"></script>
 @stop
