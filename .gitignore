@@ -12,3 +12,4 @@ yarn-error.log
 .env
 .DS_Store
 !/storage/app/public/helpers/countries.json
+!storage/app/venue/venue.json

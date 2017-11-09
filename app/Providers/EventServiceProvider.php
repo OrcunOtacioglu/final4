@@ -13,15 +13,21 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
-        ],
         'App\Events\OrderCreated' => [
-            'App\Listeners\ChangeSeatStatus',
+            'App\Listeners\BlockSeats'
+        ],
+        'App\Events\SeatsFree' => [
+            'App\Listeners\SetSeatsFree'
+        ],
+        'App\Events\OrderCompleted' => [
+            'App\Listeners\MakeSale',
+            'App\Listeners\SellSeats',
+            'App\Listeners\BookHotels',
+            'App\Listeners\SendConfirmationMail'
         ],
         'App\Events\ZoneUpdated' => [
-            'App\Listeners\DrawNewZoneMap',
-        ],
+            'App\Listeners\DrawNewZone'
+        ]
     ];
 
     /**

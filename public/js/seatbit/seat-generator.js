@@ -3,9 +3,8 @@
  **/
 $(document).ready(function () {
     var width = detectWidth();
-    var height = detectHeight();
     var zoneID = $('meta[name=zone]').attr("content");
-    var canvas = createCanvas(width, height, zoneID);
+    var canvas = createCanvas(width, 900, zoneID);
     drawSeats(canvas, zoneID);
 });
 

@@ -155,4 +155,11 @@ class Rate extends Model
 
         return $available;
     }
+
+    public static function listZones($data)
+    {
+        $zones = explode('.', $data);
+
+        return $zones;
+    }
 }
