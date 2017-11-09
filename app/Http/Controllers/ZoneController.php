@@ -205,7 +205,7 @@ class ZoneController extends Controller
                 $seat->top = $object['top'];
                 $seat->left = $object['left'];
                 $seat->status = $object['status'];
-                $seat->cost = $rate->cost;
+                $seat->cost = $rate == null ? 0 : $rate->cost;
 
                 $seat->created_at = Carbon::now();
                 $seat->updated_at = Carbon::now();
