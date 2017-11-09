@@ -38,26 +38,30 @@
             @endforeach
         @endif
         </tbody>
-        <tfoot class="detur-details">
-        <tr>
-            <td colspan="3">Subtotal</td>
-            <td class="text-center">{{ $order->subtotal }}€</td>
-        </tr>
-        <tr>
-            <td colspan="3" class="bt-none">Service Fees</td>
-            <td class="bt-none text-center">{{ $order->fee }}€</td>
-        </tr>
-        <tr class="detur-summary">
-            <td colspan="3">TOTAL</td>
-            <td class="text-center">{{ $order->total }}€</td>
-        </tr>
-        </tfoot>
+        @if(\App\Entities\Order::hasHotel($order))
+            <tfoot class="detur-details">
+            <tr>
+                <td colspan="3">Subtotal</td>
+                <td class="text-center">{{ $order->subtotal }}€</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="bt-none">Service Fees</td>
+                <td class="bt-none text-center">{{ $order->fee }}€</td>
+            </tr>
+            <tr class="detur-summary">
+                <td colspan="3">TOTAL</td>
+                <td class="text-center">{{ $order->total }}€</td>
+            </tr>
+            </tfoot>
+        @endif
     </table>
 
     @if(!\App\Entities\Order::hasHotel($order))
         <div class="alert alert-warning" role="alert">
             <i class="wb-warning"></i> Please add at least one hotel to your package!
         </div>
+    @elseif(\Illuminate\Support\Facades\Request::is('complete-order/*'))
+        <p class="text-muted text-center">*Please check your order details and prepare your credit card.</p>
     @else
         <a href="{{ action('OrderController@completeOrder', ['reference' => $order->reference]) }}" class="btn btn-block btn-success">Proceed to Checkout</a>
     @endif
