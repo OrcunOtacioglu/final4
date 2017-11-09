@@ -24,6 +24,14 @@ axios({
 })
     .then(function (response) {
         canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
+        canvas.off('mouse:down');
+        canvas.on('mouse:down', function (el) {
+            var zone = el.target;
+
+            if (zone.type === 'zone') {
+                getSeatsOf(zone.name);
+            }
+        })
     });
 
 /**
@@ -162,7 +170,6 @@ function drawSeats(objects) {
 
     canvas.on('mouse:down', function (el) {
         var seat = el.target;
-        console.log('Evented!');
 
         // @TODO MAKE THIS COUNT DYNAMICALLY SETABLE FROM DASHBOARD.
         if (seat === null) {
