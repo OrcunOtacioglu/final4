@@ -13,9 +13,9 @@
 
 <div class="tab-content">
     <div class="tab-pane active" id="register" role="tabpanel" style="padding-top: 25px;">
-        @include('auth.register')
+        @include('auth.partials.register-form')
     </div>
     <div class="tab-pane" id="login" role="tabpanel" style="padding-top: 25px;">
-        @include('auth.login')
+        @include('auth.partials.login-form')
     </div>
 </div>
