@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\ZoneUpdated;
+use App\Events\OrderCompleted;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class DrawNewZoneMap
+class SellSeats
 {
     /**
      * Create the event listener.
@@ -21,11 +21,11 @@ class DrawNewZoneMap
     /**
      * Handle the event.
      *
-     * @param  ZoneUpdated  $event
+     * @param  OrderCompleted  $event
      * @return void
      */
-    public function handle(ZoneUpdated $event)
+    public function handle(OrderCompleted $event)
     {
-        // @TODO DRAW NEW ZONE VIEW
+        //
     }
 }
