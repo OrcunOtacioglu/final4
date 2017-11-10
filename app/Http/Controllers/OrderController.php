@@ -164,7 +164,7 @@ class OrderController extends Controller
         $hashParamsVal = $request->HASHPARAMSVAL;
         $hashParam = $request->HASH;
 
-        $storekey = "123456";
+        $storekey = env('PROCESSOR_SECRET_KEY');
         $paramsval = "";
         $index1=0;
         $index2=0;
@@ -178,7 +178,7 @@ class OrderController extends Controller
             $paramsval = $paramsval . $vl;
             $index1 = $index2 + 1;
         }
-        $storekey = "123456";
+        $storekey = env('PROCESSOR_SECRET_KEY');
         $hashval = $paramsval.$storekey;
 
         $hash = base64_encode(pack('H*',sha1($hashval)));

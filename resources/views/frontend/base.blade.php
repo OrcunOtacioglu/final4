@@ -21,6 +21,18 @@
     <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
     @yield('custom.fonts')
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109535935-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109535935-1');
+    </script>
+
+    @yield('header.scripts')
 </head>
 <body>
     <div class="powered-by text-right">

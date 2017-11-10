@@ -60,8 +60,8 @@
         <div class="alert alert-warning" role="alert">
             <i class="wb-warning"></i> Please add at least one hotel to your package!
         </div>
-    @elseif(\Illuminate\Support\Facades\Request::is('complete-order/*'))
-        <p class="text-muted text-center">*Please check your order details and prepare your credit card.</p>
+    @elseif(\Illuminate\Support\Facades\Request::is('complete-order/*') || \Illuminate\Support\Facades\Request::is('order-complete'))
+        <p class="text-muted text-center">*Please check your order details.</p>
     @else
         <a href="{{ action('OrderController@completeOrder', ['reference' => $order->reference]) }}" class="btn btn-block btn-success">Proceed to Checkout</a>
     @endif
