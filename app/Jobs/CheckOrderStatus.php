@@ -23,7 +23,9 @@ class CheckOrderStatus implements ShouldQueue
     {
         $this->order = $order;
 
-        Log::notice('Worker created!', $this->order);
+        Log::notice('Worker created!', [
+            'reference' => $order->reference
+        ]);
     }
 
     /**
