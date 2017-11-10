@@ -12,11 +12,13 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class ZoneUpdated
 {
-
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct()
+    public $zones;
+
+    public function __construct($zones)
     {
+        $this->zones = $zones;
     }
 
     public function broadcastOn()

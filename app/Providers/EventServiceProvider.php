@@ -16,9 +16,6 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\OrderCreated' => [
             'App\Listeners\BlockSeats'
         ],
-        'App\Events\SeatsFree' => [
-            'App\Listeners\SetSeatsFree'
-        ],
         'App\Events\OrderCompleted' => [
             'App\Listeners\MakeSale',
             'App\Listeners\SellSeats',
