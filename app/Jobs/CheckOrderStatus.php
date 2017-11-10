@@ -7,6 +7,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class CheckOrderStatus implements ShouldQueue
 {
@@ -21,6 +22,8 @@ class CheckOrderStatus implements ShouldQueue
     public function __construct($order)
     {
         $this->order = $order;
+
+        Log::notice('Worker created!', $this->order);
     }
 
     /**
