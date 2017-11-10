@@ -6,6 +6,7 @@ use App\Entities\Hotel;
 use App\Entities\Order;
 use App\Entities\Seat;
 use App\Entities\Settings;
+use App\Events\OrderCompleted;
 use App\Events\OrderCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -107,7 +108,7 @@ class OrderController extends Controller
             return redirect()->action('OrderController@show', ['reference' => $reference]);
         }
 
-        $order->status = 2;
+        $order->status = 1;
         $order->save();
 
         if (Auth::guest()) {
@@ -197,6 +198,7 @@ class OrderController extends Controller
             if ($response == "Approved")
             {
                 $order = Order::where('reference', '=', $request->oid)->first();
+                event(new OrderCompleted($order));
 
                 return view('frontend.entities.order.success', compact('order'));
             }

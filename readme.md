@@ -13,3 +13,19 @@
 * Dark Grey => #2c3e50
 * Dark White=> #eee
 * Font      => #333 
+
+## Seat Statuses
+* 0    => Not Available        => Black | #76838F
+* 1    => Available            => Green | #5CD29D
+* 2    => Online Available     => Green | #5CD29D
+* 3    => Box Office Available => Orange | #F4B066
+* 4    => Booked               => Purple | #A58ADD
+* 5    => In Process           => Blue | #89BCEB
+* 6    => Sold                 => Red | #FA7A7A
+
+## Order Statuses
+* 0 => Created
+* 1 => Added Hotel
+* 2 => Updated
+* 3 => Abondoned
+* 4 => Completed

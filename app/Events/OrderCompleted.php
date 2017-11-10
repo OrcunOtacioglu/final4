@@ -12,11 +12,13 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class OrderCompleted
 {
-
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public function __construct()
+    public $order;
+
+    public function __construct($order)
     {
+        $this->order = $order;
     }
 
     public function broadcastOn()
