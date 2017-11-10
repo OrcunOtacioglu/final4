@@ -13,6 +13,8 @@
                     <hr>
                     <p class="mb-0">For further questions please refer to FAQ</p>
                 </div>
+
+                @include('frontend.partials.order-detail')
             </div>
         </div>
     </div>
