@@ -75,7 +75,6 @@
                     position: relative;
                     padding: 12px 20px;
                     margin-bottom: 16px;
-                    border: 1px solid #bee5eb;
                     border-radius: 4px;
                     color: #155724;
                     background-color: #d4edda;

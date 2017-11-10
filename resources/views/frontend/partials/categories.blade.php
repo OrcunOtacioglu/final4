@@ -21,7 +21,7 @@
                         <div class="col-12 col-md-4">
                             <div class="category-price">
                                 <small class="text-muted">Get in touch</small>
-                                <p>More Info</p>
+                                <a href="mailto:info@acikgise.com">More Info</a>
                             </div>
                         </div>
                     </div>
