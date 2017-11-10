@@ -31,6 +31,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');
     Route::post('/zone/generate-seats/{id}', 'ZoneController@generateSeats');
     Route::get('/event', 'EventController@index');
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 });
 
 /**
