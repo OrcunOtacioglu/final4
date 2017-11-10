@@ -13,6 +13,9 @@ Route::get('/hotel/{name}', 'HotelController@show');
 Route::resource('/order', 'OrderController');
 Route::get('/complete-order/{reference}', 'OrderController@completeOrder');
 Route::post('/order-complete', 'OrderController@validatePayment');
+Route::get('/terms-conditions', function () {
+    return view('frontend.terms-conditions');
+});
 
 /**
  * DASHBOARD ROUTES

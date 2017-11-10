@@ -20,7 +20,7 @@
             </div>
             <div class="col-12 col-md-4 col-sm-12 col-xs-12">
                 <h3>Payment Options</h3>
-                <p>By pressing "Pay Now" button or by using this website you agreed the <a href="#" target="_blank">Terms & Conditions</a></p>
+                <p>By pressing "Pay Now" button or by using this website you agreed the <a href="http://events.detur.com/terms-conditions" target="_blank">Terms & Conditions</a></p>
                 <form action="https://www.fbwebpos.com/fim/est3Dgate" method="POST">
                     {{ csrf_field() }}
                     <input type="hidden" name="clientid" value="{{ $settings->client_id }}">
