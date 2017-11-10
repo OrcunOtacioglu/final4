@@ -48,6 +48,7 @@ class BlockSeats
 
         event(new ZoneUpdated($updatedZones));
 
-        CheckOrderStatus::dispatch($event->order);
+        CheckOrderStatus::dispatch($event->order)
+            ->delay(Carbon::now()->addMinutes(20));
     }
 }
