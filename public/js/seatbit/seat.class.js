@@ -46,6 +46,7 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
             case '0':
             case '3':
             case '4':
+            case '5':
             case '6':
                 this.set('stroke', options.stroke || '#76838F');
                 this.set('fill', options.fill || '#76838F');
@@ -55,11 +56,6 @@ fabric.Seat = new fabric.util.createClass(fabric.Circle, {
             case '2':
                 this.set('stroke', options.stroke || '#46BE8A');
                 this.set('fill', options.fill || '#46BE8A');
-                this.set('selectable', options.selectable || true);
-                break;
-            case '5':
-                this.set('stroke', options.stroke || '#89BCEB');
-                this.set('fill', options.fill || '#89BCEB');
                 this.set('selectable', options.selectable || true);
                 break;
             default:
