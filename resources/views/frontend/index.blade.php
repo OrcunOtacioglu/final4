@@ -31,8 +31,7 @@
 @stop
 
 @section('footer.scripts')
-    {{--<script src="https://unpkg.com/vue"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.runtime.min.js"></script>
+    <script src="https://unpkg.com/vue"></script>
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('js/fabric.min.js') }}"></script>
