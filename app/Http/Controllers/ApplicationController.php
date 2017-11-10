@@ -10,6 +10,10 @@ class ApplicationController extends Controller
 {
     public function index()
     {
+        if (env('SITE_OFFLINE')) {
+            return view('layouts.countdown');
+        }
+        
         $rates = Rate::where('available_online', '=', true)->get()->sortByDesc('price');
 
         return view('frontend.index', compact('rates'));
