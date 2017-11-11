@@ -21,13 +21,18 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ Request::is('dashboard/page') ? 'active' : '' }}" href="{{ action('PageController@index') }}">
+                <i class="icon ti-files"></i> Pages
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/analytic') ? 'active' : '' }}" href="#">
-                <i class="icon-bar ti-pie-chart"></i> Analytics
+                <i class="icon ti-pie-chart"></i> Analytics
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link {{ Request::is('dashboard/finance') ? 'active' : '' }}" href="#">
-                <i class="icon-bar ti-receipt"></i> Finance
+                <i class="icon ti-receipt"></i> Finance
             </a>
         </li>
     </ul>

@@ -11,9 +11,9 @@
             <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-sm-left">
                 <h3><strong>Terms & Conditions</strong></h3>
                 <nav class="nav flex-column">
-                    <a class="nav-link" href="http://events.detur.com/terms-conditions">Terms & Conditions</a>
-                    <a class="nav-link" href="">Disclaimer</a>
-                    <a class="nav-link" href="">Cookies Policy</a>
+                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'terms-and-conditions']) }}">Terms & Conditions</a>
+                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'disclaimer']) }}">Disclaimer</a>
+                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'cookies-policy']) }}">Cookies Policy</a>
                     <a class="nav-link" href="">FAQ</a>
                 </nav>
             </div>
