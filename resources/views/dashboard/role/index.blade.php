@@ -2,12 +2,6 @@
 
 @section('title', 'Manage Roles & Permissions')
 
-@section('header.right')
-    <a href="{{ action('PermissionController@create') }}" class="btn btn-dashboard">
-        <i class="icon wb-plus-circle"></i> Add Permission
-    </a>
-@stop
-
 @section('content')
     <div class="row">
         <div class="col-md-8">
