@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -75,7 +76,7 @@ class User extends Authenticatable
     {
         $allowedRole = Role::where('reference', '=', $roleReference)->first();
 
-        if (request()->user()->role->id == $allowedRole->id || request()->user()->role->level < $allowedRole->level) {
+        if (Auth::user()->role->id == $allowedRole->id || Auth::user()->role->level < $allowedRole->level) {
             return true;
         } else {
             return false;
