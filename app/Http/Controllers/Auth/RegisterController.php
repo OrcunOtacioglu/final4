@@ -68,6 +68,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'surname' => $data['surname'],
             'is_admin' => 0,
+            'role_id' => null,
             'phone' => $data['phone'],
             'citizenship' => $data['citizenship'],
             'identifier' => $data['identifier'],
