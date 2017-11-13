@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark custom-navbar">
     <a class="navbar-brand" href="/">
-        <img src="{{ asset('img/logo.png') }}" alt="Official Travel Agency" width="100px;">
+        <img src="{{ asset('img/logo.png') }}" alt="Official Travel Agency" width="100">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
