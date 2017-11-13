@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Entities\Authorization\Role;
+use App\Entities\Order;
+use App\Entities\Sale;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
@@ -50,6 +52,16 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(Sale::class);
     }
 
     public static function getAdmins()
