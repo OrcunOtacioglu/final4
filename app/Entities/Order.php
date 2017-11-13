@@ -42,6 +42,11 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function sale()
+    {
+        return $this->hasOne(Sale::class);
+    }
+
     /**
      * Creates a new Order entity.
      *

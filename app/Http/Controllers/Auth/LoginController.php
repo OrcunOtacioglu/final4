@@ -34,16 +34,17 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (request()->hasCookie('orderRef')) {
+        if (Auth::user()->isAdmin()) {
+            return '/dashboard';
+        } elseif (request()->hasCookie('orderRef')) {
             $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();
 
+            // If added Hotel to package, redirect to Complete-Order
             if ($order->status === 2) {
                 return '/complete-order/' . $order->reference;
             } else {
                 return '/order/' . $order->reference;
             }
-        } else if (Auth::user()->isAdmin()) {
-            return '/dashboard';
         } else {
             return url(request()->headers->get('referer'));
         }
