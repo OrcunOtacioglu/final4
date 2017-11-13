@@ -3,7 +3,9 @@
 Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function () {
+    return redirect()->action('ApplicationController@dashboard');
+});
 
 /**
  * WEB-UI ROUTES
@@ -25,8 +27,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/rate', 'RateController');
     Route::resource('/zone', 'ZoneController');
     Route::resource('/page', 'PageController', ['except' => 'show']);
-    Route::post('/zone-backup/{id}', 'ZoneController@getBackup');
     Route::resource('/settings', 'SettingsController');
+    Route::resource('/role', 'RoleController', ['except' => 'show']);
+    Route::resource('/user', 'UserController', ['except' => 'show']);
+    Route::post('/zone-backup/{id}', 'ZoneController@getBackup');
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');
     Route::post('/zone/generate-seats/{id}', 'ZoneController@generateSeats');
     Route::get('/event', 'EventController@index');

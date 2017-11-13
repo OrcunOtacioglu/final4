@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Entities\Authorization\Role;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -18,6 +21,7 @@ class User extends Authenticatable
         'name',
         'surname',
         'is_admin',
+        'role_id',
         'phone',
         'citizenship',
         'identifier',
@@ -41,5 +45,87 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return request()->user()->is_admin;
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public static function getAdmins()
+    {
+        $users = User::where('is_admin', '=', true)->get();
+
+        return $users;
+    }
+
+    public static function hasRole($roleReference)
+    {
+        $allowedRole = Role::where('reference', '=', $roleReference)->first();
+
+        if (request()->user()->role->id == $allowedRole->id || request()->user()->role->level < $allowedRole->level) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function createNew(Request $request)
+    {
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+
+        $user->is_admin = $request->is_admin;
+        $user->role_id = $request->role_id;
+
+        $user->phone = $request->phone != null ? $request->phone : '5555555555';
+        $user->citizenship = $request->citizenship;
+        $user->identifier = $request->identifier != null ? $request->identifier : '22222222222';
+
+        $user->address = $request->address;
+        $user->zip_code = $request->zip_code;
+        $user->province = $request->province != null ? $request->province : 'Istanbul';
+        $user->country = $request->country != null ? $request->country : 'Turkey';
+
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+
+        $user->updated_at = Carbon::now();
+        $user->created_at = Carbon::now();
+
+        $user->save();
+
+        return $user;
+    }
+
+    public static function updateEntity(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+
+        $user->is_admin = $request->is_admin;
+        $user->role_id = $request->role_id;
+
+        $user->phone = $request->phone != null ? $request->phone : '5555555555';
+        $user->citizenship = $request->citizenship;
+        $user->identifier = $request->identifier != null ? $request->identifier : '22222222222';
+
+        $user->address = $request->address;
+        $user->zip_code = $request->zip_code;
+        $user->province = $request->province != null ? $request->province : 'Istanbul';
+        $user->country = $request->country != null ? $request->country : 'Turkey';
+
+        $user->email = $request->email;
+        $user->password = $request->password == null ? $user->password : bcrypt($request->password);
+
+        $user->updated_at = Carbon::now();
+
+        $user->save();
+
+        return $user;
     }
 }
