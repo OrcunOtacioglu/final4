@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Rate;
+use App\Entities\Sale;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -20,7 +21,9 @@ class ApplicationController extends Controller
 
     public function dashboard()
     {
-        return view('dashboard.index');
+        $sales = Sale::all();
+
+        return view('dashboard.index', compact('sales'));
     }
 
     public function getVenue()

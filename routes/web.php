@@ -31,6 +31,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/role', 'RoleController', ['except' => 'show']);
     Route::resource('/user', 'UserController', ['except' => 'show']);
     Route::resource('/sale', 'SaleController');
+    Route::get('/generate-sales', 'SaleController@generateSales');
     Route::post('/zone-backup/{id}', 'ZoneController@getBackup');
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');
     Route::post('/zone/generate-seats/{id}', 'ZoneController@generateSeats');
