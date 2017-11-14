@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Entities\Hotel;
 use App\Entities\Order;
+use App\Entities\OrderItem;
 use App\Entities\Seat;
 use App\Entities\Settings;
 use App\Events\OrderCompleted;
 use App\Events\OrderCreated;
+use App\Jobs\SetSeatsFree;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class OrderController extends Controller
 {
@@ -89,6 +92,10 @@ class OrderController extends Controller
         $order = Order::where('reference', '=', $reference)->first();
         $hotels = Hotel::where('available_online', '=', true)->get();
 
+        if (Order::getTicketCount($order) == 0) {
+            return redirect()->action('ApplicationController@index')->withCookie(Cookie::forget('orderRef'));
+        }
+
         if (Order::getTicketCount($order) == Order::getHotelCount($order)) {
 
             return redirect()->action('OrderController@completeOrder', ['reference' => $order->reference]);
@@ -97,6 +104,23 @@ class OrderController extends Controller
 
         return view('frontend.entities.hotel.index', compact('hotels', 'order'));
 
+    }
+
+    public function removeItem($id)
+    {
+        $item = OrderItem::find($id);
+
+        $item->destroy($id);
+
+        SetSeatsFree::dispatch($item);
+
+        $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();
+
+        if (!$order->items->count() == 0) {
+            Order::calculateTotal($order);
+        }
+
+        return redirect()->action('OrderController@show', ['reference' => request()->cookie('orderRef')]);
     }
 
     public function completeOrder($reference)
