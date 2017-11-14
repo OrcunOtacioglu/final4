@@ -55,7 +55,11 @@
             </tfoot>
         @endif
     </table>
-
+    <div class="alert alert-info" role="alert">
+        Check In: Friday 18th of May 2018</br>
+        Check Out: Monday 21st of May 2018 </br>
+        <small>City TAX not included</small>
+    </div>
     @if(!\App\Entities\Order::hasHotel($order))
         <div class="alert alert-warning" role="alert">
             <i class="wb-warning"></i> Please add at least one hotel to your package!
