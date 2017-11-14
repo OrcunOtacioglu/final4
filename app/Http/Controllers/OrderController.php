@@ -99,7 +99,7 @@ class OrderController extends Controller
             $order->status = 3;
             $order->updated_at = Carbon::now();
             $order->save();
-            
+
             return redirect()->action('ApplicationController@index')->withCookie(Cookie::forget('orderRef'));
         }
 

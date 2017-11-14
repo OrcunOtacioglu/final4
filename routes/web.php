@@ -17,6 +17,8 @@ Route::post('/remove-item/{id}', 'OrderController@removeItem');
 Route::get('/complete-order/{reference}', 'OrderController@completeOrder');
 Route::post('/order-complete', 'OrderController@validatePayment');
 Route::get('/page/{slug}', 'PageController@show');
+Route::get('/profile/{id}', 'UserController@show');
+Route::put('/profile/{id}', 'UserController@profileUpdate');
 
 /**
  * DASHBOARD ROUTES

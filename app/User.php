@@ -141,4 +141,30 @@ class User extends Authenticatable
 
         return $user;
     }
+
+    public static function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+
+        $user->phone = $request->phone;
+        $user->citizenship = $request->citizenship;
+        $user->identifier = $request->identifier != null ? $request->identifier : '22222222222';
+
+        $user->address = $request->address;
+        $user->zip_code = $request->zip_code;
+        $user->province = $request->province != null ? $request->province : 'Istanbul';
+        $user->country = $request->country != null ? $request->country : 'Turkey';
+
+        $user->email = $request->email;
+        $user->password = $request->password == null ? $user->password : bcrypt($request->password);
+
+        $user->updated_at = Carbon::now();
+
+        $user->save();
+
+        return $user;
+    }
 }
