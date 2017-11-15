@@ -1,0 +1,50 @@
+#reference-wrapper {
+    background: url(/img/authentication-bg.jpg);
+    min-height: 170vh;
+    background-size: cover;
+    background-position: center center;
+}
+
+.mail-subject-wrapper {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(6, 161, 183, 0.8));
+    color: #fafafa;
+    min-height: 170vh;
+    padding-top: 55px;
+}
+
+.euroleague-logo {
+    width: 250px;
+    margin-left: 50px;
+}
+
+.detur-logo {
+    margin-left: 110px;
+    margin-top: 175px;
+}
+
+.order-title {
+    margin-left: 65px;
+    font-size: 30px;
+    margin-top: 150px;
+    margin-bottom: 0;
+}
+
+.event-title-text {
+    margin-left: 5px;
+    text-align: center;
+    font-size: 18px;
+    margin-top: 100px;
+}
+
+.order-reference {
+    font-size: 20px;
+    margin-left: 140px;
+}
+
+.official-agency-text {
+    margin-left: 90px;
+}
+
+.regular-text {
+    color: #37474f;
+}
