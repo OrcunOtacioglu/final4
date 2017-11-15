@@ -1,53 +1,80 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html class="no-js js-menubar" lang="en">
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+    <meta name="description" content="Açıkgişe Ticketing Solutions Dashboard">
+    <meta name="author" content="Orçun Otacıoğlu">
     @yield('custom.meta')
-    <link rel="icon" href="../../../../favicon.ico">
 
-    <title>@yield('title', 'Dashboard') | AçıkGişe</title>
+    <title>@yield('title', 'Dashboard') | AçıkGişe Ticketing Solutions</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
+    <!-- Stylesheets -->
+    @include('dashboard.partials.css.base')
+    <!-- Plugins -->
+    @include('dashboard.partials.css.plugins')
+    <!-- Custom -->
     @yield('custom.css')
 
-    <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
     @yield('custom.fonts')
-</head>
 
-<body>
+    @include('dashboard.partials.js.responsive')
+    @yield('header.scripts')
+</head>
+<body class="@yield('body.class', 'site-navbar-small dashboard mm-wrapper site-menubar-fold')" style="animation-duration: 800ms; opacity: 1;">
+    <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
     @include('dashboard.partials.navbar')
 
-    <div class="container-fluid">
-        <div class="row">
-            @include('dashboard.partials.sidebar')
-            <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-                {{--@include('dashboard.partials.breadcrumbs')--}}
-                <div class="row">
-                    <div class="col-md-10">
-                        <h1 class="float-left">@yield('title', 'Dashboard')</h1>
-                    </div>
-                    <div class="col-md-2 clearfix text-right">
-                        <div class="folat-right">
-                            @yield('header.right')
-                        </div>
-                    </div>
+    @include('dashboard.partials.sidebar')
+
+    <!-- Page -->
+    <div class="page" id="app">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">@yield('title')</h1>
+            @yield('page-description')
+
+            <div class="page-header-actions">
+                <div class="btn-group btn-group-sm" id="withBtnGroup" aria-label="Page Header Actions" role="group">
+                    @yield('page-header')
                 </div>
-
-                @yield('content')
-            </main>
+            </div>
         </div>
+        <!-- End Page Header -->
+
+        <!-- Page Content -->
+        <div class="page-content container-fluid">
+            <div class="row" id="root">
+                @yield('content')
+            </div>
+        </div>
+        <!-- End Page Content -->
     </div>
+    <!-- End Page -->
 
-    <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    @yield('custom.html')
+
+    <!-- Footer -->
+    @include('dashboard.partials.footer')
+    <!-- Core  -->
+    @include('dashboard.partials.js.core')
+    <!-- Plugins -->
+    @include('dashboard.partials.js.plugins')
+    <!-- Scripts -->
+    @include('dashboard.partials.js.scripts')
+    <!-- Config -->
+    @include('dashboard.partials.js.config')
+    <!-- Page -->
+    @include('dashboard.partials.js.page')
+
     @yield('footer.scripts')
-
 </body>
 </html>

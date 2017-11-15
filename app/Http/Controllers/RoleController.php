@@ -18,7 +18,7 @@ class RoleController extends Controller
         $roles = Role::all();
         $users = User::getAdmins();
 
-        return view('dashboard.role.index', compact('roles', 'users'));
+        return view('dashboard.entities.role.index', compact('roles', 'users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('dashboard.role.create');
+        return view('dashboard.entities.role.create');
     }
 
     /**
@@ -54,7 +54,7 @@ class RoleController extends Controller
     {
         $role = Role::findOrFail($id);
 
-        return view('dashboard.role.edit', compact('role'));
+        return view('dashboard.entities.role.edit', compact('role'));
     }
 
     /**

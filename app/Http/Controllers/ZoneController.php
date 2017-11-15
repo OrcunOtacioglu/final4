@@ -20,7 +20,7 @@ class ZoneController extends Controller
     {
         $zones = Zone::all();
 
-        return view('dashboard.zone.index', compact('zones'));
+        return view('dashboard.entities.zone.index', compact('zones'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ZoneController extends Controller
      */
     public function create()
     {
-        return view('dashboard.zone.create');
+        return view('dashboard.entities.zone.create');
     }
 
     /**
@@ -78,7 +78,7 @@ class ZoneController extends Controller
         $zone = Zone::findOrFail($id);
         $rates = Rate::all();
 
-        return view('dashboard.zone.edit', compact('zone', 'rates'));
+        return view('dashboard.entities.zone.edit', compact('zone', 'rates'));
     }
 
     /**

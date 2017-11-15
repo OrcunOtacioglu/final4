@@ -8,6 +8,6 @@ class EventController extends Controller
 {
     public function index()
     {
-        return view('dashboard.event.index');
+        return view('dashboard.entities.event.index');
     }
 }

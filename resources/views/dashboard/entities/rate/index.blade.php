@@ -2,9 +2,15 @@
 
 @section('title', 'Manage Rates')
 
-@section('header.right')
-    <a href="{{ action('RateController@create') }}" class="btn btn-dashboard">
-        <i class="icon wb-plus-circle"></i> Add Rate
+@section('page-description')
+    <p class="mb-0">This panel allows you to manage the settings for your rates.</p>
+    <p class="mb-0">View, edit and delete rates or add new rate.</p>
+@stop
+
+@section('page-header')
+    <a href="{{ action('RateController@create') }}" class="btn btn-outline btn-success" data-toggle="tooltip" data-original-title="Create New Rate" data-container="body">
+        <i class="icon wb-plus" aria-hidden="true"></i>
+        <span class="hidden-sm-down">New Rate</span>
     </a>
 @stop
 

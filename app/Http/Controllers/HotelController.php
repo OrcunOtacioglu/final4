@@ -28,7 +28,7 @@ class HotelController extends Controller
     {
         $hotels = Hotel::all();
 
-        return view('dashboard.hotel.index', compact('hotels'));
+        return view('dashboard.entities.hotel.index', compact('hotels'));
     }
 
     /**
@@ -38,7 +38,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('dashboard.hotel.create');
+        return view('dashboard.entities.hotel.create');
     }
 
     /**
@@ -75,7 +75,7 @@ class HotelController extends Controller
     {
         $hotel = Hotel::where('id', '=', $id)->with('rooms')->firstOrFail();
 
-        return view('dashboard.hotel.edit', compact('hotel'));
+        return view('dashboard.entities.hotel.edit', compact('hotel'));
     }
 
     /**

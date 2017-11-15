@@ -17,7 +17,7 @@ class RateController extends Controller
     {
         $rates = Rate::all()->sortByDesc('price');
 
-        return view('dashboard.rate.index', compact('rates'));
+        return view('dashboard.entities.rate.index', compact('rates'));
     }
 
     /**
@@ -27,7 +27,7 @@ class RateController extends Controller
      */
     public function create()
     {
-        return view('dashboard.rate.create');
+        return view('dashboard.entities.rate.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class RateController extends Controller
         $rate = Rate::findOrFail($id);
         $zones = Zone::all();
 
-        return view('dashboard.rate.edit', compact('rate', 'zones'));
+        return view('dashboard.entities.rate.edit', compact('rate', 'zones'));
     }
 
     /**
