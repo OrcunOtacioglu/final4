@@ -18,6 +18,13 @@
                 <td colspan="4" class="bt-none">
                     <p class="mb-0">{{ $ticket->name }}</p>
                     <small>Section: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Zone') }} Row: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Row') }} Seat: {{ \App\Entities\OrderItem::listDetailOf($ticket, 'Number') }}</small>
+                    <form action="{{ action('OrderController@removeItem', ['id' => $ticket->id]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="close text-danger" aria-label="Remove" style="font-size: 14px;">
+                            <i class="icon ti-trash"></i>
+                        </button>
+                    </form>
+                    <hr class="mb-0">
                 </td>
             </tr>
         @endforeach

@@ -104,19 +104,21 @@ class Order extends Model
     {
         $order = Order::where('reference', '=', $reference)->first();
 
+        // Adds Items to Order
         foreach ($items as $seat) {
             $seat = Seat::where('reference', '=', $seat['reference'])->first();
 
             $details = [
                 'Info' => 'This ticket is a Weekend Pass which means you can participate in all four matches at Final Four Belgrade',
                 'Row'  => $seat->row,
-                'Zone' => $seat->zone,
-                'Number' => $seat->number
+                'Zone' => $seat->zone->screen_name,
+                'Number' => $seat->seat
             ];
 
             OrderItem::createNew($order, 1, $seat, $details);
         }
 
+        // Calculate Order financials
         self::calculateTotal($order);
 
         return $order;

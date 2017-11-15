@@ -50,7 +50,10 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $sales = $user->sales;
+
+        return view('frontend.entities.user.show', compact('user', 'sales'));
     }
 
     /**
@@ -89,5 +92,12 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function profileUpdate(Request $request, $id)
+    {
+        $user = User::updateProfile($request, $id);
+
+        return redirect()->action('UserController@show', ['id' => $user->id]);
     }
 }

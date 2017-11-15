@@ -4,12 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Entities\Hotel;
 use App\Entities\Order;
+use App\Entities\OrderItem;
 use App\Entities\Seat;
 use App\Entities\Settings;
 use App\Events\OrderCompleted;
 use App\Events\OrderCreated;
+use App\Events\ZoneUpdated;
+use App\Jobs\SetSeatsFree;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class OrderController extends Controller
 {
@@ -89,6 +94,15 @@ class OrderController extends Controller
         $order = Order::where('reference', '=', $reference)->first();
         $hotels = Hotel::where('available_online', '=', true)->get();
 
+        if (Order::getTicketCount($order) == 0) {
+
+            $order->status = 3;
+            $order->updated_at = Carbon::now();
+            $order->save();
+
+            return redirect()->action('ApplicationController@index')->withCookie(Cookie::forget('orderRef'));
+        }
+
         if (Order::getTicketCount($order) == Order::getHotelCount($order)) {
 
             return redirect()->action('OrderController@completeOrder', ['reference' => $order->reference]);
@@ -97,6 +111,38 @@ class OrderController extends Controller
 
         return view('frontend.entities.hotel.index', compact('hotels', 'order'));
 
+    }
+
+    public function removeItem($id)
+    {
+        $item = OrderItem::find($id);
+
+        $updatedZones = [];
+
+        $seat = Seat::where('reference', '=', $item->reference)->first();
+
+        if ($seat->status != 6) {
+            $seat->status = 1;
+
+            $seat->updated_at = Carbon::now();
+            $seat->save();
+
+            if (!in_array($seat->zone_id, $updatedZones)) {
+                array_push($updatedZones, $seat->zone_id);
+            }
+        }
+
+        $item->destroy($id);
+
+        event(new ZoneUpdated($updatedZones));
+
+        $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();
+
+        if (!$order->items->count() == 0) {
+            Order::calculateTotal($order);
+        }
+
+        return redirect()->action('OrderController@show', ['reference' => request()->cookie('orderRef')]);
     }
 
     public function completeOrder($reference)
