@@ -64,6 +64,17 @@ class OrderController extends Controller
             ]);
         } else {
             if ($request->hasCookie('orderRef')) {
+                $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();
+
+                if (Order::getTicketCount($order) >= 8) {
+                    return response()->json([
+                        'status' => 0,
+                        'message' => 'You can not purchase more than 8 tickets!',
+                        'seats' => null,
+                        'reference' => null,
+                    ]);
+                }
+
                 $order = Order::updateOrder($request->cookie('orderRef'), $request->items);
             } else {
                 // If available create a new order
