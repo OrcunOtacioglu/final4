@@ -8,9 +8,9 @@
     <title>@yield('title') | Detur Official Travel Agency</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/general/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/misc/authentication.css') }}">
     @yield('custom.css')
 
     <!-- Custom Fonts -->
@@ -40,9 +40,9 @@
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/base/jquery-3.2.1.slim.min.js') }}"></script>
+    <script src="{{ asset('js/base/popper.min.js') }}"></script>
+    <script src="{{ asset('js/base/bootstrap.min.js') }}"></script>
     @yield('footer.scripts')
 </body>
 </html>
