@@ -37,12 +37,14 @@
                       </span>
                     </a>
                     <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="{{ action('SettingsController@index') }}" role="menuitem">
-                            <i class="icon ti-settings" aria-hidden="true"></i> Settings
-                        </a>
-                        <a class="dropdown-item" href="{{ action('RoleController@index') }}" role="menuitem">
-                            <i class="icon ti-id-badge" aria-hidden="true"></i> Users
-                        </a>
+                        @if(\App\User::hasRole('root'))
+                            <a class="dropdown-item" href="{{ action('SettingsController@index') }}" role="menuitem">
+                                <i class="icon ti-settings" aria-hidden="true"></i> Settings
+                            </a>
+                            <a class="dropdown-item" href="{{ action('RoleController@index') }}" role="menuitem">
+                                <i class="icon ti-id-badge" aria-hidden="true"></i> Users
+                            </a>
+                        @endif
                         <div class="dropdown-divider" role="presentation"></div>
                         <a class="dropdown-item" role="menuitem" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
