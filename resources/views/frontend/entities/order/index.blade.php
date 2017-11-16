@@ -29,8 +29,8 @@
 @stop
 
 @section('footer.scripts')
-    <script src="{{ asset('js/formValidation/formatter.min.js') }}"></script>
-    <script src="{{ asset('js/formValidation/formValidation.min.js') }}"></script>
-    <script src="{{ asset('js/formValidation/framework/bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('js/formValidation/validate-register.js') }}"></script>
+    <script src="{{ asset('js/frontend/formValidation/formatter.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/formValidation/formValidation.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/formValidation/framework/bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/formValidation/validate-register.js') }}"></script>
 @stop
