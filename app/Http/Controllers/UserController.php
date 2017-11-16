@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $customers = User::where('is_admin', '=', false)->get();
 
-        return view('dashboard.user.index', compact('customers'));
+        return view('dashboard.entities.user.index', compact('customers'));
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('dashboard.user.create');
+        return view('dashboard.entities.user.create');
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return view('dashboard.user.edit', compact('user'));
+        return view('dashboard.entities.user.edit', compact('user'));
     }
 
     /**

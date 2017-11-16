@@ -16,7 +16,7 @@ class PageController extends Controller
     {
         $pages = Page::all();
 
-        return view('dashboard.page.index', compact('pages'));
+        return view('dashboard.entities.page.index', compact('pages'));
     }
 
     /**
@@ -26,7 +26,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('dashboard.page.create');
+        return view('dashboard.entities.page.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class PageController extends Controller
     {
         $page = Page::findOrFail($id);
 
-        return view('dashboard.page.edit', compact('page'));
+        return view('dashboard.entities.page.edit', compact('page'));
     }
 
     /**

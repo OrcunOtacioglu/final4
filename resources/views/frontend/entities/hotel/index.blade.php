@@ -131,7 +131,7 @@
 @stop
 
 @section('footer.scripts')
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/plugins/sweetalert.min.js') }}"></script>
     <script>
         swal({
             title: "Success!",

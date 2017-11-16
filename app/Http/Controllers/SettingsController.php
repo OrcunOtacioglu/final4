@@ -17,7 +17,7 @@ class SettingsController extends Controller
     {
         $settings = Settings::all();
 
-        return view('dashboard.settings.index', compact('settings'));
+        return view('dashboard.entities.settings.index', compact('settings'));
     }
 
     /**
@@ -27,7 +27,7 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        return view('dashboard.settings.create');
+        return view('dashboard.entities.settings.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class SettingsController extends Controller
     {
         $settings = Settings::findOrFail($id);
 
-        return view('dashboard.settings.edit', compact('settings'));
+        return view('dashboard.entities.settings.edit', compact('settings'));
     }
 
     /**
