@@ -43,7 +43,7 @@
             @yield('page-description')
 
             <div class="page-header-actions">
-                <div class="btn-group btn-group-sm" id="withBtnGroup" aria-label="Page Header Actions" role="group">
+                <div class="btn-group btn-group" id="withBtnGroup" aria-label="Page Header Actions" role="group">
                     @yield('page-header')
                 </div>
             </div>

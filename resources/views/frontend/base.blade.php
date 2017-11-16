@@ -12,11 +12,11 @@
     <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/general/bootstrap.min.css') }}">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/froala_blocks.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/general/froala_blocks.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
     @yield('custom.css')
 
     <!-- Custom Fonts -->
@@ -50,9 +50,9 @@
     @yield('custom.html')
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/base/jquery-3.2.1.slim.min.js') }}"></script>
+    <script src="{{ asset('js/base/popper.min.js') }}"></script>
+    <script src="{{ asset('js/base/bootstrap.min.js') }}"></script>
     @yield('footer.scripts')
 </body>
 </html>

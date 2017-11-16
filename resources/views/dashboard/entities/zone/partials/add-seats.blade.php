@@ -56,5 +56,5 @@
         </select>
     </div>
 
-    <input type="submit" class="btn btn-block btn-dashboard" value="Add Seats">
+    <input type="submit" class="btn btn-block btn-success" value="Add Seats">
 </form>

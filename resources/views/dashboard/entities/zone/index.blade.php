@@ -2,52 +2,58 @@
 
 @section('title', 'Manage Zones')
 
-@section('header.right')
-    <a href="{{ action('ZoneController@create') }}" class="btn btn-dashboard">
-        <i class="icon wb-plus-circle"></i> Add Zone
+@section('custom.css')
+    <link rel="stylesheet" href="{{ asset('css/dashboard/plugins/data-table/datatables.min.css') }}">
+@stop
+
+@section('page-description')
+    <p class="mb-0">This panel allows you to manage the settings for your zones.</p>
+    <p class="mb-0">View, edit and delete zones or add new zone.</p>
+@stop
+
+@section('page-header')
+    <a href="{{ action('ZoneController@create') }}" class="btn btn-outline btn-success" data-toggle="tooltip" data-original-title="Create New Zone" data-container="body">
+        <i class="icon wb-plus" aria-hidden="true"></i>
+        <span class="hidden-sm-down">New Zone</span>
     </a>
 @stop
 
 @section('content')
-    @if($zones->count() == 0)
-        <div class="alert alert-info" role="alert">
-            There are no zones to show!
-        </div>
-    @else
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Image</th>
-                <th scope="col" class="text-nowrap">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($zones as $zone)
-                <tr>
-                    <td>{{ $zone->name }}</td>
-                    <td>
-                        <img src="{{ $zone->image_path }}" alt="" class="img-fluid">
-                    </td>
-                    <td class="text-nowrap">
-                        <a href="{{ action('ZoneController@edit', ['id' => $zone->id]) }}" class="btn btn-sm btn-dashboard">Edit</a>
-                        <form action="{{ action('ZoneController@generateSeats', ['id' => $zone->id]) }}" method="POST">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-sm btn-secondary">Generate Seats</button>
-                        </form>
-                        <form action="{{ action('ZoneController@getBackup', ['id' => $zone->id]) }}" method="POST">
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-sm btn-success">Backup</button>
-                        </form>
-                        <form action="{{ action('ZoneController@destroy', ['id' => $zone->id]) }}" method="POST">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @endif
+    <div class="col-md-12">
+        @if($zones->count() == 0)
+            <div class="alert alert-info" role="alert">
+                There are no zones to show!
+            </div>
+        @else
+            <div class="panel">
+                <div class="panel-body">
+                    @include('dashboard.entities.zone.partials.data-table')
+                </div>
+            </div>
+        @endif
+    </div>
+@stop
+
+@section('footer.scripts')
+    <script src="{{ asset('js/dashboard/plugins/data-tables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#zoneTable').DataTable({
+                ordering: true,
+                paging: true,
+                autoWidth: true,
+                colReorder: true,
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'print',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                searching: true,
+                toolbar: true
+            });
+        });
+    </script>
 @stop

@@ -9,12 +9,14 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="col-md-9" id="canvasZone">
-            <canvas id="{{ $zone->id }}"></canvas>
-        </div>
-        <div class="col-md-3" style="background: #EEEEEE;">
-            @include('dashboard.zone.partials.add-seats')
+    <div class="col-md-9" id="canvasZone">
+        <canvas id="{{ $zone->id }}"></canvas>
+    </div>
+    <div class="col-md-3">
+        <div class="panel">
+            <div class="panel-body">
+                @include('dashboard.entities.zone.partials.add-seats')
+            </div>
         </div>
     </div>
 @stop

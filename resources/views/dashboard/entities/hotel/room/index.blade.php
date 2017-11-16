@@ -21,8 +21,22 @@
                 <td>{{ $room->availability }}</td>
                 <td>{{ $room->type }}</td>
                 <td class="text-nowrap">
-                    <a href="{{ action('HotelRoomController@edit', ['id' => $room->id]) }}" class="text-muted">Edit</a>
-                    <a href="#" class="text-danger">Delete</a>
+                    <div class="row">
+                        <a href="{{ action('HotelRoomController@edit', ['id' => $room->id]) }}" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Edit">
+                            <i class="icon ti-pencil"></i>
+                        </a>
+                        <form action="{{ action('HotelRoomController@destroy', ['id' => $room->id]) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit"
+                                    class="btn btn-sm btn-icon btn-flat btn-default"
+                                    data-toggle="tooltip"
+                                    data-original-title="Delete"
+                            >
+                                <i class="icon ti-trash text-danger" aria-hidden="true"></i>
+                            </button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         @endforeach

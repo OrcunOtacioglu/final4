@@ -32,10 +32,10 @@
 
 @section('footer.scripts')
     <script src="https://unpkg.com/vue"></script>
-    <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('js/fabric.min.js') }}"></script>
-    <script src="{{ asset('js/seatbit/seat.class.js') }}"></script>
-    <script src="{{ asset('js/seatbit/zone.class.js') }}"></script>
-    <script src="{{ asset('js/seatbit/app.js') }}"></script>
+    <script src="{{ asset('js/frontend/plugins/axios.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/plugins/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/fabric.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/app.js') }}"></script>
 @stop

@@ -2,41 +2,58 @@
 
 @section('title', 'Manage Pages')
 
-@section('header.right')
-    <a href="{{ action('PageController@create') }}" class="btn btn-dashboard">
-        <i class="icon wb-plus-circle"></i> Add Page
+@section('custom.css')
+    <link rel="stylesheet" href="{{ asset('css/dashboard/plugins/data-table/datatables.min.css') }}">
+@stop
+
+@section('page-description')
+    <p class="mb-0">This panel allows you to manage the settings for your pages.</p>
+    <p class="mb-0">View, edit and delete pages or add new page.</p>
+@stop
+
+@section('page-header')
+    <a href="{{ action('PageController@create') }}" class="btn btn-outline btn-success" data-toggle="tooltip" data-original-title="Create New Page" data-container="body">
+        <i class="icon wb-plus" aria-hidden="true"></i>
+        <span class="hidden-sm-down">New Page</span>
     </a>
 @stop
 
 @section('content')
-    @if($pages->count() == 0)
-        <div class="alert alert-info" role="alert">
-            There are no pages to show!
-        </div>
-    @else
-        <table class="table table-hover">
-            <thead>
-            <tr class="text-center">
-                <th scope="col">Title</th>
-                <th scope="col">Slug</th>
-                <th scope="col">Status</th>
-                <th scope="col" class="text-nowrap">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($pages as $page)
-                <tr class="text-center">
-                    <td class="text-left">{{ $page->title }}</td>
-                    <td>{{ $page->slug }}</td>
-                    <td>
-                        <i class="icon wb-power {{ $page->status == true ? 'text-success' : 'text-danger' }}"></i>
-                    </td>
-                    <td>
-                        <a href="{{ action('PageController@edit', ['id' => $page->id]) }}">Edit</a>
-                    </td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-    @endif
+    <div class="col-md-12">
+        @if($pages->count() == 0)
+            <div class="alert alert-info" role="alert">
+                There are no pages to show!
+            </div>
+        @else
+            <div class="panel">
+                <div class="panel-body">
+                    @include('dashboard.entities.page.partials.data-table')
+                </div>
+            </div>
+        @endif
+    </div>
+@stop
+
+@section('footer.scripts')
+    <script src="{{ asset('js/dashboard/plugins/data-tables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $('#pageTable').DataTable({
+                ordering: true,
+                paging: true,
+                autoWidth: true,
+                colReorder: true,
+                responsive: true,
+                dom: 'Bfrtip',
+                buttons: [
+                    'print',
+                    'excelHtml5',
+                    'csvHtml5',
+                    'pdfHtml5'
+                ],
+                searching: true,
+                toolbar: true
+            });
+        });
+    </script>
 @stop
