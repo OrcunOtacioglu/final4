@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Entities\Order;
 use App\Entities\Sale;
+use App\Mail\ConfirmationMail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SaleController extends Controller
 {
@@ -83,5 +85,14 @@ class SaleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function sendConfirmationMail(Request $request, $reference)
+    {
+        $sale = Sale::where('reference', '=', $reference)->first();
+
+        Mail::to($sale->user->email)->send(new ConfirmationMail($sale->order));
+
+        return redirect()->action('UserController@edit', ['id' => $sale->user->id]);
     }
 }

@@ -4,11 +4,13 @@
     Edit {{ ucfirst($user->name) . ' ' . ucfirst($user->surname) }}
 @stop
 
-
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="panel-title">User Details</h2>
+                </div>
                 <div class="panel-body">
                     <form action="{{ action('UserController@update', ['id' => $user->id]) }}" method="POST">
                         {{ csrf_field() }}
@@ -136,6 +138,47 @@
                         <input type="submit" class="btn btn-success" value="Update">
                         <a href="{{ action('UserController@index') }}" class="text-muted">Cancel</a>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2 class="panel-title">User Orders</h2>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Reference</th>
+                            <th class="text-center">Total Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($user->sales as $sale)
+                            <tr>
+                                <td>{{ $sale->reference }}</td>
+                                <td class="text-center">{{ $sale->total }}€</td>
+                                <td>
+                                    <form action="{{ action('SaleController@sendConfirmationMail', ['reference' => $sale->reference]) }}" method="POST">
+                                        {{ csrf_field() }}
+                                        <button type="submit"
+                                                class="btn btn-sm btn-icon btn-flat btn-default"
+                                                data-toggle="tooltip"
+                                                data-original-title="Send Confirmation Mail"
+                                        >
+                                            <i class="icon ti-envelope text-warning" aria-hidden="true"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
