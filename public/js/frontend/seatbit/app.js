@@ -124,7 +124,30 @@ var cart = new Vue({
             })
                 .then(function (response) {
                     if (response.data.status === 0) {
-                        swal(response.data.message, 'Please try again!', 'warning');
+                        if (response.data.reference !== null) {
+                            swal({
+                                title: 'Oops!',
+                                text: 'You can not purchase more than 8 tickets!',
+                                icon: 'warning',
+                                buttons: {
+                                    confirm: {
+                                        text: 'View Current Package',
+                                        value: true,
+                                        visible: true,
+                                        closeModal: true
+                                    }
+                                }
+                            }).then(function (result) {
+                                console.log(result);
+                                if (result) {
+                                    window.location.replace('/order/' + response.data.reference);
+                                } else {
+                                    window.location.replace('/order/' + response.data.reference);
+                                }
+                            });
+                        } else {
+                            swal(response.data.message, 'Please try again!', 'warning');
+                        }
                     } else {
                         if (response.data.reference === undefined) {
                             swal('Problem occured!', 'Please try again!', 'error');
