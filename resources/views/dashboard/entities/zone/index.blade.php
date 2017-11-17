@@ -19,18 +19,20 @@
 @stop
 
 @section('content')
-    <div class="col-md-12">
-        @if($zones->count() == 0)
-            <div class="alert alert-info" role="alert">
-                There are no zones to show!
-            </div>
-        @else
-            <div class="panel">
-                <div class="panel-body">
-                    @include('dashboard.entities.zone.partials.data-table')
+    <div class="row">
+        <div class="col-md-12">
+            @if($zones->count() == 0)
+                <div class="alert alert-info" role="alert">
+                    There are no zones to show!
                 </div>
-            </div>
-        @endif
+            @else
+                <div class="panel">
+                    <div class="panel-body">
+                        @include('dashboard.entities.zone.partials.data-table')
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 @stop
 

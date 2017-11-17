@@ -19,18 +19,20 @@
 @stop
 
 @section('content')
-    <div class="col-md-12">
-        @if($rates->count() == 0)
-            <div class="alert alert-info" role="alert">
-                There are no rates to show!
-            </div>
-        @else
-            <div class="panel">
-                <div class="panel-body">
-                    @include('dashboard.entities.rate.partials.data-table')
+    <div class="row">
+        <div class="col-md-12">
+            @if($rates->count() == 0)
+                <div class="alert alert-info" role="alert">
+                    There are no rates to show!
                 </div>
-            </div>
-        @endif
+            @else
+                <div class="panel">
+                    <div class="panel-body">
+                        @include('dashboard.entities.rate.partials.data-table')
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 @stop
 

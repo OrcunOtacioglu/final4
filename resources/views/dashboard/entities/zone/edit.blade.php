@@ -9,21 +9,23 @@
 @stop
 
 @section('content')
-    <div class="col-md-9" id="canvasZone">
-        <canvas id="{{ $zone->id }}"></canvas>
-    </div>
-    <div class="col-md-3">
-        <div class="panel">
-            <div class="panel-body">
-                @include('dashboard.entities.zone.partials.add-seats')
+    <div class="row">
+        <div class="col-md-9" id="canvasZone">
+            <canvas id="{{ $zone->id }}"></canvas>
+        </div>
+        <div class="col-md-3">
+            <div class="panel">
+                <div class="panel-body">
+                    @include('dashboard.entities.zone.partials.add-seats')
+                </div>
             </div>
         </div>
     </div>
 @stop
 
 @section('footer.scripts')
-    <script src="{{ asset('js/axios.min.js') }}"></script>
-    <script src="{{ asset('js/fabric.min.js') }}"></script>
-    <script src="{{ asset('js/seatbit/seat.class.js') }}"></script>
-    <script src="{{ asset('js/seatbit/seat-generator.js') }}"></script>
+    <script src="{{ asset('js/frontend/plugins/axios.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/fabric.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/seat-generator.js') }}"></script>
 @stop
