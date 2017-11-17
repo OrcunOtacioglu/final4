@@ -51,10 +51,8 @@
         <!-- End Page Header -->
 
         <!-- Page Content -->
-        <div class="page-content container-fluid">
-            <div class="row" id="root">
-                @yield('content')
-            </div>
+        <div class="page-content container-fluid" id="root">
+            @yield('content')
         </div>
         <!-- End Page Content -->
     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Hotel;
 use App\Entities\Rate;
 use App\Entities\Sale;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,9 +23,11 @@ class ApplicationController extends Controller
 
     public function dashboard()
     {
-        $sales = Sale::all();
+        $sales = Sale::all()->take(10);
+        $customers = User::where('is_admin', '=', false)->get();
+        $hotels = Hotel::all();
 
-        return view('dashboard.index', compact('sales'));
+        return view('dashboard.index', compact('sales', 'customers', 'hotels'));
     }
 
     public function getVenue()

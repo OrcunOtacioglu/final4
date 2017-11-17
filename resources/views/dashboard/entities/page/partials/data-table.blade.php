@@ -17,7 +17,7 @@
             </td>
             <td>
                 <div class="row">
-                    <a href="{{ action('RateController@edit', ['id' => $page->id]) }}" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Edit">
+                    <a href="{{ action('PageController@edit', ['id' => $page->id]) }}" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Edit">
                         <i class="icon ti-pencil"></i>
                     </a>
                     <form action="{{ action('PageController@destroy', ['id' => $page->id]) }}" method="POST">

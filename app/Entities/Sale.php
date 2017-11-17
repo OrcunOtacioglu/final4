@@ -56,4 +56,18 @@ class Sale extends Model
 
         $sale->save();
     }
+
+    public static function getTotalSalesAmount()
+    {
+        $total = 0;
+
+        $sales = Sale::all();
+
+        foreach ($sales as $sale)
+        {
+            $total += $sale->total;
+        }
+
+        return $total;
+    }
 }

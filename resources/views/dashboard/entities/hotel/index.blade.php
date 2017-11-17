@@ -19,18 +19,20 @@
 @stop
 
 @section('content')
-    <div class="col-md-12">
-        @if($hotels->count() == 0)
-            <div class="alert alert-info" role="alert">
-                There are no hotels to show!
-            </div>
-        @else
-            <div class="panel">
-                <div class="panel-body">
-                    @include('dashboard.entities.hotel.partials.data-table')
+    <div class="row">
+        <div class="col-md-12">
+            @if($hotels->count() == 0)
+                <div class="alert alert-info" role="alert">
+                    There are no hotels to show!
                 </div>
-            </div>
-        @endif
+            @else
+                <div class="panel">
+                    <div class="panel-body">
+                        @include('dashboard.entities.hotel.partials.data-table')
+                    </div>
+                </div>
+            @endif
+        </div>
     </div>
 @stop
 
