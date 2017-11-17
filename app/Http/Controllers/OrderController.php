@@ -60,18 +60,18 @@ class OrderController extends Controller
                 'status' => 0,
                 'message' => 'Selected seats are not available!',
                 'seats' => $notAvailableSeats,
-                'reference' => null,
+                'reference' => null
             ]);
         } else {
             if ($request->hasCookie('orderRef')) {
                 $order = Order::where('reference', '=', $request->cookie('orderRef'))->first();
 
-                if (Order::getTicketCount($order) >= 8) {
+                if (Order::getTicketCount($order) + count($request->items) >= 8) {
                     return response()->json([
                         'status' => 0,
                         'message' => 'You can not purchase more than 8 tickets!',
                         'seats' => null,
-                        'reference' => null,
+                        'reference' => $order->reference
                     ]);
                 }
 
