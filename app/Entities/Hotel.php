@@ -33,6 +33,8 @@ class Hotel extends Model
         'review_point',
         'review_count',
         'location',
+        'longitude',
+        'latitude',
         'description',
         'facilities'
     ];
@@ -60,7 +62,6 @@ class Hotel extends Model
         $hotel->reference = str_random(6);
         $hotel->name = $request->name;
 
-        //@TODO IMPLEMENT ONLINE AVAILABILITY AND WHETHER AVAILABLE CONTROL ON HOTEL LIST PAGE
         $hotel->total_availability = $request->total_availability;
         $hotel->online_availability = $request->online_availability;
         $hotel->box_office_availability = $request->box_office_availability;
@@ -75,6 +76,9 @@ class Hotel extends Model
         $hotel->review_count = $request->review_count;
 
         $hotel->location = $request->location;
+        $hotel->latitude = $request->latitude;
+        $hotel->longitude = $request->longitude;
+
         $hotel->description = $request->description;
         $hotel->facilities = $request->facilities;
 
@@ -111,6 +115,9 @@ class Hotel extends Model
         $hotel->review_count = $request->review_count;
 
         $hotel->location = $request->location;
+        $hotel->latitude = $request->latitude;
+        $hotel->longitude = $request->longitude;
+
         $hotel->description = $request->description;
         $hotel->facilities = $request->facilities;
 
