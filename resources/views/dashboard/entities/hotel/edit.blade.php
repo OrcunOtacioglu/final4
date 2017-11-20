@@ -97,19 +97,31 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label for="facilities">Facilities</label>
-                                    <textarea name="facilities" id="facilities" cols="30" rows="5" class="form-control">{{ $hotel->facilities }}</textarea>
+                                    <label for="latitude">Latitude</label>
+                                    <input type="text" class="form-control" id="latitude" name="latitude" value="{{ $hotel->latitude }}">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="longitude">Longitude</label>
+                                    <input type="text" class="form-control" id="longitude" name="longitude" value="{{ $hotel->longitude }}">
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="description">Description</label>
-                                    <textarea name="description" id="description" cols="30" rows="10" class="form-control">{{ $hotel->description }}</textarea>
+                                    <textarea name="description" id="description" cols="30" rows="5" class="form-control">{{ $hotel->description }}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="facilities">Facilities</label>
+                                    <textarea name="facilities" id="facilities" cols="30" rows="5" class="form-control">{{ $hotel->facilities }}</textarea>
                                 </div>
                             </div>
                         </div>

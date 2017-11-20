@@ -2,6 +2,10 @@
 
 @section('title', 'Choose your hotel')
 
+@section('custom.css')
+    <link rel="stylesheet" href="{{ asset('css/frontend/plugins/fotorama/fotorama.css') }}">
+@stop
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -72,10 +76,10 @@
                                                 <button type="button" class="btn btn-secondary">
                                                     <i class="wb-info-circle"></i> More Info
                                                 </button>
-                                                <button type="button" class="btn btn-secondary">
+                                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#{{ $hotel->reference }}G">
                                                     <i class="wb-gallery"></i> Gallery
                                                 </button>
-                                                <button type="button" class="btn btn-secondary">
+                                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#{{ $hotel->reference }}M">
                                                     <i class="wb-map"></i> Show On Map
                                                 </button>
                                             </div>
@@ -127,6 +131,8 @@
 @stop
 
 @section('custom.html')
+    @include('frontend.entities.hotel.partials.gallery')
+    @include('frontend.entities.hotel.partials.maps')
     @include('frontend.partials.footer')
 @stop
 
@@ -142,4 +148,17 @@
             closeOnEsc: false
         });
     </script>
+    <script>
+        @foreach($hotels as $hotel)
+            $('#{{ $hotel->reference }}M').on('shown.bs.modal', function (e) {
+                initMap("{{ $hotel->latitude }}", "{{ $hotel->longitude }}", "{{ $hotel->reference }}");
+            });
+        @endforeach
+    </script>
+    <script src="{{ asset('js/frontend/plugins/maps.js') }}"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdpMB_vp0CXlEy49kSEO42duzmTXbTMQw&callback=initMap">
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ asset('js/frontend/plugins/fotorama.js') }}"></script>
 @stop

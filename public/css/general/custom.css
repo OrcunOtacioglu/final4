@@ -553,3 +553,20 @@ a.sidebar-footer-anchor:hover {
     top: 350px;
     right: 20px;
 }
+
+/**
+    MODAL
+ **/
+.transparent-modal {
+    background: transparent;
+    border-color: transparent;
+}
+
+.transparent-modal > .modal-header {
+    border: none;
+    padding: 0;
+}
+
+.modal-backdrop {
+    background: #16b7cd;
+}
