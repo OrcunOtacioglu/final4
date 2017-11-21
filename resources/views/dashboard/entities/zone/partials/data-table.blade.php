@@ -36,6 +36,15 @@
                             <i class="icon ti-save text-info"></i>
                         </button>
                     </form>
+                    <form action="{{ action('ZoneController@refreshZone', ['id' => $zone->id]) }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit"
+                                class="btn btn-sm btn-icon btn-flat btn-default"
+                                data-toggle="tooltip"
+                                data-original-title="Refresh Zone">
+                            <i class="icon ti-reload text-warning"></i>
+                        </button>
+                    </form>
                     <form action="{{ action('ZoneController@destroy', ['id' => $zone->id]) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}

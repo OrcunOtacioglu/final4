@@ -10,7 +10,6 @@ use App\Entities\Settings;
 use App\Events\OrderCompleted;
 use App\Events\OrderCreated;
 use App\Events\ZoneUpdated;
-use App\Jobs\SetSeatsFree;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

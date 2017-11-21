@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Rate;
 use App\Entities\Seat;
 use App\Entities\Zone;
+use App\Events\ZoneUpdated;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -222,6 +223,16 @@ class ZoneController extends Controller
         $zone = Zone::findOrFail($id);
 
         Storage::disk('local')->put('backups/' . $zone->name . '.json', $zone->objects);
+
+        return redirect()->action('ZoneController@index');
+    }
+
+    public function refreshZone($id)
+    {
+        $updatedZones = [];
+        array_push($updatedZones, $id);
+
+        event(new ZoneUpdated($updatedZones));
 
         return redirect()->action('ZoneController@index');
     }
