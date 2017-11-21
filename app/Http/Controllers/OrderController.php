@@ -177,7 +177,7 @@ class OrderController extends Controller
             Order::appendUser($order, $user);
             $paymentData = Order::prepareOrder($order, $settings);
 
-            return view('frontend.entities.order.show', compact('order', 'paymentData', 'settings'));
+            return view('frontend.entities.order.show', compact('order', 'paymentData', 'settings', 'user'));
         }
     }
 
