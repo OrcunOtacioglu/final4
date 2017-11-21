@@ -39,16 +39,14 @@
                     <input type="hidden" name="lang" value="en">
                     <input type="hidden" name="currency" value="{{ $settings->currency_code }}">
 
-                    <input type="hidden" name="firmaadi" value="Tatil Seyahat Turizm A.S.">
-                    <input type="hidden" name="Fismi" value="is">
-                    <input type="hidden" name="faturaFirma" value="Tatil Seyahat Turizm A.S.">
-                    <input type="hidden" name="Fadres" value="Buyukdere Cad. Ozsezen Is Merkezi">
-                    <input type="hidden" name="Fadres2" value="No:123 C Blok Asmakat Detur">
-                    <input type="hidden" name="Fil" value="ISTANBUL">
-                    <input type="hidden" name="Filce" value="Sisli">
-                    <input type="hidden" name="Fpostakodu" value="34394">
-                    <input type="hidden" name="tel" value="+90 212 217 77 60">
-                    <input type="hidden" name="fulkekod" value="tr">
+                    <input type="hidden" name="firmaadi" value="{{ $user->name . ' ' . $user->surname }}">
+                    <input type="hidden" name="Fismi" value="{{ $user->name . ' ' . $user->surname }}">
+                    <input type="hidden" name="faturaFirma" value="{{ $user->name . ' ' . $user->surname }}">
+                    <input type="hidden" name="Fadres" value="{{ $user->address }}">
+                    <input type="hidden" name="Fil" value="{{ $user->province }}">
+                    <input type="hidden" name="Filce" value="{{ $user->province }}">
+                    <input type="hidden" name="Fpostakodu" value="{{ $user->zip_code }}">
+                    <input type="hidden" name="tel" value="{{ $user->phone }}">
                     <input type="hidden" name="nakliyeFirma" value="Tatil Seyahat Turizm A.S.">
                     <input type="hidden" name="tismi" value="Tatil Seyahat Turizm A.S.">
                     <input type="hidden" name="tadres" value="Buyukdere Cad. Ozsezen Is Merkezi">
