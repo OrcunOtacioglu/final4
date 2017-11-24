@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Entities\Authorization\Role;
+use App\Entities\Booking;
 use App\Entities\Order;
 use App\Entities\Sale;
 use Carbon\Carbon;
@@ -63,6 +64,11 @@ class User extends Authenticatable
     public function sales()
     {
         return $this->hasMany(Sale::class);
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
     }
 
     public static function getAdmins()
