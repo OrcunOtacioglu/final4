@@ -51,6 +51,13 @@
                             <span class="site-menu-title">Customers</span>
                         </a>
                     </li>
+
+                    <li class="site-menu-item">
+                        <a href="{{ action('BoxOfficeController@index') }}">
+                            <i class="site-menu-icon ti-ticket" aria-hidden="true"></i>
+                            <span class="site-menu-title">Box Office</span>
+                        </a>
+                    </li>
                     @endif
                     @if(\App\User::hasRole('finance'))
                     <li class="site-menu-item">
