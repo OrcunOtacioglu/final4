@@ -24,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ZoneUpdated' => [
             'App\Listeners\DrawNewZone'
+        ],
+        'App\Events\BookingCreated' => [
+            'App\Listeners\BlockBookingSeats'
         ]
     ];
 
