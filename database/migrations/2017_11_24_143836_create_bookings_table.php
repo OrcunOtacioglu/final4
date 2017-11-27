@@ -28,6 +28,7 @@ class CreateBookingsTable extends Migration
             $table->decimal('comission');
             $table->decimal('fee');
             $table->decimal('tax');
+            $table->decimal('offer');
             $table->decimal('total');
 
             $table->integer('currency_code');
