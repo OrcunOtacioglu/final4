@@ -6,10 +6,6 @@
 
 @section('title', 'Box Office')
 
-@section('custom.css')
-    <link rel="stylesheet" href="{{ asset('css/dashboard/custom/box-office.css') }}">
-@stop
-
 @section('page-description')
     <p class="mb-0">This panel allows you to manage the all your events and sales.</p>
     <p class="mb-0">View, edit and delete pretty much everything.</p>

@@ -52,11 +52,24 @@
                         </a>
                     </li>
 
-                    <li class="site-menu-item">
-                        <a href="{{ action('BoxOfficeController@index') }}">
+                    <li class="site-menu-item has-sub open">
+                        <a href="javascript:void(0)">
                             <i class="site-menu-icon ti-ticket" aria-hidden="true"></i>
                             <span class="site-menu-title">Box Office</span>
+                            <span class="site-menu-arrow"></span>
                         </a>
+                        <ul class="site-menu-sub" style="">
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('BoxOfficeController@index') }}">
+                                    <span class="site-menu-title">Book Packages</span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('BookingController@index') }}">
+                                    <span class="site-menu-title">Manage Bookings</span>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     @endif
                     @if(\App\User::hasRole('finance'))
@@ -69,7 +82,7 @@
                     @endif
                     @if(\App\User::hasRole('marketer'))
                     <li class="site-menu-item">
-                        <a href="javascript:void(0)">
+                        <a href="{{ action('AnalyticsController@index') }}">
                             <i class="site-menu-icon ti-pie-chart" aria-hidden="true"></i>
                             <span class="site-menu-title">Analytics</span>
                         </a>
@@ -83,3 +96,4 @@
         </div>
     </div>
 </div>
+

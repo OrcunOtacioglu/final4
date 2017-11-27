@@ -37,9 +37,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::createNew($request);
+        User::createNew($request);
 
-        return redirect()->action('UserController@edit', ['id' => $user->id]);
+        return redirect()->back();
     }
 
     /**

@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Booking;
+use App\Entities\BookingItem;
+use App\Entities\Hotel;
+use App\Entities\HotelRoom;
 use App\Entities\Seat;
 use App\Events\BookingCreated;
 use App\Jobs\CheckBookingStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class BookingController extends Controller
 {
@@ -18,7 +22,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::all();
+
+        return view('box-office.entities.booking.index', compact('bookings'))->withCookie(Cookie::forget('bookingRef'));
     }
 
     /**
@@ -92,8 +98,9 @@ class BookingController extends Controller
     public function edit($reference)
     {
         $booking = Booking::where('reference', '=', $reference)->first();
+        $hotels = Hotel::all();
 
-        return view('box-office.entities.booking.edit', compact('booking'));
+        return view('box-office.entities.booking.edit', compact('booking', 'hotels'));
     }
 
     /**
@@ -109,10 +116,14 @@ class BookingController extends Controller
 
         $booking->user_id = $request->user_id;
 
+        $booking->offer = $request->offer != null ? $request->offer : $booking->subtotal;
+
         $booking->booked_until = $request->booked_until;
         $booking->updated_at = Carbon::now();
 
         $booking->save();
+
+        Booking::calculateTotal($booking);
 
         CheckBookingStatus::dispatch($booking)
             ->delay(Carbon::now()->addDays($booking->booked_until));
@@ -129,5 +140,28 @@ class BookingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addHotel(Request $request, $reference)
+    {
+        $booking = Booking::where('reference', '=', $reference)->first();
+
+        $room = HotelRoom::where([
+            ['type', '=', $request->usage],
+            ['hotel_id', '=', $request->hotel_id]
+        ])->first();
+
+        $details = [
+            'Info' => $room->misc,
+            'Use' => $room->name
+        ];
+
+        for ($i = 1; $i <= $request->roomCount; $i++) {
+            BookingItem::createNew($booking, 2, $room, $details, 1);
+        }
+
+        Booking::calculateTotal($booking);
+
+        return redirect()->action('BookingController@edit', ['reference' => $booking->reference]);
     }
 }
