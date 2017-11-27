@@ -51,4 +51,13 @@ class BookingItem extends Model
 
         $item->save();
     }
+
+    public static function listDetailOf($item, $detail)
+    {
+        $encoded = json_encode($item->details, true);
+        $decoded = json_decode($encoded, true);
+        $latestDecoded = json_decode($decoded, true);
+
+        return $latestDecoded[$detail];
+    }
 }

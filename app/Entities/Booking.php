@@ -47,6 +47,7 @@ class Booking extends Model
         $booking->comission = 0;
         $booking->fee = 0;
         $booking->tax = 0;
+        $booking->offer = 0;
         $booking->total = 0;
         $booking->currency_code = 978;
 
@@ -131,7 +132,12 @@ class Booking extends Model
         $subtotal = $cost * $averageProfitMargin;
 
         // Calculate profit (subtotal - cost)
-        $profit = $subtotal - $cost;
+        if ($subtotal != $booking->offer) {
+            $profit = $booking->offer - $cost;
+        } else {
+            $profit = $subtotal - $cost;
+        }
+
         $profitPerItem = $profit / $ticketCount;
 
         // Divide profit to ticket count to find whether we are making profit more than minimum profit amount
@@ -143,10 +149,69 @@ class Booking extends Model
         $booking->cost = $cost;
         $booking->profit = $profit;
         $booking->subtotal = $subtotal;
-        $booking->fee = $subtotal * 0.02;
+        $booking->fee = 0;
         $booking->tax = $subtotal * 0.18;
-        $booking->total = $subtotal + $booking->fee;
+        $booking->total = $subtotal;
         $booking->updated_at = Carbon::now();
         $booking->save();
+    }
+
+    public static function hasHotel($booking)
+    {
+        $hotels = [];
+
+        foreach ($booking->items as $item) {
+            if ($item->type === 2) {
+                array_push($hotels, $item);
+            }
+        }
+
+        if (count($hotels)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static function listTickets($booking)
+    {
+        $allItems = $booking->items;
+        $tickets = $allItems->where('type', '=', 1);
+
+        return $tickets->all();
+    }
+
+    public static function listHotels($booking)
+    {
+        $allItems = $booking->items;
+        $hotels = $allItems->where('type', '=', 2);
+
+        return $hotels;
+    }
+
+    public static function getTicketCount($booking)
+    {
+        $ticketCount = 0;
+
+        foreach ($booking->items as $item) {
+            if ($item->type === 1) {
+                $ticketCount = $ticketCount +1;
+            }
+        }
+
+        return $ticketCount;
+    }
+
+    public static function getHotelCount($booking)
+    {
+        $hotelCount = 0;
+
+        foreach ($booking->items as $item) {
+            if ($item->type === 2) {
+                $hotelCount = $hotelCount + 1;
+            }
+        }
+
+        return $hotelCount;
     }
 }
