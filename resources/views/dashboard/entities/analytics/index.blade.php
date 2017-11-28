@@ -4,10 +4,11 @@
 
 @section('custom.css')
     <link rel="stylesheet" href="{{ asset('css/dashboard/plugins/asPieProgress.min.css') }}">
-@stop
-
-@section('page-header')
-    <a href="javascript:void(0)" onclick="printData()" class="btn btn-secondary">Print Data</a>
+    <style>
+        #app {
+            background: #fff;
+        }
+    </style>
 @stop
 
 @section('content')
@@ -19,7 +20,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">39.066,81</span>
+                        <span class="counter-number">{{ $analytics['financial_info']['gross_sales'] }}</span>
                         <span class="counter-number-related text-capitalize">€</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">gross sales</div>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">26.000</span>
+                        <span class="counter-number">{{ $analytics['financial_info']['offline_sales'] }}</span>
                         <span class="counter-number-related text-capitalize">€</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">offline sales</div>
@@ -47,7 +48,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">13.066,81</span>
+                        <span class="counter-number">{{ $analytics['financial_info']['online_sales'] }}</span>
                         <span class="counter-number-related text-capitalize">€</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">online sales</div>
@@ -69,7 +70,7 @@
                                 <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-minus-circle text-danger" aria-hidden="true"></i></div>
                                 <div class="counter counter-md text-left">
                                     <div class="counter-number-group">
-                                        <span class="counter-number">26.530</span>
+                                        <span class="counter-number">{{ $analytics['financial_info']['total_cost'] }}</span>
                                         <span class="counter-number-related text-capitalize">€</span>
                                     </div>
                                     <div class="counter-label text-capitalize">total cost</div>
@@ -81,7 +82,7 @@
                                 <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-plus-circle text-success" aria-hidden="true"></i></div>
                                 <div class="counter counter-md text-left">
                                     <div class="counter-number-group">
-                                        <span class="counter-number">12.536,81</span>
+                                        <span class="counter-number">{{ $analytics['financial_info']['net_income'] }}</span>
                                         <span class="counter-number-related text-capitalize">€</span>
                                     </div>
                                     <div class="counter-label text-capitalize">net income</div>
@@ -100,15 +101,19 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#89bceb" data-size="60" data-barsize="10" data-goal="6.8" aria-valuenow="6.8" role="progressbar">
-                                <div class="pie-progress-number">6.8%</div>
-                                <div class="pie-progress-label">30 Tickets Sold</div>
+                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#89bceb" data-size="60" data-barsize="10"
+                                 data-goal="{{ round($analytics['general_info']['total_sold_ticket_count'] / $analytics['general_info']['total_ticket_count'] * 100, 2) }}"
+                                 aria-valuenow="{{ round($analytics['general_info']['total_sold_ticket_count'] / $analytics['general_info']['total_ticket_count'] * 100, 2) }}" role="progressbar">
+                                <div class="pie-progress-number">{{ round($analytics['general_info']['total_sold_ticket_count'] / $analytics['general_info']['total_ticket_count'] * 100, 2) }}%</div>
+                                <div class="pie-progress-label">{{ $analytics['general_info']['total_sold_ticket_count'] }} Tickets Sold</div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#f7e083" data-size="60" data-barsize="10" data-goal="27.6" aria-valuenow="27.6" role="progressbar">
-                                <div class="pie-progress-number">27.6%</div>
-                                <div class="pie-progress-label">29 Rooms Sold</div>
+                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#f7e083" data-size="60" data-barsize="10"
+                                 data-goal="{{ round($analytics['general_info']['extra_breakdown']['hotels']['general_info']['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['general_info']['starting'] * 100, 2) }}"
+                                 aria-valuenow="{{ round($analytics['general_info']['extra_breakdown']['hotels']['general_info']['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['general_info']['starting'] * 100, 2) }}" role="progressbar">
+                                <div class="pie-progress-number">{{ round($analytics['general_info']['extra_breakdown']['hotels']['general_info']['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['general_info']['starting'] * 100, 2) }}%</div>
+                                <div class="pie-progress-label">{{ $analytics['general_info']['extra_breakdown']['hotels']['general_info']['sold'] }} Rooms Sold</div>
                             </div>
                         </div>
                     </div>
@@ -126,49 +131,71 @@
                 <div class="panel-body">
                     <div class="row" style="margin-bottom: 50px;">
                         <div class="col-md-1"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#57C7D4" data-size="60" data-barsize="4" data-goal="0" aria-valuenow="0" role="progressbar">
-                                <div class="pie-progress-number">0</div>
-                                <div class="pie-progress-label">Platinum Hospitality</div>
+                        @for($i = 0; $i < 3; $i++)
+                            <div class="col-md-2">
+                                <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#{{ $analytics['general_info']['category_breakdown'][$i]['color_code'] }}" data-size="60" data-barsize="4"
+                                     data-goal="{{ $analytics['general_info']['category_breakdown'][$i]['sold'] / $analytics['general_info']['category_breakdown'][$i]['starting'] * 100 }}"
+                                     aria-valuenow="{{ $analytics['general_info']['category_breakdown'][$i]['sold'] / $analytics['general_info']['category_breakdown'][$i]['starting'] * 100 }}" role="progressbar">
+                                    <div class="pie-progress-number">{{ $analytics['general_info']['category_breakdown'][$i]['sold'] . '/' . $analytics['general_info']['category_breakdown'][$i]['starting'] }}</div>
+                                    <div class="pie-progress-label">{{ $analytics['general_info']['category_breakdown'][$i]['name'] }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#e7983b" data-size="60" data-barsize="4" data-goal="0" aria-valuenow="0" role="progressbar">
-                                <div class="pie-progress-number">0</div>
-                                <div class="pie-progress-label">Gold Hospitality</div>
-                            </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#f04f51" data-size="60" data-barsize="4" data-goal="9.3" aria-valuenow="9.3" role="progressbar">
-                                <div class="pie-progress-number">28</div>
-                                <div class="pie-progress-label">Central Lower Bowl</div>
-                            </div>
-                        </div>
+                            <div class="col-md-2"></div>
+                        @endfor
                     </div>
                     <div class="row" style="margin-bottom: 50px;">
                         <div class="col-md-1"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#57C7D4" data-size="60" data-barsize="4" data-goal="0" aria-valuenow="0" role="progressbar">
-                                <div class="pie-progress-number">0</div>
-                                <div class="pie-progress-label">Central Upper Bowl</div>
+                        @for($i = 3; $i < 6; $i++)
+                            <div class="col-md-2">
+                                <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#{{ $analytics['general_info']['category_breakdown'][$i]['color_code'] }}" data-size="60" data-barsize="4"
+                                     data-goal="{{ $analytics['general_info']['category_breakdown'][$i]['sold'] / $analytics['general_info']['category_breakdown'][$i]['starting'] * 100 }}"
+                                     aria-valuenow="{{ $analytics['general_info']['category_breakdown'][$i]['sold'] / $analytics['general_info']['category_breakdown'][$i]['starting'] * 100 }}" role="progressbar">
+                                    <div class="pie-progress-number">{{ $analytics['general_info']['category_breakdown'][$i]['sold'] . '/' . $analytics['general_info']['category_breakdown'][$i]['starting'] }}</div>
+                                    <div class="pie-progress-label">{{ $analytics['general_info']['category_breakdown'][$i]['name'] }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#af5ac1" data-size="60" data-barsize="4" data-goal="10.5" aria-valuenow="10.5" role="progressbar">
-                                <div class="pie-progress-number">2</div>
-                                <div class="pie-progress-label">Baseline Lower Bowl</div>
+                            <div class="col-md-2"></div>
+                        @endfor
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Hotels Breakdown</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row" style="margin-bottom: 50px;">
+                        <div class="col-md-1"></div>
+                        @for($i = 0; $i < 3; $i++)
+                            <div class="col-md-2">
+                                <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#57C7D4" data-size="60" data-barsize="4"
+                                     data-goal="{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] * 100 }}"
+                                     aria-valuenow="{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] * 100 }}" role="progressbar">
+                                    <div class="pie-progress-number">{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] . '/' . $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] }}</div>
+                                    <div class="pie-progress-label" style="font-size: 10px;">{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['name'] }}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-2"></div>
-                        <div class="col-md-2">
-                            <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#e7983b" data-size="60" data-barsize="4" data-goal="0" aria-valuenow="0" role="progressbar">
-                                <div class="pie-progress-number">0</div>
-                                <div class="pie-progress-label">Baseline Upper Bowl</div>
+                            <div class="col-md-2"></div>
+                        @endfor
+                    </div>
+                    <div class="row" style="margin-bottom: 50px;">
+                        <div class="col-md-1"></div>
+                        @for($i = 3; $i < 6; $i++)
+                            <div class="col-md-2">
+                                <div class="pie-progress" data-plugin="pieProgress" data-barcolor="#57C7D4" data-size="60" data-barsize="4"
+                                     data-goal="{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] * 100 }}"
+                                     aria-valuenow="{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] / $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] * 100 }}" role="progressbar">
+                                    <div class="pie-progress-number">{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['sold'] . '/' . $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['total'] }}</div>
+                                    <div class="pie-progress-label" style="font-size: 10px;">{{ $analytics['general_info']['extra_breakdown']['hotels']['hotels_breakdown'][$i]['name'] }}</div>
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-md-2"></div>
+                        @endfor
                     </div>
                 </div>
             </div>
@@ -193,43 +220,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <p>gTnMu6</p>
-                            </td>
-                            <td>
-                                <p>12 X Baseline Lower Bowl</p>
-                                <p>6 X Hotel Prag (Double Use)</p>
-                            </td>
-                            <td>
-                                <p>5.946€</p>
-                            </td>
-                            <td>
-                                <p>10.250€</p>
-                            </td>
-                            <td>
-                                <p class="text-success">4.303€</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <p>fDQA90</p>
-                            </td>
-                            <td>
-                                <p>4 X Central Lower Bowl</p>
-                                <p>4 X Central Upper Bowl</p>
-                                <p>4 X Baseline Upper Bowl</p>
-                            </td>
-                            <td>
-                                <p>4.584€</p>
-                            </td>
-                            <td>
-                                <p>6.500€</p>
-                            </td>
-                            <td>
-                                <p class="text-success">1.916€</p>
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 <p>75k04f</p>
@@ -258,15 +248,4 @@
 @section('footer.scripts')
     <script src="{{ asset('js/dashboard/plugins/jquery-asPieProgress.min.js') }}"></script>
     <script src="{{ asset('js/dashboard/plugins/aspieprogress.min.js') }}"></script>
-    <script>
-        function printData() {
-            var prtContent = document.getElementById("page");
-            var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-            WinPrint.document.write(prtContent.innerHTML);
-            WinPrint.document.close();
-            WinPrint.focus();
-            WinPrint.print();
-            WinPrint.close();
-        }
-    </script>
 @stop

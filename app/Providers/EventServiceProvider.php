@@ -20,7 +20,8 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\MakeSale',
             'App\Listeners\SellSeats',
             'App\Listeners\BookHotels',
-            'App\Listeners\SendConfirmationMail'
+            'App\Listeners\SendConfirmationMail',
+            'App\Listeners\UpdateAnalytics'
         ],
         'App\Events\ZoneUpdated' => [
             'App\Listeners\DrawNewZone'
