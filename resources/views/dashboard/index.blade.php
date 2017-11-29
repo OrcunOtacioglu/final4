@@ -2,6 +2,10 @@
 
 @section('title', 'Dashboard')
 
+@section('custom.css')
+    <link rel="stylesheet" href="{{ asset('css/dashboard/custom/dashboard.css') }}">
+@stop
+
 @section('content')
     <div class="row">
         <div class="col-md-4">
@@ -35,6 +39,32 @@
                     <div class="counter-number-group">
                         <span class="counter-number">{{ $customers->count() }}</span>
                         <span class="counter-number-related text-capitalize">customers</span>
+                    </div>
+                    <div class="counter-label text-capitalize">in total</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card card-block p-30 bg-cyan-600">
+                <div class="card-watermark darker font-size-80 m-15"><i class="icon ti-ticket" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                        <span class="counter-number">{{ $totalAvailableSeats }}</span>
+                        <span class="counter-number-related text-capitalize">available tickets</span>
+                    </div>
+                    <div class="counter-label text-capitalize">in total</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-block p-30 bg-purple-600">
+                <div class="card-watermark darker font-size-80 m-15"><i class="icon ti-home" aria-hidden="true"></i></div>
+                <div class="counter counter-md counter-inverse text-left">
+                    <div class="counter-number-group">
+                        <span class="counter-number">{{ $totalAvailableHotels }}</span>
+                        <span class="counter-number-related text-capitalize">available hotels</span>
                     </div>
                     <div class="counter-label text-capitalize">in total</div>
                 </div>

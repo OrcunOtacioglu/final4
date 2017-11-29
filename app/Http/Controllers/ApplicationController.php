@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Analytics;
 use App\Entities\Hotel;
 use App\Entities\Rate;
 use App\Entities\Sale;
@@ -27,7 +28,12 @@ class ApplicationController extends Controller
         $customers = User::where('is_admin', '=', false)->get();
         $hotels = Hotel::all();
 
-        return view('dashboard.index', compact('sales', 'customers', 'hotels'));
+        $rawAnalytics = Analytics::find(1);
+        $analytics = json_decode($rawAnalytics->analytics, true);
+        $totalAvailableSeats = $analytics['general_info']['total_remaining_ticket_count'];
+        $totalAvailableHotels = $analytics['general_info']['extra_breakdown']['hotels']['general_info']['total_available'];
+
+        return view('dashboard.index', compact('sales', 'customers', 'hotels', 'totalAvailableHotels', 'totalAvailableSeats'));
     }
 
     public function getVenue()
