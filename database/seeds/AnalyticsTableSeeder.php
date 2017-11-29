@@ -86,8 +86,8 @@ class AnalyticsTableSeeder extends Seeder
                                 'reference' => 'z7m662',
                                 'name' => 'Hotel Prag',
                                 'total' => 25,
-                                'sold' => 0,
-                                'remaining' => 25,
+                                'sold' => 6,
+                                'remaining' => 19,
                                 'room_types' => [
                                     [
                                         'reference' => '',
@@ -97,7 +97,7 @@ class AnalyticsTableSeeder extends Seeder
                                     [
                                         'reference' => '',
                                         'name' => 'Double Use',
-                                        'sold' => 0
+                                        'sold' => 6
                                     ]
                                 ]
                             ],
