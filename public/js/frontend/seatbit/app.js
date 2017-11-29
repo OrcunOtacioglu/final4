@@ -14,7 +14,6 @@ var canvas = new fabric.Canvas('venue', {
     selection: false
 });
 
-// @TODO CHANGE THIS PART TO IMPLEMENT DRAWING
 axios({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
