@@ -77,8 +77,8 @@ class AnalyticsTableSeeder extends Seeder
                         'general_info' => [
                             'starting' => 105,
                             'sold' => 29,
-                            'remaining' => 76,
-                            'total_available' => 76
+                            'remaining' => 79,
+                            'total_available' => 79
                         ],
                         'hotels_breakdown' => [
                             [
