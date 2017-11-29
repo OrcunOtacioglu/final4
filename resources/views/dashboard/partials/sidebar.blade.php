@@ -19,39 +19,6 @@
                             <span class="site-menu-title">Draw Map</span>
                         </a>
                     </li>
-                    @endif
-                    @if(\App\User::hasRole('admin'))
-                    <!-- Rates -->
-                    <li class="site-menu-item">
-                        <a href="{{ action('RateController@index') }}">
-                            <i class="site-menu-icon ti-money" aria-hidden="true"></i>
-                            <span class="site-menu-title">Rates</span>
-                        </a>
-                    </li>
-
-                    <!-- Reports -->
-                    <li class="site-menu-item">
-                        <a href="{{ action('HotelController@index') }}">
-                            <i class="site-menu-icon ti-home" aria-hidden="true"></i>
-                            <span class="site-menu-title">Hotels</span>
-                        </a>
-                    </li>
-
-                    <!-- Site Management -->
-                    <li class="site-menu-item">
-                        <a href="{{ action('PageController@index') }}">
-                            <i class="site-menu-icon ti-files" aria-hidden="true"></i>
-                            <span class="site-menu-title">Pages</span>
-                        </a>
-                    </li>
-
-                    <li class="site-menu-item">
-                        <a href="{{ action('UserController@index') }}">
-                            <i class="site-menu-icon ti-user" aria-hidden="true"></i>
-                            <span class="site-menu-title">Customers</span>
-                        </a>
-                    </li>
-
                     <li class="site-menu-item has-sub open">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon ti-ticket" aria-hidden="true"></i>
@@ -70,6 +37,69 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    @endif
+                    @if(\App\User::hasRole('admin'))
+                    <li class="site-menu-item has-sub open">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon ti-calendar" aria-hidden="true"></i>
+                            <span class="site-menu-title">Event Management</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub" style="">
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('RateController@index') }}">
+                                    <span class="site-menu-title">
+                                        <i class="icon ti-money"></i> Rate Management
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('HotelController@index') }}">
+                                    <span class="site-menu-title">
+                                        <i class="icon ti-home"></i> Hotel Management
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="site-menu-item has-sub open">
+                        <a href="javascript:void(0)">
+                            <i class="site-menu-icon ti-panel" aria-hidden="true"></i>
+                            <span class="site-menu-title">Application Management</span>
+                            <span class="site-menu-arrow"></span>
+                        </a>
+                        <ul class="site-menu-sub" style="">
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('RoleController@index') }}">
+                                <span class="site-menu-title">
+                                    <i class="icon ti-id-badge"></i> User Management
+                                </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('PageController@index') }}">
+                                <span class="site-menu-title">
+                                    <i class="icon ti-files"></i> Page Management
+                                </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('SettingsController@index') }}">
+                                <span class="site-menu-title">
+                                    <i class="icon ti-settings"></i> Settings
+                                </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="site-menu-item">
+                        <a href="{{ action('UserController@index') }}">
+                            <i class="site-menu-icon ti-user" aria-hidden="true"></i>
+                            <span class="site-menu-title">Customer Management</span>
+                        </a>
                     </li>
                     @endif
                     @if(\App\User::hasRole('finance'))
