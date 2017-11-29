@@ -1,7 +1,7 @@
 #v0.2
 + Box Office module will be implemented.
 + Reporting and analytics tools will be improved with visual charts.
-+ Mobile compatible front end canvas.
++ Mobile compatible frontend and canvas.
 + Package calculator will be implemented on Box Office.
 #v0.3
 + Finance module will be implemented.
@@ -16,3 +16,5 @@
 + Seat Map drawer will be implemented.
 #v0.8
 + Performance improvements and bug fixes.
+#v0.9
++ Hotel API will be implemented.
