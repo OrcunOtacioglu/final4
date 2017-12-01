@@ -126,7 +126,7 @@
                             <tr>
                                 <td>{{ $sale->reference }}</td>
                                 <td>{{ $sale->user->email }}</td>
-                                <td>{{ $sale->total }}€</td>
+                                <td>{{ \Acikgise\Helpers\Helpers::formatMoney($sale->total) }}</td>
                                 <td>
                                     <div class="row">
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#{{ $sale->reference }}">
