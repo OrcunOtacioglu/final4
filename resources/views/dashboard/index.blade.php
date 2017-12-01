@@ -25,7 +25,7 @@
                 <div class="card-watermark darker font-size-80 m-15"><i class="icon ti-money" aria-hidden="true"></i></div>
                 <div class="counter counter-md counter-inverse text-left">
                     <div class="counter-number-group">
-                        <span class="counter-number">{{ money_format('%i',\App\Entities\Sale::getTotalSalesAmount()) }}€</span>
+                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney(\App\Entities\Sale::getTotalSalesAmount()) }}</span>
                         <span class="counter-number-related text-capitalize">sales</span>
                     </div>
                     <div class="counter-label text-capitalize">in total</div>
@@ -126,7 +126,7 @@
                             <tr>
                                 <td>{{ $sale->reference }}</td>
                                 <td>{{ $sale->user->email }}</td>
-                                <td>{{ $sale->total }}€</td>
+                                <td>{{ \Acikgise\Helpers\Helpers::formatMoney($sale->total) }}</td>
                                 <td>
                                     <div class="row">
                                         <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#{{ $sale->reference }}">

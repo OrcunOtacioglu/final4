@@ -103,4 +103,9 @@ class Helpers
 
         return $options['lowercase'] ? mb_strtolower($str, 'UTF-8') : $str;
     }
+
+    public static function formatMoney($amount, $currency = '€')
+    {
+        return number_format($amount, 2, ',', '.') . $currency;
+    }
 }
