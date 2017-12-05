@@ -33,7 +33,7 @@ class Sale extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function createNewFromOrder($order)
+    public static function createNewFromOrder($order, $paymentType = 'Credit Card', $paymentChannel = 'Online')
     {
         $sale = new Sale();
 
@@ -50,6 +50,8 @@ class Sale extends Model
         $sale->total = $order->total;
 
         $sale->currency_code = $order->currency_code;
+        $sale->payment_type = $paymentType;
+        $sale->payment_channel = $paymentChannel;
 
         $sale->created_at = Carbon::now();
         $sale->updated_at = Carbon::now();

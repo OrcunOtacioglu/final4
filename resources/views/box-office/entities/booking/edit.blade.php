@@ -171,6 +171,39 @@
                     </form>
                 </div>
             </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Convert to Sale</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="{{ action('BookingController@convertBooking', ['reference' => $booking->reference]) }}" method="POST">
+                        {{ csrf_field() }}
+
+                        <div class="form-group">
+                            <label for="payment_type">Payment Type</label>
+                            <select name="payment_type" id="payment_type" class="form-control">
+                                <option value="">Select Payment Type</option>
+                                <option value="cash">Cash</option>
+                                <option value="credit_card">Credit Card</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="mail_order">Mail Order</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="payment_channel">Payment Channel</label>
+                            <select name="payment_channel" id="payment_channel" class="form-control">
+                                <option value="">Select Payment Channel</option>
+                                <option value="offline">Offline</option>
+                                <option value="online">Online</option>
+                            </select>
+                        </div>
+
+                        <input type="submit" class="btn btn-block btn-secondary" value="Convert Booking">
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @stop

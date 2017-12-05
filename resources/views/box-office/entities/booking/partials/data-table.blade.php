@@ -6,6 +6,7 @@
         <th class="text-center">Cost</th>
         <th class="text-center">Profit</th>
         <th class="text-center">Offer</th>
+        <th class="text-center">Status</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -14,9 +15,10 @@
         <tr>
             <td>{{ $booking->reference }}</td>
             <td class="text-center">{{ $booking->user->name . ' ' . $booking->user->surname }}</td>
-            <td class="text-center text-danger">{{ $booking->cost }}€</td>
-            <td class="text-center text-success">{{ $booking->profit }}€</td>
-            <td class="text-center">{{ $booking->offer }}€</td>
+            <td class="text-center text-danger">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->cost) }}</td>
+            <td class="text-center text-success">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->profit) }}</td>
+            <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->offer) }}</td>
+            <td class="text-center">{{ $booking->status == 0 ? 'Pending' : 'Converted' }}</td>
             <td>
                 <div class="row">
                     <a href="{{ action('BookingController@edit', ['reference' => $booking->reference]) }}" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Edit">

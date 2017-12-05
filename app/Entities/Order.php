@@ -312,4 +312,60 @@ class Order extends Model
 
         return $hotels->all();
     }
+
+    public static function createFromBooking($bookingReference)
+    {
+        $booking = Booking::where('reference', '=', $bookingReference)->first();
+
+        $order = new Order();
+
+        $order->reference = $bookingReference;
+
+        $order->user_id = $booking->user_id;
+        $order->status = 4;
+
+        $order->cost = $booking->cost;
+        $order->profit = $booking->profit;
+        $order->subtotal = $booking->subtotal;
+        $order->comission = $booking->comission;
+        $order->fee = $booking->fee;
+        $order->tax = $booking->tax;
+        $order->total = $booking->total;
+        $order->currency_code = $booking->currency_code;
+
+        $order->created_at = Carbon::now();
+        $order->updated_at = Carbon::now();
+        $order->save();
+
+        foreach ($booking->items as $bookingItem) {
+            $item = new OrderItem();
+
+            $item->order_id = $order->id;
+
+            $item->type = $bookingItem->type;
+
+            $item->name = $bookingItem->name;
+            $item->reference = $bookingItem->reference;
+
+            $item->details = $bookingItem->details;
+
+            $item->profit_margin = $bookingItem->profit_margin;
+            $item->minimum_profit_amount = $bookingItem->minimum_profit_amount;
+
+            $item->quantity = $bookingItem->quantity;
+            $item->unit_price = $bookingItem->unit_price;
+
+            $item->subtotal = $bookingItem->subtotal;
+
+            $item->created_at = Carbon::now();
+            $item->updated_at = Carbon::now();
+
+            $item->save();
+        }
+
+        $booking->status = 1;
+        $booking->save();
+
+        return $order;
+    }
 }
