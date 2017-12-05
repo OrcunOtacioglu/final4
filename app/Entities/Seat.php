@@ -78,4 +78,15 @@ class Seat extends Model
             return false;
         }
     }
+
+    public static function checkIfBookingAvailable($item)
+    {
+        $seat = Seat::where('reference', '=', $item['reference'])->first();
+
+        if ($seat->status != 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

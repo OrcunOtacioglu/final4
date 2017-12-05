@@ -51,7 +51,7 @@ class BookingController extends Controller
         $notAvailableSeats = [];
 
         foreach ($request->items as $seat) {
-            if (!Seat::checkIfAvailable($seat)) {
+            if (!Seat::checkIfBookingAvailable($seat)) {
                 array_push($notAvailableSeats, $seat);
             }
         }
