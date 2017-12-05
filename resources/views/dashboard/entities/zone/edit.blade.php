@@ -1,7 +1,7 @@
 @extends('dashboard.base')
 
 @section('custom.meta')
-    <meta name="zone" content="{{ $zone->id }}">
+    <meta name="zone" content="{{ $zone->name }}">
 @stop
 
 @section('title')
@@ -11,7 +11,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-9" id="canvasZone">
-            <canvas id="{{ $zone->id }}"></canvas>
+            <canvas id="{{ $zone->name }}"></canvas>
         </div>
         <div class="col-md-3">
             <div class="panel">

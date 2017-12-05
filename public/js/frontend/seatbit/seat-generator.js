@@ -1,35 +1,38 @@
 /**
  * DASHBOARD ACTIONS OF SEAT MAP
  **/
-$(document).ready(function () {
-    var width = detectWidth();
-    var zoneID = $('meta[name=zone]').attr("content");
-    var canvas = createCanvas(width, 900, zoneID);
-    drawSeats(canvas, zoneID);
+var zoneName = $('meta[name=zone]').attr("content");
+var canvas = new fabric.Canvas(zoneName, {
+    selection: false,
+    width: $('#canvasZone').width(),
+    height: 900,
+    renderOnAddRemove: true
 });
 
-function detectWidth() {
-    return $('#canvasZone').width();
+$(document).ready(function () {
+    getZoneData(zoneName);
+});
+
+function drawSeats(objects) {
+    var width = $('.container-fluid').width();
+    var containerWidth = width / 2;
+    var leftPadding = containerWidth - (containerWidth / 1.2);
+
+    var seats = JSON.parse(objects);
+
+    for (var i = 0; i < seats.objects.length; i++) {
+        seats.objects[i]['left'] = seats.objects[i]['left'] + leftPadding;
+    }
+
+    canvas.clear();
+    canvas.loadFromJSON(seats, canvas.renderAll.bind(canvas));
 }
 
-function detectHeight() {
-    return window.innerHeight;
-}
-
-function createCanvas(canvasWidth, canvasHeight, zoneID) {
-     return new fabric.Canvas(zoneID, {
-         selection: false,
-         width: canvasWidth,
-         height: canvasHeight,
-         renderOnAddRemove: true
-    });
-}
-
-function drawSeats(canvas, zoneID) {
+function getZoneData(zoneName) {
     // Get data from the database and draw it on canvas.
-    axios.get('/zone/data/' + zoneID)
+    axios.get('/zone/data/' + zoneName)
         .then(function (response) {
-            canvas.loadFromJSON(response.data.objects);
+            drawSeats(response.data.objects);
         })
         .catch(function (error) {
             console.log(error);
