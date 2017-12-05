@@ -14,7 +14,13 @@
     @foreach($bookings as $booking)
         <tr>
             <td>{{ $booking->reference }}</td>
-            <td class="text-center">{{ $booking->user->name . ' ' . $booking->user->surname }}</td>
+            <td class="text-center">
+                @if($booking->user_id != null)
+                    {{ $booking->user->name . ' ' . $booking->user->surname }}
+                @else
+                    'Not assigned'
+                @endif
+            </td>
             <td class="text-center text-danger">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->cost) }}</td>
             <td class="text-center text-success">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->profit) }}</td>
             <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($booking->offer) }}</td>
