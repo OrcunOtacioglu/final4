@@ -138,20 +138,12 @@ class Booking extends Model
             $profit = $subtotal - $cost;
         }
 
-        $profitPerItem = $profit / $ticketCount;
-
-        // Divide profit to ticket count to find whether we are making profit more than minimum profit amount
-        // If we are not making more than minimum_profit_amount then calculate new subtotal (subtotal + ((minimum_profit_amount - profit per item) * ticket_count))
-        if ($profitPerItem < $minimumProfitAmount) {
-            $subtotal = $subtotal + (($minimumProfitAmount - $profitPerItem) * $ticketCount);
-        }
-
         $booking->cost = $cost;
         $booking->profit = $profit;
         $booking->subtotal = $subtotal;
         $booking->fee = 0;
         $booking->tax = $subtotal * 0.18;
-        $booking->total = $subtotal;
+        $booking->total = $booking->offer;
         $booking->updated_at = Carbon::now();
         $booking->save();
     }

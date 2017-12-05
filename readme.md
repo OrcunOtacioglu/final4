@@ -29,3 +29,7 @@
 * 2 => Updated
 * 3 => Abondoned
 * 4 => Completed
+
+## Booking Statuses
+* 0 => Created
+* 1 => Sold

@@ -162,7 +162,7 @@
                         @foreach($user->sales as $sale)
                             <tr>
                                 <td>{{ $sale->reference }}</td>
-                                <td class="text-center">{{ $sale->total }}€</td>
+                                <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->total) }}</td>
                                 <td>
                                     <form action="{{ action('SaleController@sendConfirmationMail', ['reference' => $sale->reference]) }}" method="POST">
                                         {{ csrf_field() }}
