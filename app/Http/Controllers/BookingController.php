@@ -6,8 +6,11 @@ use App\Entities\Booking;
 use App\Entities\BookingItem;
 use App\Entities\Hotel;
 use App\Entities\HotelRoom;
+use App\Entities\Order;
+use App\Entities\Sale;
 use App\Entities\Seat;
 use App\Events\BookingCreated;
+use App\Events\ZoneUpdated;
 use App\Jobs\CheckBookingStatus;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -161,6 +164,48 @@ class BookingController extends Controller
         }
 
         Booking::calculateTotal($booking);
+
+        return redirect()->action('BookingController@edit', ['reference' => $booking->reference]);
+    }
+
+    public function convertBooking(Request $request, $reference)
+    {
+        $booking = Booking::where('reference', '=', $reference)->first();
+
+        $order = Order::createFromBooking($booking->reference);
+
+        Sale::createNewFromOrder($order, $request->payment_type, 'Box Office');
+
+        $updatedZones = [];
+
+        foreach ($booking->items as $item)
+        {
+            if ($item->type == 1) {
+                $seat = Seat::where('reference', '=', $item->reference)->first();
+
+                $seat->status = 6;
+                $seat->updated_at = Carbon::now();
+                $seat->save();
+
+                if (!in_array($seat->zone_id, $updatedZones)) {
+                    array_push($updatedZones, $seat->zone_id);
+                }
+            }
+        }
+
+        event(new ZoneUpdated($updatedZones));
+
+        foreach ($booking->items as $item) {
+            if ($item->type == 2) {
+                $room = HotelRoom::where('reference', '=', $item->reference)->first();
+
+                $room->hotel->total_availability -= 1;
+                $room->hotel->online_availability -= 1;
+
+                $room->hotel->updated_at = Carbon::now();
+                $room->hotel->save();
+            }
+        }
 
         return redirect()->action('BookingController@edit', ['reference' => $booking->reference]);
     }
