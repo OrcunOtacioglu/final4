@@ -72,4 +72,11 @@ class Sale extends Model
 
         return $total;
     }
+
+    public static function calculateProfitMargin($reference)
+    {
+        $sale = Sale::where('reference', '=', $reference)->first();
+
+        return ($sale->net_income / $sale->cost) * 100;
+    }
 }

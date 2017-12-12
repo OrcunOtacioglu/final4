@@ -108,7 +108,7 @@
                 <div class="panel-heading">
                     <h2 class="panel-title">Latest Sales</h2>
                     <ul class="panel-actions panel-actions-keep">
-                        <li><a href="#">See All Sales</a></li>
+                        <li><a href="{{ action('SaleController@index') }}">See All Sales</a></li>
                     </ul>
                 </div>
                 <div class="panel-body">
