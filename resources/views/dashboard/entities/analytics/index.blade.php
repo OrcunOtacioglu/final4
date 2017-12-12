@@ -20,8 +20,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">{{ $analytics['financial_info']['gross_sales'] }}</span>
-                        <span class="counter-number-related text-capitalize">€</span>
+                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['gross_sales']) }}</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">gross sales</div>
                 </div>
@@ -34,8 +33,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">{{ $analytics['financial_info']['offline_sales'] }}</span>
-                        <span class="counter-number-related text-capitalize">€</span>
+                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['offline_sales']) }}</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">offline sales</div>
                 </div>
@@ -48,8 +46,7 @@
                 </div>
                 <div class="counter counter-md counter text-right">
                     <div class="counter-number-group">
-                        <span class="counter-number">{{ $analytics['financial_info']['online_sales'] }}</span>
-                        <span class="counter-number-related text-capitalize">€</span>
+                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['online_sales']) }}</span>
                     </div>
                     <div class="counter-label text-capitalize font-size-16">online sales</div>
                 </div>
@@ -70,10 +67,33 @@
                                 <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-minus-circle text-danger" aria-hidden="true"></i></div>
                                 <div class="counter counter-md text-left">
                                     <div class="counter-number-group">
-                                        <span class="counter-number">{{ $analytics['financial_info']['total_cost'] }}</span>
-                                        <span class="counter-number-related text-capitalize">€</span>
+                                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['total_cost']) }}</span>
                                     </div>
                                     <div class="counter-label text-capitalize">total cost</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card card-block p-30">
+                                <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-minus-circle text-danger" aria-hidden="true"></i></div>
+                                <div class="counter counter-md text-left">
+                                    <div class="counter-number-group">
+                                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['total_tax']) }}</span>
+                                    </div>
+                                    <div class="counter-label text-capitalize">total tax</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card card-block p-30">
+                                <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-plus-circle text-success" aria-hidden="true"></i></div>
+                                <div class="counter counter-md text-left">
+                                    <div class="counter-number-group">
+                                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['net_income_before_tax']) }}</span>
+                                    </div>
+                                    <div class="counter-label text-capitalize">income before tax</div>
                                 </div>
                             </div>
                         </div>
@@ -82,8 +102,7 @@
                                 <div class="card-watermark darker font-size-80 m-15"><i class="icon wb-plus-circle text-success" aria-hidden="true"></i></div>
                                 <div class="counter counter-md text-left">
                                     <div class="counter-number-group">
-                                        <span class="counter-number">{{ $analytics['financial_info']['net_income'] }}</span>
-                                        <span class="counter-number-related text-capitalize">€</span>
+                                        <span class="counter-number">{{ \Acikgise\Helpers\Helpers::formatMoney($analytics['financial_info']['net_income']) }}</span>
                                     </div>
                                     <div class="counter-label text-capitalize">net income</div>
                                 </div>
