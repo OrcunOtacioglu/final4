@@ -18,7 +18,9 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::all();
+
+        return view('dashboard.entities.sale.index', compact('sales'));
     }
 
     /**
