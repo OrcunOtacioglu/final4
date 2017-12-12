@@ -77,6 +77,6 @@ class Sale extends Model
     {
         $sale = Sale::where('reference', '=', $reference)->first();
 
-        return ($sale->net_income / $sale->cost) * 100;
+        return round(($sale->net_income / $sale->cost) * 100, 2);
     }
 }
