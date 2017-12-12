@@ -19,7 +19,7 @@
             <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->tax) }}</td>
             <td class="text-center text-warning">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->profit) }}</td>
             <td class="text-center text-success">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->net_income) }}</td>
-            <td class="text-center">{{ \App\Entities\Sale::calculateProfitMargin($sale->reference) }}</td>
+            <td class="text-center">{{ \App\Entities\Sale::calculateProfitMargin($sale->reference) }} %</td>
             <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->total) }}</td>
             <td class="text-nowrap">
                 <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="modal" data-target="#{{ $sale->reference }}">
