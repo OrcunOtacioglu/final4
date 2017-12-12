@@ -24,7 +24,7 @@ class ApplicationController extends Controller
 
     public function dashboard()
     {
-        $sales = Sale::all()->take(10);
+        $sales = Sale::all();
         $customers = User::where('is_admin', '=', false)->get();
         $hotels = Hotel::all();
 
