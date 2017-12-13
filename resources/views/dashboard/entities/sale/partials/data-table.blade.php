@@ -17,8 +17,8 @@
             <td>{{ $sale->reference }}</td>
             <td class="text-center text-danger">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->cost) }}</td>
             <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->tax) }}</td>
-            <td class="text-center text-warning">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->profit) }}</td>
-            <td class="text-center text-success">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->net_income) }}</td>
+            <td class="text-center text-warning" data-order="{{ $sale->profit }}">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->profit) }}</td>
+            <td class="text-center text-success" data-order="{{ $sale->net_income }}">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->net_income) }}</td>
             <td class="text-center">{{ \App\Entities\Sale::calculateProfitMargin($sale->reference) }} %</td>
             <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($sale->total) }}</td>
             <td class="text-nowrap">
