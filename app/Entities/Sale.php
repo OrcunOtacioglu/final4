@@ -79,4 +79,17 @@ class Sale extends Model
 
         return round(($sale->net_income / $sale->cost) * 100, 2);
     }
+
+    public static function calculateTotalNetIncome()
+    {
+        $sales = Sale::all();
+
+        $totalNetIncome = 0;
+
+        foreach ($sales as $sale) {
+            $totalNetIncome += $sale->net_income;
+        }
+
+        return $totalNetIncome;
+    }
 }
