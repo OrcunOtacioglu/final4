@@ -48,6 +48,13 @@
                         </a>
                         <ul class="site-menu-sub" style="">
                             <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('EventController@index') }}">
+                                    <span class="site-menu-title">
+                                        <i class="icon ti-calendar"></i> Event Management
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
                                 <a class="animsition-link" href="{{ action('RateController@index') }}">
                                     <span class="site-menu-title">
                                         <i class="icon ti-money"></i> Rate Management
