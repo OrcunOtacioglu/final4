@@ -26,6 +26,13 @@ class EventController extends Controller
         return redirect()->action('EventController@edit', ['id' => $event->id]);
     }
 
+    public function show($slug)
+    {
+        $event = Event::where('slug', '=', $slug)->first();
+
+        return view('frontend.entities.event.show', compact('event'));
+    }
+
     public function edit($id)
     {
         $event = Event::findOrFail($id);
