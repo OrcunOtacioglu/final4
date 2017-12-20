@@ -28,11 +28,11 @@
                                     <select name="category" id="category" class="form-control">
                                         <option value="">Select Category</option>
                                         <option value="1"
-                                            @if($event->category === 1)
+                                            @if($event->category == 1)
                                                 selected
                                             @endif>Sport</option>
                                         <option value="2"
-                                            @if($event->category === 2)
+                                            @if($event->category == 2)
                                             selected
                                             @endif>Festival</option>
                                     </select>
