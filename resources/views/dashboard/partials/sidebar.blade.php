@@ -55,6 +55,20 @@
                                 </a>
                             </li>
                             <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('VenueController@index') }}">
+                                    <span class="site-menu-title">
+                                        <i class="icon ti-vector"></i> Venue Management
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
+                                <a class="animsition-link" href="{{ action('SeatMapController@index') }}">
+                                    <span class="site-menu-title">
+                                        <i class="icon ti-vector"></i> SeatMap Management
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="site-menu-item is-shown">
                                 <a class="animsition-link" href="{{ action('RateController@index') }}">
                                     <span class="site-menu-title">
                                         <i class="icon ti-money"></i> Rate Management
