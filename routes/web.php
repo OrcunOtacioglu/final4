@@ -2,6 +2,8 @@
 
 Route::get('/', 'ApplicationController@index');
 
+Route::get('/new', 'ApplicationController@new');
+
 Auth::routes();
 Route::get('/home', function () {
     return redirect()->action('ApplicationController@dashboard');
