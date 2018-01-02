@@ -19,6 +19,8 @@
     <meta name="publisher" content="">
     <meta name="copyright" content="">
     <meta name="author" content="DETUR">
+
+    <meta name="csrf_token" content="{{ csrf_token() }}">
     @yield('custom.meta')
     <!-- End Meta Tags -->
 

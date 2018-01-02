@@ -4,6 +4,10 @@ Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
 
+//@TODO This should be implemented via API.
+Route::get('/events', 'EventController@index');
+Route::get('/e/{slug}', 'EventController@show');
+
 /**
  * WEB-UI ROUTES
  */
@@ -16,7 +20,6 @@ Route::post('/order-complete', 'OrderController@validatePayment');
 Route::get('/page/{slug}', 'PageController@show');
 Route::get('/profile/{id}', 'UserController@show');
 Route::put('/profile/{id}', 'UserController@profileUpdate');
-Route::get('/e/{slug}', 'EventController@show');
 
 /**
  * DASHBOARD ROUTES

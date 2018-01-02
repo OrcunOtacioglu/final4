@@ -9,9 +9,7 @@ class EventController extends Controller
 {
     public function index()
     {
-        $events = Event::all();
-
-        return view('dashboard.entities.event.index', compact('events'));
+        //@TODO This will get the published events and show them in the new layout format.
     }
 
     public function create()
@@ -28,6 +26,8 @@ class EventController extends Controller
 
     public function show($slug)
     {
+        // @TODO Add Venue mapping for the Event and detect the mobile users. If the user
+        // @is not on mobile device, show seat mapping.
         $event = Event::where('slug', '=', $slug)->first();
 
         return view('frontend.entities.event.show', compact('event'));

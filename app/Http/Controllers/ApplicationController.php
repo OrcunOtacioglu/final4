@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Analytics;
+use App\Entities\Event;
 use App\Entities\Hotel;
 use App\Entities\Rate;
 use App\Entities\Sale;
@@ -14,8 +15,9 @@ class ApplicationController extends Controller
 {
     public function index()
     {
-        //@TODO This will get the published events and show them in the new layout format.
-        return view('frontend.index');
+        $events = Event::all();
+
+        return view('frontend.index', compact('events'));
     }
 
     public function dashboard()

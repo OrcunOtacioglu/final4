@@ -31,7 +31,3 @@
     </div>
     <!-- End Page Content -->
 @stop
-
-@section('footer.scripts')
-
-@stop
