@@ -1,0 +1,423 @@
+﻿.top-position-content ul li a i:before, .widget-general-icon i:before {
+    font-family: "icon_set_1";
+    font-style: normal;
+    font-weight: 400;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 22px;
+    margin-left: .2em;
+    font-size: 28px;
+}
+
+
+
+.top-position-content ul li a i {
+    margin-right: 8px;
+}
+
+
+    .top-position-content ul li a i.Hotel:before, .widget-general-icon i.Hotel:before {
+        content: '\26';
+    }
+
+    .top-position-content ul li a i.Guide:before, .widget-general-icon i.Guide:before {
+        content: '\3d';
+    }
+
+    .top-position-content ul li a i.Wheretosee:before, .widget-general-icon i.Wheretosee:before {
+        content: '\24';
+    }
+
+    .top-position-content ul li a i.Shopping:before, .widget-general-icon i.Shopping:before {
+        content: '\52';
+    }
+
+
+    .top-position-content ul li a i.Aktivite:before, .widget-general-icon i.Aktivite:before {
+        content: '\48';
+    }
+
+    .top-position-content ul li a i.Muse:before, .widget-general-icon i.Muse:before {
+        content: '\4c';
+    }
+
+    .top-position-content ul li a i.Festival:before, .widget-general-icon i.Festival:before {
+        content: '\23';
+    }
+
+    .top-position-content ul li a i.Nature:before, .widget-general-icon i.Nature:before {
+        content: '\37';
+    }
+
+    .top-position-content ul li a i.Eat:before, .widget-general-icon i.Eat:before {
+        content: '\2e';
+    }
+
+
+
+    .top-position-content ul li a i.Night:before, .widget-general-icon i.Night:before {
+        content: '\34';
+    }
+
+    .top-position-content ul li a i.History:before, .widget-general-icon i.History:before {
+        content: '\5d';
+    }
+
+    .top-position-content ul li a i.Sightseeing:before, .widget-general-icon i.Sightseeing:before {
+        content: '\3e';
+    }
+
+    .top-position-content ul li a i.Culture:before, .widget-general-icon i.Culture:before {
+        content: '\30';
+    }
+
+    .top-position-content ul li a i.Cart:before, .widget-general-icon i.Cart:before {
+        content: '\52';
+    }
+    .top-position-content ul li a i.Weather:before, .widget-general-icon i.Weather:before {
+        content: '\71';
+    }
+    .top-position-content ul li a i.Find:before, .widget-general-icon i.Find:before {
+        content: '\62';
+    }
+    .top-position-content ul li a i.Airport:before, .widget-general-icon i.Airport:before {
+        content: '\49';
+    }
+
+
+    .top-position-content ul li a i.Deals:before, .widget-general-icon i.Deals:before {
+        content: '\e805';
+    }
+
+    .top-position-content ul li a i.OK:before, .widget-general-icon i.OK:before {
+        content: '\32';
+    }
+
+    .top-position-content ul li a i.Setting:before, .widget-general-icon i.Setting:before {
+        content: '\61';
+    }
+
+    .top-position-content ul li a i.image:before, .widget-general-icon i.image:before {
+        content: '\40';
+    }
+
+
+
+    .top-position-content ul li a i.Other:before, .widget-general-icon i.Other:before {
+        content: '\2b';
+    }
+
+    .top-position-content ul li a i.None {
+        padding-left: 10px !important;
+        width: 10px;
+        height: 10px;
+        margin:0px;
+    }
+
+.puzzle-content .content-box {
+    display: block;
+    position: relative;
+    border-radius: 3px;
+    margin: 15px 0;
+    overflow: hidden;
+    max-height: 370px;
+}
+
+
+    .puzzle-content .content-box .text-container {
+        /*position: absolute;
+    display: inline-block;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;*/
+        -webkit-transition: top .3s;
+        -moz-transition: top .3s;
+        transition: top .3s;
+        position: absolute;
+        right: 0px;
+        top: 50%;
+        left: 0px;
+        color: #fff;
+        z-index: 1;
+        margin-top: -5px;
+    }
+
+.puzzle-content.animated .content-box .text-container .group-btn {
+    position: absolute;
+    bottom: -110px;
+    left: 0;
+    visibility: hidden;
+}
+
+.puzzle-content.animated .content-box:hover .text-container {
+    top: 40%;
+}
+
+
+.puzzle-content.animated .content-box:hover .text-container .group-btn {
+    visibility: visible;
+}
+
+.puzzle-content.animated .content-box .text-container .group-btn ul li {
+    display: inline-block;
+    margin: 0 5px;
+    line-height: 24px;
+}
+
+    .puzzle-content.animated .content-box .text-container .group-btn ul li a {
+        font-size: 29px;
+        color: #fff;
+        padding: 8px 25px;
+        text-align: center;
+        width:48px;
+        height:48px;
+        opacity:0.85;
+    }
+
+    .puzzle-content.animated .content-box .text-container .group-btn ul li a:hover {opacity:1;
+    }
+
+        .puzzle-content.animated .content-box .text-container .group-btn ul li a.flight{
+            background:url("/Content/WebUI/images/plane.png")no-repeat top center;
+        }
+
+        .puzzle-content.animated .content-box .text-container .group-btn ul li a.hotel {
+            background: url("/Content/WebUI/images/hotel.png")no-repeat top center;
+        }
+
+        .puzzle-content.animated .content-box .text-container .group-btn ul li a.car {
+            background: url("/Content/WebUI/images/car.png")no-repeat top center;
+        }
+        
+        .puzzle-content .content-box img {
+            border-radius: 3px;
+            width: 100%;
+            height: 100%;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+            -webkit-transition: all 0.7s ease;
+            transition: all 0.7s ease;
+        }
+
+    .puzzle-content .text-container h2 {
+        font-size: 30px;
+        color: #fff;
+        margin: 0;
+        right: 0px;
+        text-align: center;
+        z-index: 2;
+        font-weight:600;
+    }
+
+.puzzle-content .text-container p {
+    color: #fff;
+    font-size: 16px;
+    color: #fff;
+    margin-top: 5px !important;
+    text-align: center;
+    z-index: 2;
+    font-weight: 300;
+}
+
+.widget-overlay {
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    opacity: .6;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    z-index:1;
+}
+
+.widget-general:hover .widget-overlay {
+    background: rgba(0,0,0,0.8);
+}
+/*.widget-general:hover .text-container h2 {
+    transform: scale(1.2);
+}*/
+
+.puzzle-content .content-box:hover img{
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+.puzzle-content .content-box:hover p.spot {
+    display: block !important;
+}
+
+.puzzle-content h2:empty, .puzzle-content h3:empty {
+    display: none;
+}
+
+.ui-autocomplete li.ui-menu-item a.ui-corner-all:hover {padding-left:20px;}
+
+
+/******************basic-content-icon********************/
+
+.basic-content-icon{}
+
+/*.img-content-box .text-container {
+    border: 1px solid #ddd;
+    color: #333;
+    z-index: 1;
+    position: relative;
+}*/
+
+.scroller {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    right: 0;
+    width: 18px;
+    margin: 0 auto;
+    color: #fff;
+    text-align: center;
+    z-index: 1000;
+}
+
+.mouse {
+    height: 40px;
+    width: 25px;
+    border-radius: 12px;
+    transform: none;
+    border: 2px solid white;
+    top: 170px;
+    /* background: #fff; */
+}
+
+.wheel {
+    -webkit-animation: mouse-wheel 1.2s ease infinite;
+    -moz-animation: mouse-wheel 1.2s ease infinite;
+}
+
+.wheel {
+    height: 8px;
+    width: 3px;
+    display: block;
+    margin: 5px auto;
+    background: #fff;
+    position: relative;
+}
+
+@-webkit-keyframes mouse-wheel {
+    0% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(6px);
+        -ms-transform: translateY(6px);
+        transform: translateY(6px);
+    }
+}
+
+@-moz-keyframes mouse-wheel {
+    0% {
+        top: 1px;
+    }
+
+    50% {
+        top: 2px;
+    }
+
+    100% {
+        top: 3px;
+    }
+}
+
+@-webkit-keyframes mouse-scroll {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes mouse-scroll {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes mouse-scroll {
+    0%; {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes mouse-scroll {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.listing-widget ul li a{border:1px solid #ddd;}
+/*****************basic-content-icon end****************/
+@media (min-width: 769px) and (max-width: 979px) {
+    .puzzle-content .text-container h2 {
+            font-size: 20px;
+        }
+
+    .puzzle-content.animated .content-box .text-container .group-btn ul li a.hotel {
+        background-size: 38px 38px;
+    }
+    .puzzle-content.animated .content-box .text-container .group-btn ul li{text-indent:-9999px;}
+    }
+
+    @media (max-width: 767px) {
+        .puzzle-content .text-container h2 {
+            font-size: 50px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .puzzle-content .text-container h2 {
+            font-size: 35px;
+        }
+    }
+
