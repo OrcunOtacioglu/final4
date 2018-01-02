@@ -24,6 +24,7 @@
 
     <!-- Stylesheets -->
     @include('frontend.assets.global-css')
+    <link rel="stylesheet" href="{{ asset('WebUI/css/booking.css') }}">
     @yield('custom.css')
     <!-- End Stylesheets -->
 
@@ -35,19 +36,19 @@
     @yield('custom.fonts')
     <!-- End Fonts -->
 </head>
-<body class="en wide">
+<body class="en wide" id="layoutheader">
     <!-- Header Start -->
-    @include('frontend.new-layout.partials.header')
+    @include('frontend.partials.simple-header')
     <!-- End Header Start -->
 
     <!-- Content -->
-    <main class="cd-main-content">
+    <main class="relative">
         @yield('content')
     </main>
     <!-- End Content -->
 
     <!-- Footer -->
-    @include('frontend.new-layout.partials.footer')
+    @include('frontend.partials.footer')
     <!-- End Footer -->
 
     <!-- Footer Scripts -->

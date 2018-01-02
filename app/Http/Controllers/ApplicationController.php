@@ -44,6 +44,6 @@ class ApplicationController extends Controller
 
     public function new()
     {
-        return view('frontend.new-layout.index');
+        return view('frontend.index');
     }
 }

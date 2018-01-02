@@ -1,58 +1,57 @@
 <!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
 <html lang="en">
+<!--<![endif]-->
 <head>
-    <!-- Required meta tags -->
+    <title>@yield('title', 'Special Events and Packages') - Tripoki</title>
+
+    <!-- Meta Tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
-    <meta name="description" content="Final Four 2018 package sales">
-    <meta name="order" content="{{ request()->hasCookie('orderRef') ? request()->cookie('orderRef') : 'not-set' }}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="title" content="Special Events on Tripoki">
+    <meta name="keywords" content="event, tour, special event">
+    <meta name="description" content="Tripoki offers special events and packages">
+
+    <meta name="revisit-after" content="10 days">
+    <meta name="publisher" content="">
+    <meta name="copyright" content="">
+    <meta name="author" content="DETUR">
     @yield('custom.meta')
+    <!-- End Meta Tags -->
 
-    <title>@yield('title', 'Homepage') | Detur Official Travel Agency</title>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/general/bootstrap.min.css') }}">
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ asset('css/general/froala_blocks.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
+    <!-- Stylesheets -->
+    @include('frontend.assets.global-css')
     @yield('custom.css')
+    <!-- End Stylesheets -->
 
-    <!-- Custom Fonts -->
-    <link rel="stylesheet" href="{{ asset('fonts/themify/themify.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('fonts/web-icons/web-icons.min.css') }}">
+    <!-- Fonts -->
+    <link href="{{ asset('WebUI/fonts/css/all-fontello.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('WebUI/fonts/css/icon_set_all.min.css') }}" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,300,300i,600,600i,700,700i&subset=latin,latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kalam:700" rel="stylesheet">
     @yield('custom.fonts')
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109535935-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-109535935-1');
-    </script>
-
-    @yield('header.scripts')
+    <!-- End Fonts -->
 </head>
-<body>
-    <div class="powered-by text-right">
-        <div class="row">
-            <img src="{{ asset('img/ag-small-logo-dark.png') }}" alt="" height="25" class="mr5">
-            <small style="color: #fff; padding-top: 5px;">Powered by AçıkGişe</small>
-        </div>
-    </div>
+<body class="en wide">
+    <!-- Header Start -->
     @include('frontend.partials.header')
+    <!-- End Header Start -->
 
-    @yield('content')
+    <!-- Content -->
+    <main class="cd-main-content">
+        @yield('content')
+    </main>
+    <!-- End Content -->
 
-    @yield('custom.html')
+    <!-- Footer -->
+    @include('frontend.partials.footer')
+    <!-- End Footer -->
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('js/base/jquery-3.2.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/base/popper.min.js') }}"></script>
-    <script src="{{ asset('js/base/bootstrap.min.js') }}"></script>
+    <!-- Footer Scripts -->
+    @include('frontend.assets.global-js')
     @yield('footer.scripts')
+    <!-- End Footer Scripts -->
 </body>
-</html>

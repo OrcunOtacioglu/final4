@@ -1,44 +1,51 @@
-<footer class="fdb-block footer-large custom-footer" style="padding: 50px !important;">
-    <div class="container">
-        <div class="row align-items-top text-center">
-            
-            <div class="col-12 col-md-4 col-lg-3 text-md-left mt-5 mt-md-0">
-                <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid">
-                <p>Official Travel Agency of Euroleague</p>
-                <img src="{{ asset('img/visaMastercard.png') }}" alt="" class="img-fluid">
-            </div>
+<footer class="mt50">
+    <div class="footer-top">
+    </div>
 
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 text-sm-left">
-                <h3><strong>Terms & Conditions</strong></h3>
-                <nav class="nav flex-column">
-                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'terms-and-conditions']) }}">Terms & Conditions</a>
-                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'disclaimer']) }}">Disclaimer</a>
-                    <a class="nav-link" href="{{ action('PageController@show', ['slug' => 'cookies-policy']) }}">Cookies Policy</a>
-                    <a class="nav-link" href="">FAQ</a>
-                </nav>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mt-5 mt-sm-0 text-sm-left">
-                <h3><strong>Company Profile</strong></h3>
-                <nav class="nav flex-column">
-                    <a class="nav-link active" href="">About Us</a>
-                    <a class="nav-link" href="">Contact</a>
-                </nav>
-            </div>
-
-            <div class="col-12 col-lg-2 ml-auto text-lg-left mt-4 mt-lg-0">
-                <h3><strong>Follow Us</strong></h3>
-                <p class="text-h3">
-                    <a href=""><i class="ti-twitter-alt" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                    <a href=""><i class="ti-facebook" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                </p>
-            </div>
+    <div class="container clearfix">
+        <div class="col-md-3">
+            <h3 class="menu-list">
+                Company Profile
+            </h3>
+            <ul>
+                <li>
+                    <a class="item" href="#">About Us</a>
+                </li>
+                <li>
+                    <a class="item" href="#">Use of the Website</a>
+                </li>
+                <li>
+                    <a class="item" href="#">Refunds</a>
+                </li>
+                <li>
+                    <a class="item" href="#">Payment Method</a>
+                </li>
+            </ul>
         </div>
-
-        <div class="row mt-3">
-            <div class="col text-center">
-                © 2017 Detur. All Rights Reserved
+    </div>
+    <div class="col-md-12 p0">
+        <div id="social_footer">
+            <div class="container">
+                <div class="col-md-4">
+                    <p class="color-white copyright t-left" style="opacity:.5;">© Copyright Detur Operations 2017</p>
+                </div>
+                <div class="col-md-4">
+                    <ul>
+                        <li><a href="#" target="_blank"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="icon-google"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="icon-instagram"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="icon-youtube-play"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="icon-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 ">
+                    <img src="http://tripoki.com/Content/WebUI/images/pay-logos.png" class="pay-logos fr ml10 mt5" />
+                    <img src="http://tripoki.com/Content/WebUI/images/ssl.png" class="lSSlide fr" />
+                </div>
             </div>
         </div>
     </div>
 </footer>
+
+<div id="toTop"></div><!-- Back to top button -->

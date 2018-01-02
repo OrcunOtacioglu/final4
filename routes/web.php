@@ -4,10 +4,10 @@ Route::get('/', 'ApplicationController@index');
 
 Route::get('/new', 'ApplicationController@new');
 Route::get('/new/e', function () {
-    return view('frontend.new-layout.entities.event.show');
+    return view('frontend.entities.event.show');
 });
 Route::get('/new/b', function () {
-    return view('frontend.new-layout.entities.order.show');
+    return view('frontend.entities.order.show');
 });
 
 Auth::routes();
