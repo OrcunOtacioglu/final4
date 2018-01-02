@@ -32,6 +32,20 @@
     background-position: center;
 }
 
+#banner {
+    position: relative;
+    height: 220px;
+    background: #4d536d url('https://www.tripoki.com/content/webui/images/booking_banner.jpg') no-repeat center center;
+    background-size: auto auto;
+    background-size: cover;
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+    display: table;
+    text-align: center;
+    z-index: 1;
+}
+
 /**
     SIDEBAR
  **/
