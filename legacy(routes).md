@@ -1,3 +1,4 @@
+```
 <?php
 
 Route::get('/', 'ApplicationController@index');
@@ -55,3 +56,4 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
 Route::get('/zone/data/{id}', 'ZoneController@getData');
 Route::post('/add-hotel/{id}', 'HotelController@addHotel');
 Route::get('/get-venue', 'ApplicationController@getVenue');
+```

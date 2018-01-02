@@ -19,6 +19,8 @@ class CreateSeatMapsTable extends Migration
             $table->integer('venue_id')->unsigned();
             $table->foreign('venue_id')->references('id')->on('venues')->onDelete('cascade');
 
+            $table->string('name');
+
             $table->jsonb('mapping');
 
             $table->timestamps();

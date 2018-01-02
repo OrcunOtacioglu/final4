@@ -18,6 +18,7 @@ class CreateVenuesTable extends Migration
 
             $table->string('name');
 
+            $table->string('photo')->nulalble();
             $table->string('postal_code');
             $table->string('timezone')->nullable();
             $table->string('city');

@@ -29,6 +29,7 @@ class CreateEventsTable extends Migration
 
             $table->integer('status');
             $table->integer('listing');
+            $table->boolean('is_seated');
 
             $table->timestamps();
         });
