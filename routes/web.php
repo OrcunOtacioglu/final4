@@ -2,14 +2,6 @@
 
 Route::get('/', 'ApplicationController@index');
 
-Route::get('/new', 'ApplicationController@new');
-Route::get('/new/e', function () {
-    return view('frontend.new-layout.entities.event.show');
-});
-Route::get('/new/b', function () {
-    return view('frontend.new-layout.entities.order.show');
-});
-
 Auth::routes();
 Route::get('/home', function () {
     return redirect()->action('ApplicationController@dashboard');
@@ -27,7 +19,6 @@ Route::post('/order-complete', 'OrderController@validatePayment');
 Route::get('/page/{slug}', 'PageController@show');
 Route::get('/profile/{id}', 'UserController@show');
 Route::put('/profile/{id}', 'UserController@profileUpdate');
-Route::get('/e/{slug}', 'EventController@show');
 
 /**
  * DASHBOARD ROUTES
@@ -44,9 +35,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/user', 'UserController', ['except' => 'show']);
     Route::resource('/sale', 'SaleController');
     Route::resource('/booking', 'BookingController');
-    Route::resource('/event', 'EventController', ['except' => 'show']);
-    Route::resource('/venue', 'VenueController');
-    Route::resource('/seat-map','SeatMapController');
     Route::post('/confirmation-mail/{saleReference}', 'SaleController@sendConfirmationMail');
     Route::post('/zone-backup/{id}', 'ZoneController@getBackup');
     Route::post('/zone/add-seats/{id}', 'ZoneController@addSeats');

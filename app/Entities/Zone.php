@@ -33,9 +33,4 @@ class Zone extends Model
     {
         return $this->hasMany(Seat::class);
     }
-
-    public function seatmap()
-    {
-        return $this->belongsTo(SeatMap::class);
-    }
 }

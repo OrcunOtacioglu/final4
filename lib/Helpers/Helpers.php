@@ -4,11 +4,6 @@
 namespace Acikgise\Helpers;
 
 
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
-
 class Helpers
 {
     public static function generateSlug($str, $options = array())
@@ -112,28 +107,5 @@ class Helpers
     public static function formatMoney($amount, $currency = '€')
     {
         return number_format($amount, 2, ',', '.') . $currency;
-    }
-
-    public static function uploadImage(Request $request, $directory, $imageName)
-    {
-
-        if ($request->hasFile($imageName)) {
-            $fileString = Str::random(32);
-            $file = $request->file($imageName);
-
-            $ext = $file->guessClientExtension();
-            $fileName = $fileString . '.' . $ext;
-            Image::make($request->file($imageName))->save('img/' . $directory . '/' . $fileName);
-
-            return $fileName;
-
-        } else {
-            return false;
-        }
-    }
-
-    public static function getDateTimeFormat($time)
-    {
-        return Carbon::parse($time);
     }
 }

@@ -41,9 +41,4 @@ class ApplicationController extends Controller
         $venue = Storage::read('/public/venue.json');
         return $venue;
     }
-
-    public function new()
-    {
-        return view('frontend.new-layout.index');
-    }
 }
