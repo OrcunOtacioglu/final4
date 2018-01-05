@@ -48,6 +48,11 @@ class Rate extends Model
         return $this->hasMany(Seat::class);
     }
 
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
+
     /**
      * Creates a new Rate entity.
      *

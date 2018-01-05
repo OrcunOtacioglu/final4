@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Entities\Event;
 use Illuminate\Http\Request;
+use Jenssegers\Agent\Facades\Agent;
 
 class EventController extends Controller
 {
     public function index()
     {
-        //@TODO This will get the published events and show them in the new layout format.
     }
 
     public function create()
@@ -29,8 +29,13 @@ class EventController extends Controller
         // @TODO Add Venue mapping for the Event and detect the mobile users. If the user
         // @is not on mobile device, show seat mapping.
         $event = Event::where('slug', '=', $slug)->first();
+        $rates = $event->rates;
 
-        return view('frontend.entities.event.show', compact('event'));
+        if (Agent::isMobile() || Agent::isTablet()) {
+            return 'This is mobile.';
+        } else {
+            return view('frontend.entities.event.show', compact('event', 'rates'));
+        }
     }
 
     public function edit($id)

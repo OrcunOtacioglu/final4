@@ -35,6 +35,7 @@
             display:inline-block;
         }
     </style>
+    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
 @stop
 
 @section('content')
@@ -115,6 +116,7 @@
                 </div>
 
                 <div class="col-md-4">
+                    @include('frontend.partials.categories')
                     <!-- @TODO Here will be the category selection for desktop and laptop views -->
                 </div>
             </div>

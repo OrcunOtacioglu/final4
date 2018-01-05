@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Detur Final Four Packages'),
+    'name' => env('APP_NAME', 'Tripoki Events'),
 
     /*
     |--------------------------------------------------------------------------
@@ -170,6 +170,7 @@ return [
         Sentry\SentryLaravel\SentryLaravelServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Sentry' => Sentry\SentryLaravel\SentryFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Agent' => Jenssegers\Agent\Facades\Agent::class,
 
     ],
 

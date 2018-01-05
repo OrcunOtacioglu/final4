@@ -7,6 +7,7 @@
             </div>
         </div>
 
+        <!-- @TODO REMOVE REQUESTS TO TRIPOKI.COM DIRECTLY -->
         <!-- Navbar -->
         <nav class="col-md-9 col-sm-9 col-xs-9">
             <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);">

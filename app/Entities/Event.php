@@ -29,6 +29,11 @@ class Event extends Model
         return $this->belongsToMany(Venue::class, 'event_venue');
     }
 
+    public function rates()
+    {
+        return $this->hasMany(Rate::class);
+    }
+
     public static function createNew(Request $request)
     {
         $event = new Event();
