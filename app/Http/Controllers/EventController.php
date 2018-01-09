@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Event;
+use App\Entities\SeatMap;
 use Illuminate\Http\Request;
 use Jenssegers\Agent\Facades\Agent;
 
@@ -14,7 +15,9 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('dashboard.entities.event.create');
+        $seatMaps = SeatMap::all();
+
+        return view('dashboard.entities.event.create', compact('seatMaps'));
     }
 
     public function store(Request $request)
@@ -41,8 +44,9 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::findOrFail($id);
+        $seatMaps = SeatMap::all();
 
-        return view('dashboard.entities.event.edit', compact('event'));
+        return view('dashboard.entities.event.edit', compact('event', 'seatMaps'));
     }
 
     public function update(Request $request, $id)

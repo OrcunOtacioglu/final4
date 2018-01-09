@@ -12,6 +12,7 @@ class Event extends Model
     protected $table = 'events';
 
     protected $fillable = [
+        'seat_map_id',
         'name',
         'slug',
         'description',
@@ -21,22 +22,25 @@ class Event extends Model
         'on_sale_date',
         'category',
         'status',
-        'listing'
+        'listing',
+        'allow_only_ticket_purchase'
     ];
-
-    public function venues()
-    {
-        return $this->belongsToMany(Venue::class, 'event_venue');
-    }
 
     public function rates()
     {
         return $this->hasMany(Rate::class);
     }
 
+    public function seatMap()
+    {
+        return $this->hasOne(SeatMap::class, 'seat_map_id', 'id');
+    }
+
     public static function createNew(Request $request)
     {
         $event = new Event();
+
+        $event->seat_map_id = $request->seat_map_id;
 
         $event->name = $request->name;
         $event->slug = Helpers::generateSlug($request->name);
@@ -51,6 +55,9 @@ class Event extends Model
         $event->status = $request->status;
         $event->listing = $request->listing;
 
+        $event->is_seated = $request->is_seated;
+        $event->allow_only_ticket_purchase = $request->allow_only_ticket_purchase;
+
         $event->created_at = Carbon::now();
         $event->updated_at = Carbon::now();
 
@@ -62,6 +69,8 @@ class Event extends Model
     public static function updateEntity(Request $request, $id)
     {
         $event = Event::findOrFail($id);
+
+        $event->seat_map_id = $request->seat_map_id;
 
         $event->name = $request->name;
         $event->slug = $request->slug != null ? $request->slug : Helpers::generateSlug($request->name);
@@ -75,6 +84,9 @@ class Event extends Model
         $event->category = $request->category;
         $event->status = $request->status;
         $event->listing = $request->listing;
+
+        $event->is_seated = $request->is_seated;
+        $event->allow_only_ticket_purchase = $request->allow_only_ticket_purchase;
 
         $event->updated_at = Carbon::now();
 

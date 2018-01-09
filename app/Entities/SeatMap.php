@@ -13,6 +13,7 @@ class SeatMap extends Model
 
     protected $fillable = [
         'venue_id',
+        'name',
         'mapping'
     ];
 
@@ -26,11 +27,19 @@ class SeatMap extends Model
         return $this->hasMany(Zone::class);
     }
 
+    public function events()
+    {
+        return $this->belongsToMany(Event::class);
+    }
+
     public static function createNew(Request $request)
     {
         $seatmap = new SeatMap();
 
         $seatmap->venue_id = $request->venue_id;
+        $seatmap->name = $request->name;
+
+        $seatmap->mapping = $request->mapping;
 
         $seatmap->created_at = Carbon::now();
         $seatmap->updated_at = Carbon::now();
@@ -45,6 +54,10 @@ class SeatMap extends Model
         $seatmap = SeatMap::findOrFail($id);
 
         $seatmap->venue_id = $request->venue_id;
+        $seatmap->name = $request->name;
+
+        $seatmap->mapping = $request->mapping;
+
         $seatmap->updated_at = Carbon::now();
 
         $seatmap->save();

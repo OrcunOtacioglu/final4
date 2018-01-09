@@ -28,7 +28,7 @@ class User extends Authenticatable
         'role_id',
         'phone',
         'citizenship',
-        'identifier',
+        'identification_number',
         'address',
         'zip_code',
         'province',
@@ -101,7 +101,7 @@ class User extends Authenticatable
 
         $user->phone = $request->phone != null ? $request->phone : '5555555555';
         $user->citizenship = $request->citizenship;
-        $user->identifier = $request->identifier != null ? $request->identifier : '22222222222';
+        $user->identification_number = $request->identification_number != null ? $request->identification_number : '22222222222';
 
         $user->address = $request->address;
         $user->zip_code = $request->zip_code;

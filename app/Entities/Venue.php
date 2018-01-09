@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use Acikgise\Helpers\Helpers;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ class Venue extends Model
 
     protected $fillable = [
         'name',
+        'photo',
         'postal_code',
         'timezone',
         'city',
@@ -20,11 +22,6 @@ class Venue extends Model
         'longitude',
         'latitude',
     ];
-
-    public function events()
-    {
-        return $this->belongsToMany(Event::class, 'event_venue');
-    }
 
     public function seatmaps()
     {
@@ -36,6 +33,8 @@ class Venue extends Model
         $venue = new Venue();
 
         $venue->name = $request->name;
+
+        $venue->photo = Helpers::uploadImage($request, 'venue-photos', 'venue_photo');
 
         $venue->postal_code = $request->postal_code;
         $venue->timezone = $request->timezone;
@@ -58,6 +57,8 @@ class Venue extends Model
         $venue = Venue::findOrFail($id);
 
         $venue->name = $request->name;
+
+        $venue->photo = $request->venue_photo != null ? Helpers::uploadImage($request, 'venue-photos', 'venue_photo') : $venue->photo;
 
         $venue->postal_code = $request->postal_code;
         $venue->timezone = $request->timezone;
