@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/img/cover-photos/*
+/public/img/venue-photos/*
 /storage/*.key
 /vendor
 /.idea
