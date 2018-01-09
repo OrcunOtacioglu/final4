@@ -16,6 +16,9 @@ class CreateEventsTable extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('seat_map_id')->unsigned()->nullable();
+            $table->foreign('seat_map_id')->references('id')->on('seat_maps')->onDelete('set null');
+
             $table->string('name');
             $table->string('slug')->unique();
             $table->mediumText('description');
@@ -30,6 +33,7 @@ class CreateEventsTable extends Migration
             $table->integer('status');
             $table->integer('listing');
             $table->boolean('is_seated');
+            $table->boolean('allow_only_ticket_purchase');
 
             $table->timestamps();
         });

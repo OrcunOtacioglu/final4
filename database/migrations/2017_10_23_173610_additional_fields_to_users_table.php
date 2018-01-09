@@ -18,7 +18,7 @@ class AdditionalFieldsToUsersTable extends Migration
             $table->boolean('is_admin')->after('password');
             $table->string('phone')->after('email');
             $table->string('citizenship')->after('phone');
-            $table->string('identifier')->after('phone');
+            $table->string('identification_number')->after('phone');
             $table->text('address')->after('identifier');
             $table->string('zip_code')->after('address');
             $table->string('province')->after('zip_code');
@@ -38,7 +38,7 @@ class AdditionalFieldsToUsersTable extends Migration
             $table->dropColumn('is_admin');
             $table->dropColumn('phone');
             $table->dropColumn('citizenship');
-            $table->dropColumn('identifier');
+            $table->dropColumn('identification_number');
             $table->dropColumn('address');
             $table->dropColumn('zip_code');
             $table->dropColumn('province');
