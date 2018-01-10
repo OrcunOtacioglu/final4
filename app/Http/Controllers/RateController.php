@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Entities\Event;
 use App\Entities\Rate;
 use App\Entities\Zone;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class RateController extends Controller
      */
     public function create()
     {
-        return view('dashboard.entities.rate.create');
+        $events = Event::all();
+
+        return view('dashboard.entities.rate.create', compact('events'));
     }
 
     /**
@@ -63,9 +66,10 @@ class RateController extends Controller
     public function edit($id)
     {
         $rate = Rate::findOrFail($id);
+        $events = Event::all();
         $zones = Zone::all();
 
-        return view('dashboard.entities.rate.edit', compact('rate', 'zones'));
+        return view('dashboard.entities.rate.edit', compact('rate', 'zones', 'events'));
     }
 
     /**

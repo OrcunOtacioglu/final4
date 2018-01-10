@@ -63,6 +63,8 @@ class Rate extends Model
     {
         $rate = new Rate();
 
+        $rate->event_id = $request->event_id;
+
         $rate->name = $request->name;
         $rate->color_code = $request->color_code;
 
@@ -104,6 +106,8 @@ class Rate extends Model
     public static function updateEntity(Request $request, $id)
     {
         $rate = Rate::findOrFail($id);
+
+        $rate->event_id = $request->event_id;
 
         $rate->name = $request->name;
         $rate->color_code = $request->color_code;

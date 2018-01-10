@@ -11,7 +11,18 @@
                         {{ csrf_field() }}
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="event_id">Select Event</label>
+                                    <select name="event_id" id="event_id" class="form-control">
+                                        <option value="">Select Event</option>
+                                        @foreach($events as $event)
+                                            <option value="{{ $event->id }}">{{ $event->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="name">Name</label>
                                     <input type="text" name="name" id="name" class="form-control">
