@@ -24,7 +24,8 @@
                                         <button type="button" class="btn btn-outline btn-default">
                                             <i class="icon wb-settings" aria-hidden="true"></i> Manage
                                         </button>
-                                        <button type="button" class="btn btn-outline btn-default">
+                                        <button type="button" class="btn btn-outline btn-default"
+                                                onclick="location.href='{{ action('EventController@edit', ['id' => $event->id]) }}'">
                                             <i class="icon wb-pencil" aria-hidden="true"></i>Edit
                                         </button>
                                         <button type="button" class="btn btn-outline btn-default">
