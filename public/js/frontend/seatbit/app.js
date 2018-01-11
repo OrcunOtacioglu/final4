@@ -6,20 +6,21 @@
  * Canvas initializer.
  */
 var canvas = new fabric.Canvas('venue', {
-    backgroundColor: '#f8f8fa',
+    backgroundColor: '#fff',
     containerClass: 'venue-wrapper',
     enableRetinaScaling: true,
     height: responsiveHeight(),
     width: responsiveWidth(),
     selection: false
 });
+var eventID = $('meta[name="event"]').attr('content');
 
 axios({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     method: 'get',
-    url: '/get-venue'
+    url: '/event/' + eventID + '/seat-map'
 })
     .then(function (response) {
         canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
