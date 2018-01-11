@@ -8,6 +8,9 @@ Auth::routes();
 Route::get('/events', 'EventController@index');
 Route::get('/e/{slug}', 'EventController@show');
 
+// New API
+Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');
+
 /**
  * WEB-UI ROUTES
  */
