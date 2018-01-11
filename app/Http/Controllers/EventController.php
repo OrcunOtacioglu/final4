@@ -60,4 +60,11 @@ class EventController extends Controller
     {
 
     }
+
+    public function getSeatMap($id)
+    {
+        $event = Event::findOrFail($id);
+
+        return json_encode($event->seatMap->mapping, true);
+    }
 }
