@@ -2,6 +2,10 @@
 
 @section('title', 'Final Four 2018 Belgrade')
 
+@section('custom.meta')
+    <meta name="event" content="{{ $event->id }}">
+@stop
+
 @section('custom.css')
     <link rel="stylesheet" href="{{ asset('WebUI/css/hoteldetail.css') }}">
     <style>
@@ -39,13 +43,13 @@
 @stop
 
 @section('content')
-    <div class="hoteldetaildatalayer" id="hoteldetail">
+    <div class="hoteldetaildatalayer">
         <!-- Header Area -->
         <section class="parallax-window" data-parallax="scroll" style="height: 350px; min-height: 350px;">
             <div class="widget-overlay transtation"></div>
             <img alt="Image" class="img-blur sp-image hotel-top-image" src="/img/cover-photos/{{ $event->cover_photo }}">
             <div class="parallax-content-2">
-                <div class="container">
+                <div class="container" id="wrapper">
                     <div class="row">
                         <div class="col-md-8 col-sm-8">
                             <h1>{{ $event->name }}</h1>
@@ -108,10 +112,11 @@
         <!-- End Breadcrumb -->
 
         <!-- Content -->
-        <div class="container mt20 mb50">
+        <div class="container mt20 mb50" style="background: #fff;
+                                                border-radius: 5px;">
             <div class="row">
                 <div class="col-md-8" id="single_tour_desc">
-                    <!-- @TODO Here will be the seat selection map on desktop and laptop views -->
+                    <canvas id="venue"></canvas>
                     <div class="clear"></div>
                 </div>
 
@@ -123,4 +128,13 @@
         </div>
         <!-- End Content -->
     </div>
+@stop
+
+@section('footer.scripts')
+    <script src="{{ asset('js/frontend/fabric.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="{{ asset('js/frontend/plugins/axios.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/app.js') }}"></script>
 @stop
