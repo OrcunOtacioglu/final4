@@ -137,4 +137,5 @@
     <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/app.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/tripoki.js') }}"></script>
 @stop

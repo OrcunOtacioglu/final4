@@ -5,3 +5,4 @@
 <script src="{{ asset('js/frontend/layout/common_scripts_min.js') }}"></script>
 <script src="{{ asset('js/frontend/layout/functions.js') }}"></script>
 <script src="{{ asset('js/frontend/layout/bootbox.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>

@@ -20,7 +20,7 @@
     <meta name="copyright" content="">
     <meta name="author" content="DETUR">
 
-    <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('custom.meta')
     <!-- End Meta Tags -->
 
@@ -38,15 +38,17 @@
     <!-- End Fonts -->
 </head>
 <body class="en wide">
-    <!-- Header Start -->
-    @include('frontend.partials.header')
-    <!-- End Header Start -->
+    <div id="app">
+        <!-- Header Start -->
+        @include('frontend.partials.header')
+        <!-- End Header Start -->
 
-    <!-- Content -->
-    <main class="cd-main-content">
-        @yield('content')
-    </main>
-    <!-- End Content -->
+        <!-- Content -->
+        <main class="cd-main-content">
+            @yield('content')
+        </main>
+        <!-- End Content -->
+    </div>
 
     <!-- Footer -->
     @include('frontend.partials.footer')

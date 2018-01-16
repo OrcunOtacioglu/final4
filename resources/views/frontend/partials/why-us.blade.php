@@ -1,11 +1,6 @@
 <!-- Why Us -->
 <section>
     <article>
-        <style>
-            .widget-general-icon i:before {
-                font-size: 60px !important;
-            }
-        </style>
         <div class="w100 t-center mt30 mb30">
             <h2 class="">Why Choose&nbsp;<span style="color:orange"><strong>TRIPOKI?</strong></span>
             </h2>
