@@ -1,5 +1,9 @@
 @extends('frontend.base')
 
+@section('custom.meta')
+    <meta name="event" content="{{ $event->id }}">
+@stop
+
 @section('title')
     {{ $event->name }} Seat Selection
 @stop
@@ -116,7 +120,9 @@
         <div class="container mt20 mb50" style="border-radius: 5px;">
             <div class="row">
                 <div class="col-md-8">
-                    <div id="venue"></div>
+                    <div class="venue-wrapper">
+                        <canvas id="venue"></canvas>
+                    </div>
                     <div class="clear"></div>
                 </div>
 
@@ -173,8 +179,9 @@
 @stop
 
 @section('footer.scripts')
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/frontend/fabric.min.js') }}"></script>
-    <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/tripoki.js') }}"></script>
 @stop

@@ -57,7 +57,7 @@
                                     <div class="rating">
                                         <img src="{{ asset('WebUI/images/stars/4.png') }}" alt="">
                                     </div>
-                                    <p class="hotel-list-info">{{ substr($hotel->description, 0, 200) }}...</p>
+                                    <p class="hotel-list-info">{{ substr($hotel->description, 0, 180) }}...</p>
                                     <a href data-toggle="modal" data-target="#{{ $hotel->reference }}M" class="show-map w100 p0 relative font-600">
                                         <i class="icon-location-2 font-14 fl color-blue p0"></i>
                                         Show Hotel On Map

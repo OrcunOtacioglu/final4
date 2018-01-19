@@ -72,7 +72,7 @@
                                         <div class="color-white font-600 font-20 t-right">EUR</div>
                                         <div class="color-white font-400 font-12 t-right">Starting From</div>
                                     </div>
-                                    <div class="single-price color-green font-bold font-50 fr ng-binding">588</div>
+                                    <div class="single-price color-green font-bold font-50 fr ng-binding">527</div>
                                 </div>
                             </div>
                         </div>
@@ -159,24 +159,54 @@
                                 </div>
                             </div>
                             @foreach($rates as $rate)
-                            <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="rate-name">{{ $rate->name }}</p>
+                                @if(\App\Entities\Rate::hasMultipleZones($rate))
+                                    <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="rate-name">{{ $rate->name }}</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <a class="btn btn-xs btn-primary" role="button" data-toggle="collapse" href="#{{ $rate->color_code }}" aria-expanded="false" aria-controls="{{ $rate->name }}List">
+                                                    Buy Now
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <small class="color-green">Available</small>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="{{ $rate->color_code }}">
+                                            @foreach(\App\Entities\Rate::listZones($rate->zones) as $zone)
+                                            <div class="well back-white">
+                                                
+                                            </div>
+                                            @endforeach
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 text-center">
-                                        <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                @else
+                                    <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="rate-name">{{ $rate->name }}</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <small class="color-green">Available</small>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <small class="color-green">Available</small>
-                                    </div>
-                                </div>
-                            </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
