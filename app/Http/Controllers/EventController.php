@@ -11,6 +11,22 @@ class EventController extends Controller
 {
     public function index()
     {
+        $events = Event::all();
+
+        $data = [];
+
+        foreach ($events as $event) {
+            $singleEvent = [
+                'name' => $event->name,
+                'url' => env('APP_URL') . '/event/' . $event->slug,
+                'description' => $event->description,
+                'cover_photo' => '/img/cover-photos/' . $event->cover_photo,
+            ];
+
+            array_push($data, $singleEvent);
+        }
+
+        return response()->json($data, 200);
     }
 
     public function create()
@@ -66,5 +82,13 @@ class EventController extends Controller
         $event = Event::findOrFail($id);
 
         return json_encode($event->seatMap->mapping, true);
+    }
+
+    public function seatSelection($id)
+    {
+        $event = Event::findOrFail($id);
+        $rates = $event->rates;
+
+        return view('frontend.entities.event.seat-selection', compact('event', 'rates'));
     }
 }
