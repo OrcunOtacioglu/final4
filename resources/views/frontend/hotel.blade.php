@@ -21,8 +21,8 @@
     <meta name="author" content="DETUR">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @yield('custom.meta')
-    <!-- End Meta Tags -->
+@yield('custom.meta')
+<!-- End Meta Tags -->
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('WebUI/images/favicon/favicon.ico') }}" type="image/x-icon">
@@ -44,24 +44,24 @@
     <!-- End Fonts -->
 </head>
 <body class="en wide">
-    <div id="app">
-        <!-- Header Start -->
-        @include('frontend.partials.header')
-        <!-- End Header Start -->
+<div id="app">
+    <!-- Header Start -->
+    @include('frontend.partials.fixed-header')
+    <!-- End Header Start -->
 
-        <!-- Content -->
-        <main class="cd-main-content">
-            @yield('content')
-        </main>
-        <!-- End Content -->
-    </div>
+    <!-- Content -->
+    <main class="cd-main-content">
+        @yield('content')
+    </main>
+    <!-- End Content -->
+</div>
 
-    <!-- Footer -->
-    @include('frontend.partials.footer')
-    <!-- End Footer -->
+<!-- Footer -->
+@include('frontend.partials.footer')
+<!-- End Footer -->
 
-    <!-- Footer Scripts -->
-    @include('frontend.assets.global-js')
-    @yield('footer.scripts')
-    <!-- End Footer Scripts -->
+<!-- Footer Scripts -->
+@include('frontend.assets.global-js')
+@yield('footer.scripts')
+<!-- End Footer Scripts -->
 </body>

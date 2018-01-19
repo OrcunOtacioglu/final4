@@ -1,11 +1,7 @@
 @extends('frontend.base')
 
 @section('title')
-    {{ $event->name }}
-@stop
-
-@section('custom.meta')
-    <meta name="event" content="{{ $event->id }}">
+    {{ $event->name }} Seat Selection
 @stop
 
 @section('custom.css')
@@ -81,7 +77,6 @@
             </div>
         </section>
         <!-- End Header Area -->
-
         <!-- Breadcrumb -->
         <div id="position" class="breadcrumbs container-fuild">
             <div class="container clearfix">
@@ -117,21 +112,11 @@
             </div>
         </div>
         <!-- End Breadcrumb -->
-
         <!-- Content -->
         <div class="container mt20 mb50" style="border-radius: 5px;">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="back-white p15">
-                        <h3>Package Information</h3>
-                        <p>{{ $event->description }}</p>
-                    </div>
-                    <div class="clear"></div>
-                    <hr>
-                    <div class="back-white p15">
-                        <h3>Event Location</h3>
-                        <div id="map"></div>
-                    </div>
+                    <div id="venue"></div>
                     <div class="clear"></div>
                 </div>
 
@@ -159,24 +144,24 @@
                                 </div>
                             </div>
                             @foreach($rates as $rate)
-                            <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="rate-name">{{ $rate->name }}</p>
+                                <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="rate-name">{{ $rate->name }}</p>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 text-center">
-                                        <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            <small class="color-green">Available</small>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
-                                    </div>
-                                    <div class="col-md-4 text-center">
-                                        <small class="color-green">Available</small>
-                                    </div>
-                                </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -188,20 +173,8 @@
 @stop
 
 @section('footer.scripts')
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdpMB_vp0CXlEy49kSEO42duzmTXbTMQw&callback=initMap">
-    </script>
-    <script>
-        function initMap() {
-            var uluru = {lat: 44.814146, lng: 20.421289};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-        }
-    </script>
+    <script src="{{ asset('js/frontend/fabric.min.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
+    <script src="{{ asset('js/frontend/seatbit/tripoki.js') }}"></script>
 @stop
