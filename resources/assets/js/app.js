@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example', require('./components/Example.vue'));
+Vue.component('event-list', require('./components/frontend/entities/event/EventList'));
 
 const app = new Vue({
     el: '#app'

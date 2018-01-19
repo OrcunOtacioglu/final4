@@ -205,20 +205,20 @@ a.sidebar-footer-anchor:hover {
     CATEGORIES
  **/
 .categories-wrapper {
-    background: #F8F8FA;
-    box-shadow: 0px 0 5px rgba(40, 44, 53, 0.3);
+    background: #FFF;
     display: flex;
     float: left;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     left: 0;
-    z-index: 3000;
+    z-index: 0;
     -webkit-box-orient: vertical;
     width: 100%;
+    margin-top: 20px;
 }
 
 .categories {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .categories-header {
@@ -251,15 +251,15 @@ a.sidebar-footer-anchor:hover {
 .categories-list {
     margin: 0;
     list-style: none !important;
-    padding: 10px 5px;
+    padding: 10px 0;
 }
 
 .category-item {
     background: #fff;
     padding: 10px;
     border-left: 15px solid;
-    border-radius: 5px;
-    box-shadow: 0px 0 5px rgba(40, 44, 53, 0.3);
+    border-bottom: 1px solid #D2D6DF;
+    border-top: 1px solid #D2D6DF;
 }
 
 .category-name {
@@ -554,19 +554,17 @@ a.sidebar-footer-anchor:hover {
     right: 20px;
 }
 
-/**
-    MODAL
- **/
-.transparent-modal {
-    background: transparent;
-    border-color: transparent;
+.rate {
+    border-top: 1px solid #eeeeee;
+    border-right: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
 }
 
-.transparent-modal > .modal-header {
-    border: none;
-    padding: 0;
+.rate-name {
+    font-size: 18px;
+    margin: 0;
 }
 
-.modal-backdrop {
-    background: #16b7cd;
+.fade.show {
+    opacity: 1;
 }
