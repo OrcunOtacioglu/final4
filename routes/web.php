@@ -5,8 +5,9 @@ Route::get('/', 'ApplicationController@index');
 Auth::routes();
 
 //@TODO This should be implemented via API.
-Route::get('/events', 'EventController@index');
-Route::get('/e/{slug}', 'EventController@show');
+Route::get('/event', 'EventController@index');
+Route::get('/event/{slug}', 'EventController@show');
+Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
 
 // New API
 Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');
