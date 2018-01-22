@@ -4,8 +4,8 @@
         <section>
             <article>
                 <div class="text-wrapper w100 t-center">
-                    <h2 class="text-shadow font-Kalam">ENJOY YOUR LIFE</h2>
-                    <h3 class="text-shadow">SEARCH, CLICK &amp; LÖ POMPA</h3></div>
+                    <h2 class="text-shadow font-Kalam">DISCOVER THE WORLD</h2>
+                    <h3 class="text-shadow">SEARCH, CLICK &amp; ENJOY</h3></div>
                 <div class="overlay-back"></div>
             </article>
         </section>

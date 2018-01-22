@@ -92,8 +92,8 @@
                                 <div class="image">
                                     <img src="/" alt="image">
                                 </div>
-                                <div class="font-12 mb5 text-dot color-black pr30">Falkensteiner</div>
-                                <span class="font-bold font-14 color-black">157 €</span>
+                                <div class="font-12 mb5 text-dot color-black pr30">Turkish Airlines Euroleague</div>
+                                {{--<span class="font-bold font-14 color-black">157 €</span>--}}
                             </div>
                             <a class="action remove-basket" style="cursor:pointer;">
                                 <i class="icon-trash"></i>
@@ -102,9 +102,9 @@
                         <li class="">
                             <div class="col-sm-6 p8 font-bold font-14" style="padding-left:0 !important; padding-right:0 !important;">
                                 Total:
-                                <span>157 €</span>
+                                {{--<span>157 €</span>--}}
                             </div>
-                            <a href="#" class="button_drop outline">Check out basket</a>
+                            <a href="/hotel" class="button_drop outline">PROCEED</a>
                         </li>
                     </ul>
                 </div>

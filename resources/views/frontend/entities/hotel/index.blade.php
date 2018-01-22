@@ -27,9 +27,6 @@
                     <span>Check out</span>
                     <h3 class="ng-binding">21/05/2018</h3>
                 </div>
-                <div class="col-sm-2">
-                    <a data-toggle="modal" href="" data-target="#" class="modify-search-btn t-center" style="width:100%;display:inline-block;margin-top:2px;">MORE INFO</a>
-                </div>
             </div>
         </div>
     </div>
@@ -78,11 +75,15 @@
                                                 <h4> {{ $hotel->review_point }}<span class="font-16 color-black">/10</span></h4>
                                             </li>
                                             <li class="price-btn">
-                                                <a style="min-width: 145px;" class="btn_1 green radius-50">ROOM OPTIONS</a>
+                                                <button type="button" data-toggle="collapse" data-target="#{{ $hotel->reference }}R" aria-expanded="false"
+                                                        aria-controls="{{ $hotel->reference }}Rooms" style="min-width: 145px;" class="btn_1 green radius-50">ROOM OPTIONS</button>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                @include('frontend.entities.hotel.partials.rooms')
                             </div>
                         </div>
                     </div>

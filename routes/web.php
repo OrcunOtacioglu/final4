@@ -8,6 +8,7 @@ Auth::routes();
 Route::get('/event', 'EventController@index');
 Route::get('/event/{slug}', 'EventController@show');
 Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
+Route::post('/set-zone', 'EventController@setZone');
 
 // New API
 Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');

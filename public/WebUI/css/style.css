@@ -393,7 +393,7 @@ header {
         margin-top: 8px;
     }
 
-/*.provider-img:empty{display:none;}*/ 
+/*.provider-img:empty{display:none;}*/
 
 header.sticky #logo_home {
     margin: 0;
@@ -402,7 +402,7 @@ header.sticky #logo_home {
 
     header.sticky #logo_home a, header.fixheader #logo_home a {
         background-image: url(/WebUI/images/tripoki-logo-black.png);
-  
+
     }
 
 /*header#plain #logo_home a {
@@ -469,8 +469,8 @@ header.fixheader {
     color: #333;
     border-color: #ddd;
 }
-    
-    
+
+
     nav {
         margin-top: 15px;
         position: relative;
@@ -890,7 +890,7 @@ footer {
     footer h3.menu-list {
         font-size: 16px;
         font-weight: 500;
-        color: /*#16b7cd*/orange;
+        color: #fff;
         border-bottom: 1px solid rgba(255,255,255,0.2);
         padding-bottom: 15px;
         font-weight: 400;
@@ -1477,7 +1477,7 @@ ul#cat_nav {
         -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
         -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
         box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
-     
+
     }
 /*.flight-item-count {
     margin-bottom: 30px;
@@ -1644,7 +1644,7 @@ ul.add_info {
         padding:3px 0;
     }
 
-     
+
         ul.add_info li a {
             color: #555;
             width: 32px;
@@ -2346,7 +2346,7 @@ a.btn_collapse {
 }
 
 .form-control:focus{background:#fff;}
-   
+
  .child-age-area .age-box {
         margin: 0 8px;
     }
@@ -2690,7 +2690,7 @@ ul.list_order {
     .parallax-content-1 div h1 {
         margin: 0;
         padding-top: 0px;
-        
+
     }
 
         /*.parallax-content-1 div h2:before,
@@ -5567,7 +5567,7 @@ width:100%;
         z-index: 5;
         border-radius: 0px
     }
-        
+
         .destination-menu ul li a i {
             width: 75px;
             height: 75px;

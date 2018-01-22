@@ -30820,6 +30820,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "row" },
     _vm._l(_vm.events, function(event) {
       return _c("div", { staticClass: "col-sm-6 col-lg-6" }, [
         _c(

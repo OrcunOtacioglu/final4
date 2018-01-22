@@ -2,6 +2,8 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
+                <h3 style="    float: left;
+    margin: 10px 0;">{{ $hotel->name }}</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: #fff; opacity: 0.9">
                     <span aria-hidden="true">&times;</span>
                 </button>

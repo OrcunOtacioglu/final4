@@ -167,7 +167,7 @@
                                             </div>
                                             <div class="col-md-4 text-center">
                                                 <a class="btn btn-xs btn-primary" role="button" data-toggle="collapse" href="#{{ $rate->color_code }}" aria-expanded="false" aria-controls="{{ $rate->name }}List">
-                                                    Buy Now
+                                                    Zone List
                                                 </a>
                                             </div>
                                         </div>
@@ -181,8 +181,25 @@
                                         </div>
                                         <div class="collapse" id="{{ $rate->color_code }}">
                                             @foreach(\App\Entities\Rate::listZones($rate->zones) as $zone)
-                                            <div class="well back-white">
-                                                
+                                            <div class="well back-white p5">
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <img src="/img/zone-images/thumbnails/{{ $zone }}.png" alt="">
+                                                    </div>
+                                                    <div class="col-md-4 text-center pt20">
+                                                        @if($zone == 2161)
+                                                            <p class="text-muted" style="font-size: 16px;">216-A</p>
+                                                        @elseif($zone == 2162)
+                                                            <p class="text-muted" style="font-size: 16px;">216-B</p>
+                                                        @else
+                                                            <p class="text-muted" style="font-size: 16px;">{{ $zone }}</p>
+                                                        @endif
+                                                    </div>
+                                                    <div class="col-md-4 text-center pt20">
+                                                        <button onclick="setSeatSelectionCookie({{ $zone }})" class="btn btn-xs btn-primary">Select Seats</button>
+                                                        <small class="color-green">Available</small>
+                                                    </div>
+                                                </div>
                                             </div>
                                             @endforeach
                                         </div>
@@ -194,7 +211,7 @@
                                                 <p class="rate-name">{{ $rate->name }}</p>
                                             </div>
                                             <div class="col-md-4 text-center">
-                                                <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                                <button onclick="setSeatSelectionCookie({{ $rate->zones }})" class="btn btn-xs btn-primary">Select Seats</button>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -232,6 +249,28 @@
                 position: uluru,
                 map: map
             });
+        }
+    </script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{ asset('js/frontend/plugins/axios.min.js') }}"></script>
+    <script>
+        function setSeatSelectionCookie(zone) {
+            var eventID = $('meta[name="event"]').attr('content');
+            axios.post('/set-zone', {
+                eventId: eventID,
+                zone: zone
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        toastr.success('You will be redirected to seat selection!', {timeout: 2000});
+                        window.setTimeout(function () {
+                            location.href = ('/event/' + response.data.event + '/seat-selection');
+                        }, 500);
+                    }
+                })
+                .catch(error => {
+                    toastr.error(error, 'Ooops!Something went wrong!');
+                })
         }
     </script>
 @stop

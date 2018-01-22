@@ -72,7 +72,7 @@
                                         <div class="color-white font-600 font-20 t-right">EUR</div>
                                         <div class="color-white font-400 font-12 t-right">Starting From</div>
                                     </div>
-                                    <div class="single-price color-green font-bold font-50 fr ng-binding">588</div>
+                                    <div class="single-price color-green font-bold font-50 fr ng-binding">527</div>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@
         <!-- Content -->
         <div class="container mt20 mb50" style="border-radius: 5px;">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8 back-white">
                     <div class="venue-wrapper">
                         <canvas id="venue"></canvas>
                     </div>
@@ -128,8 +128,8 @@
 
                 <div class="col-md-4">
                     <div class="back-white p15">
-                        <h3>Package Categories</h3>
-                        <img src="/img/venue-photos/{{ $event->seatMap->venue->photo }}" alt="" class="img-responsive">
+                        <h3>Selected Zone View</h3>
+                        <div id="zone-view" class="mb30"></div>
                         <div class="rate-list">
                             <div class="rate p10 mb10" style="border-left: 3px solid #e7983b">
                                 <div class="row">
@@ -150,24 +150,71 @@
                                 </div>
                             </div>
                             @foreach($rates as $rate)
-                                <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <p class="rate-name">{{ $rate->name }}</p>
+                                @if(\App\Entities\Rate::hasMultipleZones($rate))
+                                    <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="rate-name">{{ $rate->name }}</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <a class="btn btn-xs btn-primary" role="button" data-toggle="collapse" href="#{{ $rate->color_code }}" aria-expanded="false" aria-controls="{{ $rate->name }}List">
+                                                    Buy Now
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4 text-center">
-                                            <a href="{{ action('EventController@seatSelection', ['id' => $event->id]) }}" class="btn btn-xs btn-primary">Buy Now</a>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <small class="color-green">Available</small>
+                                            </div>
+                                        </div>
+                                        <div class="collapse" id="{{ $rate->color_code }}">
+                                            @foreach(\App\Entities\Rate::listZones($rate->zones) as $zone)
+                                                <div class="well back-white p5">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <img src="/img/zone-images/thumbnails/{{ $zone }}.png" alt="">
+                                                        </div>
+                                                        <div class="col-md-4 text-center pt20">
+                                                            @if($zone == 2161)
+                                                                <p class="text-muted" style="font-size: 16px;">216-A</p>
+                                                            @elseif($zone == 2162)
+                                                                <p class="text-muted" style="font-size: 16px;">216-B</p>
+                                                            @else
+                                                                <p class="text-muted" style="font-size: 16px;">{{ $zone }}</p>
+                                                            @endif
+                                                        </div>
+                                                        <div class="col-md-4 text-center pt20">
+                                                            <button onclick="getSeatsOf({{ $zone }})" class="btn btn-xs btn-primary">Buy Now</button>
+                                                            <small class="color-green">Available</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-8">
-                                            <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                @else
+                                    <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="rate-name">{{ $rate->name }}</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <button onclick="getSeatsOf({{ $rate->zones }})" class="btn btn-xs btn-primary">Buy Now</button>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4 text-center">
-                                            <small class="color-green">Available</small>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                            </div>
+                                            <div class="col-md-4 text-center">
+                                                <small class="color-green">Available</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -184,4 +231,14 @@
     <script src="{{ asset('js/frontend/seatbit/seat.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/zone.class.js') }}"></script>
     <script src="{{ asset('js/frontend/seatbit/tripoki.js') }}"></script>
+    <script>
+        axios.get('/zone/data/' + {{ \Illuminate\Support\Facades\Cookie::get('zone') }})
+            .then(function (response) {
+                drawSeats(response.data.objects);
+                appendZoneView({{ \Illuminate\Support\Facades\Cookie::get('zone') }});
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    </script>
 @stop

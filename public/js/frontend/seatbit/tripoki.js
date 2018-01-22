@@ -14,29 +14,29 @@ var canvas = new fabric.Canvas('venue', {
     selection: false
 });
 var eventID = $('meta[name="event"]').attr('content');
-
-axios({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    method: 'get',
-    url: '/event/' + eventID + '/seat-map'
-})
-    .then(function (response) {
-        canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
-        canvas.off('mouse:down');
-        canvas.on('mouse:down', function (el) {
-            var zone = el.target;
-
-            if (zone === null) {
-                return false;
-            }
-
-            if (zone.type === 'zone') {
-                getSeatsOf(zone.name);
-            }
-        })
-    });
+//
+// axios({
+//     headers: {
+//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//     },
+//     method: 'get',
+//     url: '/event/' + eventID + '/seat-map'
+// })
+//     .then(function (response) {
+//         canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
+//         canvas.off('mouse:down');
+//         canvas.on('mouse:down', function (el) {
+//             var zone = el.target;
+//
+//             if (zone === null) {
+//                 return false;
+//             }
+//
+//             if (zone.type === 'zone') {
+//                 getSeatsOf(zone.name);
+//             }
+//         })
+//     });
 
 /**
  * Sets height and width of canvas for responsive changes.
@@ -170,6 +170,7 @@ function getSeatsOf(zone) {
     axios.get('/zone/data/' + zone)
         .then(function (response) {
             drawSeats(response.data.objects);
+            appendZoneView(zone);
         })
         .catch(function (error) {
             console.log(error);
@@ -221,6 +222,10 @@ function drawSeats(objects) {
             }
         }
     })
+}
+
+function appendZoneView(zone) {
+    $('#zone-view').html('<img src="/img/zone-images/' + zone + '.png" class="img-responsive">')
 }
 
 /**

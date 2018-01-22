@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="row">
         <div class="col-sm-6 col-lg-6" v-for="event in events">
             <div class="content-box widget-general relative t-center">
                 <div class="widget-overlay transtation"></div>

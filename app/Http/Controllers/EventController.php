@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Entities\Event;
 use App\Entities\SeatMap;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Jenssegers\Agent\Facades\Agent;
 
 class EventController extends Controller
@@ -90,5 +91,14 @@ class EventController extends Controller
         $rates = $event->rates;
 
         return view('frontend.entities.event.seat-selection', compact('event', 'rates'));
+    }
+
+    public function setZone(Request $request)
+    {
+        Cookie::queue(Cookie::make('zone', $request->zone, 20));
+        $data = [
+            'event' => $request->eventId
+        ];
+        return response()->json($data, 200);
     }
 }
