@@ -16,20 +16,23 @@ class CreateHotelRoomsTable extends Migration
         Schema::create('hotel_rooms', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('reference')->unique();
+
             $table->integer('hotel_id')->unsigned();
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
 
+            // General Hotel Room info
             $table->string('name');
-            $table->string('category');
-            $table->string('reference');
-
-            $table->decimal('cost');
-            $table->decimal('price')->nullable();
-            $table->float('comission');
-            $table->float('fee');
-            $table->float('tax_percentage');
-
             $table->integer('type');
+
+            // Financial Hotel Room info
+            $table->integer('cost'); // Should be stored in cents
+            $table->integer('profit_margin');
+            $table->integer('comission_percentage');
+            $table->integer('fee_percentage');
+            $table->integer('tax_percentage');
+
+            // Additional Hotel Room info
             $table->jsonb('misc')->nullable();
 
             $table->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVenuesTable extends Migration
+class CreateSeatMapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateVenuesTable extends Migration
      */
     public function up()
     {
-        Schema::create('venues', function (Blueprint $table) {
+        Schema::create('seat_maps', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->string('name');
+            $table->string('reference')->unique();
 
-            $table->string('photo')->nulalble();
-            $table->string('postal_code');
-            $table->string('timezone')->nullable();
-            $table->string('city');
-            $table->string('country');
-            $table->text('address');
-            $table->string('longitude');
-            $table->string('latitude');
+            $table->integer('event_id')->unsigned()->nullable();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('set null');
+
+            $table->string('name');
+            $table->string('category_map_photo');
+
+            $table->jsonb('mapping');
 
             $table->timestamps();
         });
@@ -38,6 +37,6 @@ class CreateVenuesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('venues');
+        Schema::dropIfExists('seat_maps');
     }
 }

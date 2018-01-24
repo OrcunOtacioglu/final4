@@ -17,23 +17,27 @@ class CreateBookingsTable extends Migration
             $table->increments('id');
 
             $table->string('reference');
+
+            $table->integer('cart_id')->unsigned()->nullable();
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
+
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->integer('status');
 
-            $table->decimal('cost');
-            $table->decimal('profit');
-            $table->decimal('subtotal');
-            $table->decimal('comission');
-            $table->decimal('fee');
-            $table->decimal('tax');
-            $table->decimal('offer');
-            $table->decimal('total');
+            $table->integer('cost');
+            $table->integer('profit');
+            $table->integer('subtotal');
+            $table->integer('comission');
+            $table->integer('fee');
+            $table->integer('tax');
+            $table->integer('offer');
+            $table->integer('total');
 
             $table->integer('currency_code');
 
-            $table->integer('booked_until')->nullable();
+            $table->dateTime('booked_until');
 
             $table->timestamps();
         });

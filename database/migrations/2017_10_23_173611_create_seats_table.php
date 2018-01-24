@@ -16,16 +16,17 @@ class CreateSeatsTable extends Migration
         Schema::create('seats', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('reference');
+
             $table->integer('rate_id')->unsigned()->nullable();
             $table->foreign('rate_id')->references('id')->on('rates')->onDelete('cascade');
 
             $table->integer('zone_id')->unsigned();
             $table->foreign('zone_id')->references('id')->on('zones')->onDelete('cascade');
 
-            $table->integer('order_id')->unsigned()->nullable();
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->integer('cart_id')->unsigned()->nullable();
+            $table->foreign('cart_id')->references('id')->on('carts')->onDelete('cascade');
 
-            $table->string('reference');
             $table->string('category');
             $table->string('row');
             $table->string('seat');

@@ -16,27 +16,32 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->string('reference')->unique();
+
+            $table->integer('event_id')->unsigned();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+
             $table->string('name');
             $table->string('color_code')->nullable();
 
-            $table->decimal('cost');
-            $table->decimal('profit_margin');
-            $table->decimal('price')->nullable();
-            $table->decimal('minimum_profit_amount')->nullable();
+            $table->integer('cost'); // Should be stored in cents
+            $table->integer('profit_margin');
+            $table->integer('price'); // Face value. Will be deprecated
+            $table->integer('minimum_profit_amount')->nullable();
 
-            $table->string('zones')->nullable();
+            $table->string('zones')->nullable(); // Will be depracated if found a new way.
             $table->integer('available');
 
             $table->boolean('available_online');
             $table->boolean('available_box_office');
 
-            $table->float('online_fee')->nullable();
-            $table->float('box_office_fee')->nullable();
+            $table->integer('online_fee_percentage');
+            $table->integer('box_office_fee_percentage');
 
-            $table->float('online_comission')->nullable();
-            $table->float('box_office_comission')->nullable();
+            $table->integer('online_comission_percentage');
+            $table->integer('box_office_comission_percentage');
 
-            $table->float('tax_percentage');
+            $table->integer('tax_percentage');
 
             $table->timestamps();
         });

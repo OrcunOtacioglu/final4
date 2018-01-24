@@ -14,15 +14,14 @@ class AdditionalFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('surname')->after('name');
-            $table->boolean('is_admin')->after('password');
-            $table->string('phone')->after('email');
-            $table->string('citizenship')->after('phone');
-            $table->string('identification_number')->after('phone');
-            $table->text('address')->after('identifier');
-            $table->string('zip_code')->after('address');
-            $table->string('province')->after('zip_code');
-            $table->string('country')->after('province');
+            $table->string('surname')->after('name')->nullable();
+            $table->string('phone')->after('email')->nullable();
+            $table->string('citizenship')->after('phone')->nullable();
+            $table->string('identification_number')->after('phone')->nullable();
+            $table->text('address')->after('identifier')->nullable();
+            $table->string('zip_code')->after('address')->nullable();
+            $table->string('province')->after('zip_code')->nullable();
+            $table->string('country')->after('province')->nullable();
         });
     }
 
@@ -35,7 +34,6 @@ class AdditionalFieldsToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('surname');
-            $table->dropColumn('is_admin');
             $table->dropColumn('phone');
             $table->dropColumn('citizenship');
             $table->dropColumn('identification_number');
