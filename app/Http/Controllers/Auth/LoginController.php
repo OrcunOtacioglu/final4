@@ -34,7 +34,9 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (Auth::user()->isAdmin()) {
+        $user = Auth::user();
+
+        if ($user->hasPermissionTo('view-dashboard')) {
             return '/dashboard';
         } elseif (request()->hasCookie('orderRef')) {
             $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();

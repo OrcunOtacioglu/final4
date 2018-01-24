@@ -16,7 +16,7 @@ class RedirectIfNotAdmin
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::guest() || !Auth::user()->isAdmin()) {
+        if (Auth::guest() || !Auth::user()->hasPermissionTo('view-dashboard')) {
             return redirect('/');
         }
 

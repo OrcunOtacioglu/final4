@@ -91,7 +91,7 @@ class RegisterController extends Controller
             } else {
                 return '/order/' . $order->reference;
             }
-        } else if (Auth::user()->isAdmin()) {
+        } else if (Auth::user()->hasPermissionTo('view-dashboard')) {
             return '/dashboard';
         } else {
             return url(request()->headers->get('referer'));

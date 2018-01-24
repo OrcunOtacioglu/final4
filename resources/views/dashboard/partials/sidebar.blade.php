@@ -11,7 +11,6 @@
                         </a>
                     </li>
 
-                    @if(\App\User::hasRole('root'))
                     <!-- Map Drawing -->
                     <li class="site-menu-item">
                         <a href="{{ action('ZoneController@index') }}">
@@ -38,8 +37,7 @@
                             </li>
                         </ul>
                     </li>
-                    @endif
-                    @if(\App\User::hasRole('admin'))
+
                     <li class="site-menu-item has-sub open">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon ti-calendar" aria-hidden="true"></i>
@@ -122,23 +120,18 @@
                             <span class="site-menu-title">Customer Management</span>
                         </a>
                     </li>
-                    @endif
-                    @if(\App\User::hasRole('finance'))
                     <li class="site-menu-item">
                         <a href="javascript:void(0)">
                             <i class="site-menu-icon ti-receipt" aria-hidden="true"></i>
                             <span class="site-menu-title">Finance</span>
                         </a>
                     </li>
-                    @endif
-                    @if(\App\User::hasRole('marketer'))
                     <li class="site-menu-item">
                         <a href="{{ action('AnalyticsController@index') }}">
                             <i class="site-menu-icon ti-pie-chart" aria-hidden="true"></i>
                             <span class="site-menu-title">Analytics</span>
                         </a>
                     </li>
-                    @endif
                 </ul>
             </div>
         </div>

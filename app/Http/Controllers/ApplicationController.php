@@ -27,17 +27,9 @@ class ApplicationController extends Controller
 
     public function dashboard()
     {
-        $sales = Sale::all();
-        $customers = User::where('is_admin', '=', false)->get();
-        $hotels = Hotel::all();
         $events = Event::all();
 
-        $rawAnalytics = Analytics::find(1);
-        $analytics = json_decode($rawAnalytics->analytics, true);
-        $totalAvailableSeats = $analytics['general_info']['total_remaining_ticket_count'];
-        $totalAvailableHotels = $analytics['general_info']['extra_breakdown']['hotels']['general_info']['total_available'];
-
-        return view('dashboard.index', compact('sales', 'customers', 'hotels', 'totalAvailableHotels', 'totalAvailableSeats', 'events'));
+        return view('dashboard.index', compact('events'));
     }
 
     public function getVenue()

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Entities\Authorization\Permission;
 use App\Entities\Authorization\Role;
 use App\Entities\Booking;
 use App\Entities\Order;
@@ -46,14 +47,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function isAdmin()
+    public function roles()
     {
-        return request()->user()->is_admin;
-    }
-
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
+        return $this->belongsToMany(Role::class);
     }
 
     public function orders()
@@ -71,18 +67,16 @@ class User extends Authenticatable
         return $this->hasMany(Booking::class);
     }
 
-    public static function getAdmins()
+    public function hasPermissionTo($ability)
     {
-        $users = User::where('is_admin', '=', true)->get();
+        $user = Auth::user();
+        $user->load(['roles.permissions' => function ($q) use (&$permissions) {
+            $permissions = $q->get()->unique();
+        }]);
 
-        return $users;
-    }
+        $permission = Permission::where('name', '=', $ability)->first();
 
-    public static function hasRole($roleReference)
-    {
-        $allowedRole = Role::where('reference', '=', $roleReference)->first();
-
-        if (Auth::user()->role->id == $allowedRole->id || Auth::user()->role->level < $allowedRole->level) {
+        if ($permissions->contains($permission)) {
             return true;
         } else {
             return false;
