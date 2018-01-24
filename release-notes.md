@@ -18,3 +18,5 @@
 + Performance improvements and bug fixes.
 #v0.9
 + Hotel API will be implemented.
+
+SENTRY_DSN=https://a6b9ca568cfd4dd88bf8339add749e3e:4e0915f4f3d14f1ab301f3b41b07b270@sentry.io/243187
