@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/general/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dashboard/base/bootstrap-extend.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dashboard/base/site.min.css') }}">
-<link rel="stylesheet" href="{{ asset('css/dashboard/custom/dashboard.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/base/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/base/bootstrap-extend.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/base/site.min.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/css/base/indigo.min.css') }}">

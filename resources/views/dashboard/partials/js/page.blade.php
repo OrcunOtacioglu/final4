@@ -1,10 +1,9 @@
-<script src="{{ asset('js/dashboard/core/Site.min.js') }}"></script>
+<script src="{{ asset('admin/js/page/Site.min.js') }}"></script>
+<script src="{{ asset('admin/js/page/asscrollable.min.js') }}"></script>
+<script src="{{ asset('admin/js/page/slidepanel.min.js') }}"></script>
+<script src="{{ asset('admin/js/page/switchery.min.js') }}"></script>
 <script>
-    (function(document, window, $) {
-        'use strict';
-        var Site = window.Site;
-        $(document).ready(function() {
-            Site.run();
-        });
-    })(document, window, jQuery);
+    $(document).ready(function ($) {
+        Site.run();
+    });
 </script>

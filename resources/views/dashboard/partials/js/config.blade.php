@@ -1,4 +1,4 @@
-<script src="{{ asset('js/dashboard/config/colors.min.js') }}"></script>
+<script src="{{ asset('admin/js/config/colors.min.js') }}"></script>
 <script>
     Config.set('assets', '../assets');
 </script>
