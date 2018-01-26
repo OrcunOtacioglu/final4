@@ -19,26 +19,26 @@ class CreateHotelsTable extends Migration
             $table->string('reference')->unique();
 
             // General Hotel info
-            $table->string('name');
-            $table->text('description');
-            $table->integer('stars');
+            $table->string('name')->nullable();
+            $table->text('description')->nullable();
+            $table->integer('stars')->nullable();
             $table->float('review_point')->nullable();
             $table->integer('review_count')->nullable();
 
             // Hotel location info
-            $table->string('city');
-            $table->string('country');
-            $table->text('address');
-            $table->float('longitude');
-            $table->float('latitude');
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->text('address')->nullable();
+            $table->float('longitude')->nullable();
+            $table->float('latitude')->nullable();
 
             // Hotel sales info
-            $table->integer('total_availability');
+            $table->integer('total_availability')->nullable();
             $table->integer('online_availability')->nullable();
             $table->integer('box_office_availability')->nullable();
 
-            $table->boolean('available_online');
-            $table->boolean('available_box_office');
+            $table->boolean('available_online')->nullable();
+            $table->boolean('available_box_office')->nullable();
 
             $table->timestamps();
         });

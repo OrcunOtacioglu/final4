@@ -21,27 +21,27 @@ class CreateRatesTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->string('color_code')->nullable();
 
-            $table->integer('cost'); // Should be stored in cents
-            $table->integer('profit_margin');
-            $table->integer('price'); // Face value. Will be deprecated
+            $table->integer('cost')->nullable(); // Should be stored in cents
+            $table->integer('profit_margin')->nullable();
+            $table->integer('price')->nullable(); // Face value. Will be deprecated
             $table->integer('minimum_profit_amount')->nullable();
 
             $table->string('zones')->nullable(); // Will be depracated if found a new way.
-            $table->integer('available');
+            $table->integer('available')->nullable();
 
-            $table->boolean('available_online');
-            $table->boolean('available_box_office');
+            $table->boolean('available_online')->nullable();
+            $table->boolean('available_box_office')->nullable();
 
-            $table->integer('online_fee_percentage');
-            $table->integer('box_office_fee_percentage');
+            $table->integer('online_fee_percentage')->nullable();
+            $table->integer('box_office_fee_percentage')->nullable();
 
-            $table->integer('online_comission_percentage');
-            $table->integer('box_office_comission_percentage');
+            $table->integer('online_comission_percentage')->nullable();
+            $table->integer('box_office_comission_percentage')->nullable();
 
-            $table->integer('tax_percentage');
+            $table->integer('tax_percentage')->nullable();
 
             $table->timestamps();
         });

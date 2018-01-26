@@ -22,27 +22,27 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->string('subtitle')->nullable();
             $table->string('slug')->unique();
-            $table->mediumText('description');
-            $table->string('cover_photo');
+            $table->mediumText('description')->nullable();
+            $table->string('cover_photo')->nullable();
 
-            $table->dateTime('start_date');
-            $table->dateTime('end_date');
-            $table->dateTime('on_sale_date');
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->dateTime('on_sale_date')->nullable();
 
-            $table->string('category');
-            $table->integer('status');
-            $table->integer('listing');
-            $table->boolean('is_seated');
-            $table->boolean('allow_only_ticket_purchase');
+            $table->string('category')->nullable();
+            $table->integer('status')->nullable();
+            $table->integer('listing')->nullable();
+            $table->boolean('is_seated')->nullable();
+            $table->boolean('allow_only_ticket_purchase')->nullable();
 
             // Event location info
-            $table->string('city');
-            $table->string('country');
-            $table->text('address');
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
+            $table->text('address')->nullable();
 
-            $table->float('longitude');
-            $table->float('latitude');
-            $table->string('timezone');
+            $table->float('longitude')->nullable();
+            $table->float('latitude')->nullable();
+            $table->string('timezone')->nullable();
 
             $table->timestamps();
         });

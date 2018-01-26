@@ -22,15 +22,15 @@ class CreateHotelRoomsTable extends Migration
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
 
             // General Hotel Room info
-            $table->string('name');
-            $table->integer('type');
+            $table->string('name')->nullable();
+            $table->integer('type')->nullable();
 
             // Financial Hotel Room info
-            $table->integer('cost'); // Should be stored in cents
-            $table->integer('profit_margin');
-            $table->integer('comission_percentage');
-            $table->integer('fee_percentage');
-            $table->integer('tax_percentage');
+            $table->integer('cost')->nullable(); // Should be stored in cents
+            $table->integer('profit_margin')->nullable();
+            $table->integer('comission_percentage')->nullable();
+            $table->integer('fee_percentage')->nullable();
+            $table->integer('tax_percentage')->nullable();
 
             // Additional Hotel Room info
             $table->jsonb('misc')->nullable();
