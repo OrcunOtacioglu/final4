@@ -34,11 +34,13 @@ class CreateEventsTable extends Migration
             $table->integer('listing')->nullable();
             $table->boolean('is_seated')->nullable();
             $table->boolean('allow_only_ticket_purchase')->nullable();
+            $table->string('refund_policy')->nullable();
 
             // Event location info
             $table->string('city')->nullable();
             $table->string('country')->nullable();
             $table->text('address')->nullable();
+            $table->string('contact')->nullable();
 
             $table->float('longitude')->nullable();
             $table->float('latitude')->nullable();
