@@ -20,14 +20,14 @@
         <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
             <!-- Navbar Toolbar -->
             <ul class="nav navbar-toolbar">
-                <li class="nav-item hidden-float" id="toggleMenubar">
-                    <a class="nav-link" data-toggle="menubar" href="#" role="button">
-                        <i class="icon hamburger hamburger-arrow-left hided unfolded">
-                            <span class="sr-only">Toggle menubar</span>
-                            <span class="hamburger-bar"></span>
-                        </i>
-                    </a>
-                </li>
+                {{--<li class="nav-item hidden-float" id="toggleMenubar">--}}
+                    {{--<a class="nav-link" data-toggle="menubar" href="#" role="button">--}}
+                        {{--<i class="icon hamburger hamburger-arrow-left hided unfolded">--}}
+                            {{--<span class="sr-only">Toggle menubar</span>--}}
+                            {{--<span class="hamburger-bar"></span>--}}
+                        {{--</i>--}}
+                    {{--</a>--}}
+                {{--</li>--}}
                 <li class="nav-item hidden-float">
                     <a class="nav-link icon wb-search" data-toggle="collapse" href="#" data-target="#site-navbar-search" role="button">
                         <span class="sr-only">Toggle Search</span>
@@ -37,6 +37,9 @@
             <!-- End Navbar Toolbar -->
             <!-- Navbar Toolbar Right -->
             <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ action('EventController@create') }}">CREATE EVENT</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
                         <span class="avatar avatar-online">
