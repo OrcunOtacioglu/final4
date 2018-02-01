@@ -46,12 +46,12 @@
                                 <ul id="lang_menu">
                                     <li>
                                         <a href="#" class="ng-binding">
-                                            <img src="/WebUI/images/flag/en.png" class="mr5"> English
+                                            <img src="/frontend/img/flag/en.png" class="mr5"> English
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#" class="ng-binding">
-                                            <img class="mr5" src="/WebUI/images/flag/tr.png"> Türkçe
+                                            <img class="mr5" src="/frontend/img/flag/tr.png"> Türkçe
                                         </a>
                                     </li>
                                 </ul>

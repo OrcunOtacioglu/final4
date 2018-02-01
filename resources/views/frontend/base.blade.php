@@ -36,8 +36,8 @@
     <!-- End Stylesheets -->
 
     <!-- Fonts -->
-    <link href="{{ asset('WebUI/fonts/css/all-fontello.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('WebUI/fonts/css/icon_set_all.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('frontend/fonts/css/all-fontello.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('frontend/fonts/css/icon_set_all.min.css') }}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,300,300i,600,600i,700,700i&subset=latin,latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Kalam:700" rel="stylesheet">
     @yield('custom.fonts')

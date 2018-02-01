@@ -15,7 +15,7 @@
             </a>
             <div class="main-menu">
                 <div id="header_menu">
-                    <img src="http://tripoki.com/content/webui/images/tripoki-logo-black.png" width="120" alt="" data-retina="true">
+                    <img src="{{ asset('frontend/img/tripoki-logo-black.png') }}" width="120" alt="" data-retina="true">
                 </div>
                 <a href="#" class="open_close" id="close_in">
                     <i class="icon_set_1_icon-77"></i>

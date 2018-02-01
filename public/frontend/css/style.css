@@ -356,7 +356,7 @@ header {
     top: 0;
     z-index: 1040;
     padding: 0px;
-    background: url(/WebUI/images/shadow_header.png) repeat-x left top;
+    background: url(/frontend/img/shadow_header.png) repeat-x left top;
     transition: .5s;
 }
 
@@ -386,7 +386,7 @@ header {
         width: 150px;
         height: 50px;
         display: block;
-        background-image: url(/WebUI/images/tripoki-logo.png);
+        background-image: url(/frontend/img/tripoki-logo.png);
         background-repeat: no-repeat;
         text-indent: -9999px;
         background-size: 130px !important;
@@ -401,31 +401,31 @@ header.sticky #logo_home {
 }
 
     header.sticky #logo_home a, header.fixheader #logo_home a {
-        background-image: url(/WebUI/images/tripoki-logo-black.png);
+        background-image: url(/frontend/img/tripoki-logo-black.png);
 
     }
 
 /*header#plain #logo_home a {
-    background-image: url(/WebUI/images/tripoki-logo.png);
+    background-image: url(/frontend/img/tripoki-logo.png);
 }
 
 header.sticky#colored #logo_home a {
-    background-image: url(/WebUI/images/tripoki-logo.png);
+    background-image: url(/frontend/img/tripoki-logo.png);
 }*/
 
 /*@media only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
     #logo_home a, header#colored #logo_home a {
-        background-image: url(/WebUI/images/tripoki-logo.png);
+        background-image: url(/frontend/img/tripoki-logo.png);
         background-size: 160px 34px;
     }
 
     header.sticky #logo_home a, header#plain #logo_home a, header.fixheader #logo_home a {
-        background-image: url(/WebUI/images/tripoki-logo.png);
+        background-image: url(/frontend/img/tripoki-logo.png);
         background-size: 160px 34px;
     }
 
     header.sticky#colored #logo_home a {
-        background-image: url(/WebUI/images/tripoki-logo.png);
+        background-image: url(/frontend/img/tripoki-logo.png);
         background-size: 160px 34px;
     }
 }*/
@@ -839,7 +839,7 @@ ul#cart_items {
     text-align: center;
 }
 
-.sprite{background:url(/Content//WebUI/images/sprite.png) no-repeat;}
+.sprite{background:url(/Content//frontend/img/sprite.png) no-repeat;}
 
 .arr{background-position:0px 0px;}
 
@@ -881,7 +881,7 @@ a#forgot_pw {
 
 /* Footer */
 footer {
-    background: rgba(44, 62, 80,1) /*url(/WebUI/images/pattern.png) repeat 0 0*/;
+    background: rgba(44, 62, 80,1) /*url(/frontend/img/pattern.png) repeat 0 0*/;
     color: #fff;
     padding: 30px 0 10px 0;
     overflow:hidden;
@@ -1078,7 +1078,7 @@ a#email_footer {
 #hero {
     position: relative;
     height: 600px;
-    background: #4d536d url(/WebUI/images/slide_hero.jpg) no-repeat center center;
+    background: #4d536d url(/frontend/img/slide_hero.jpg) no-repeat center center;
     background-size: cover;
     color: #fff;
     width: 100%;
@@ -1117,7 +1117,7 @@ a#email_footer {
 .header-video {
     position: relative;
     overflow: hidden;
-    background: #4d536d url(/WebUI/images/slide_hero.jpg) no-repeat center center;
+    background: #4d536d url(/frontend/img/slide_hero.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -1215,7 +1215,7 @@ video {
         display: inline-block;
         right: 15px;
         top: 20px;
-        background: url(/WebUI/images/arrow_down_2.png);
+        background: url(/frontend/img/arrow_down_2.png);
         height: 6px;
         width: 10px;
         position: absolute;
@@ -1277,7 +1277,7 @@ video {
 }
 
 .nav-submit-button {
-    background: #fff url(/WebUI/images/search-bt.png) no-repeat center center;
+    background: #fff url(/frontend/img/search-bt.png) no-repeat center center;
     border: none;
     cursor: pointer;
     display: block;
@@ -1767,7 +1767,7 @@ input.qty2 {
 }
 
 .dec {
-    background: #fff url(/WebUI/images/minus.png) no-repeat center center;
+    background: #fff url(/frontend/img/minus.png) no-repeat center center;
     border: 1px solid #cccccc;
     left: 0;
     top: 0;
@@ -1780,7 +1780,7 @@ input.qty2 {
 }
 
 .inc {
-    background: #fff url(/WebUI/images/plus.png) no-repeat center center;
+    background: #fff url(/frontend/img/plus.png) no-repeat center center;
     right: 0;
     top: 0;
     border: 1px solid #cccccc;
@@ -1878,7 +1878,7 @@ input.qty2 {
 .features-bg {
     position: relative;
     min-height: 400px;
-    background: url(/WebUI/images/features-intro-01.jpg) no-repeat center center;
+    background: url(/frontend/img/features-intro-01.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -1976,7 +1976,7 @@ ul#contact-info {
     top: -20px;
     height: 45px;
     width: 100%;
-    background: url(/WebUI/images/tape.png) no-repeat center top;
+    background: url(/frontend/img/tape.png) no-repeat center top;
     display: block;
 }
 
@@ -1997,7 +1997,7 @@ ul#contact-info {
     display: block;
     text-transform: none;
     font-size: 12px;
-    background: url(/WebUI/images/bg_login.jpg) no-repeat center center;
+    background: url(/frontend/img/bg_login.jpg) no-repeat center center;
     background-size: cover;
 }
 
@@ -2568,7 +2568,7 @@ ul.list_order {
     width: 100%;
     overflow: hidden;
     height: 40px;
-    background: #434343 url(/WebUI/images/down_arrow_select.png) no-repeat right center;
+    background: #434343 url(/frontend/img/down_arrow_select.png) no-repeat right center;
     border: none;
     margin-bottom: 15px;
     -webkit-border-radius: 3px;
@@ -2614,7 +2614,7 @@ ul.list_order {
     width: 100%;
     overflow: hidden;
     height: 45px;
-    background: #fff url(/WebUI/images/down_arrow_select_filters.png) no-repeat right center;
+    background: #fff url(/frontend/img/down_arrow_select_filters.png) no-repeat right center;
     border: none;
     margin: 0;
     /* padding: 5px; */
@@ -2837,7 +2837,7 @@ ul.list_order {
     position: absolute;
     left: 0;
     bottom: -1px;
-    background: url(/WebUI/images/shadow_tour.png) repeat-x left bottom;
+    background: url(/frontend/img/shadow_tour.png) repeat-x left bottom;
     width: 100%;
     padding: 45px 15px 15px;
     color: #fff;
@@ -2878,11 +2878,11 @@ ul.list_order {
 }
 
     .ribbon.popular {
-        background: url(/WebUI/images/ribbon_popular.png) no-repeat 0 0;
+        background: url(/frontend/img/ribbon_popular.png) no-repeat 0 0;
     }
 
     .ribbon.top_rated {
-        background: url(/WebUI/images/ribbon_top_rated.png) no-repeat 0 0;
+        background: url(/frontend/img/ribbon_top_rated.png) no-repeat 0 0;
     }
 
 /* Tooltips */
@@ -3185,7 +3185,7 @@ ul.list_order {
 /*Banners*/
 .banner {
     position: relative;
-    background: #fff url(/WebUI/images/banner_bg.png) no-repeat center bottom;
+    background: #fff url(/frontend/img/banner_bg.png) no-repeat center bottom;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px;
@@ -3208,12 +3208,12 @@ ul.list_order {
 
     .banner:after {
         left: 0;
-        background: url(/WebUI/images/shadow-bg.png) no-repeat top left;
+        background: url(/frontend/img/shadow-bg.png) no-repeat top left;
     }
 
     .banner:before {
         right: 0;
-        background: url(/WebUI/images/shadow-bg.png) no-repeat top right;
+        background: url(/frontend/img/shadow-bg.png) no-repeat top right;
     }
 
     .banner a {
@@ -3243,7 +3243,7 @@ ul.list_order {
     }
 
     .banner.colored {
-        background: #16b7cd url(/WebUI/images/banner_bg_colored.png) no-repeat center bottom;
+        background: #16b7cd url(/frontend/img/banner_bg_colored.png) no-repeat center bottom;
         color: #fff;
     }
 
@@ -3711,7 +3711,7 @@ ul.plan-features {
     left: -7px;
     top: -7px;
     display: block;
-    background: url(/WebUI/images/ribbon.png) no-repeat 0 0;
+    background: url(/frontend/img/ribbon.png) no-repeat 0 0;
     z-index: 101;
 }
 
@@ -3760,7 +3760,7 @@ ul.plan-features {
 	left: -5px;
 	top: -5px;
 	display: block;
-	background: url(/WebUI/images/ribbon.png) no-repeat 0 0;
+	background: url(/frontend/img/ribbon.png) no-repeat 0 0;
 	z-index: 101;
 }
 
@@ -3923,7 +3923,7 @@ ul.plan-features {
     color: #fff;
     text-align: center;
     text-transform: uppercase;
-    background: url(/WebUI/images/badge_save.png);
+    background: url(/frontend/img/badge_save.png);
     font-size: 11px;
     line-height: 12px;
     padding-top: 32px;
@@ -3942,7 +3942,7 @@ ul.plan-features {
 /* Promo_full (v.1.7)*/
 .promo_full {
     height: auto;
-    background: url(/WebUI/images/home_bg_2.jpg) no-repeat center center;
+    background: url(/frontend/img/home_bg_2.jpg) no-repeat center center;
     background-attachment: fixed;
     background-size: cover;
     -webkit-background-size: cover;
@@ -4205,7 +4205,7 @@ a#lang_link, a#currency_link {
 /*-------- 5.2 Footer styles --------*/
 /* Footer 3 */
 /*footer#pattern_2 {
-	background: #333 url(/WebUI/images/pattern_3.png) repeat 0 0;
+	background: #333 url(/frontend/img/pattern_3.png) repeat 0 0;
 }
 
 footer #logo {
@@ -4256,7 +4256,7 @@ footer #logo {
 /* Footer 5 */
 /*ul.tweet_list li{
 	padding-left: 30px;
-	background: url(/WebUI/images/twitter_icon.svg) no-repeat 0 5px;
+	background: url(/frontend/img/twitter_icon.svg) no-repeat 0 5px;
 }
 .tweets-next,
 .tweets-prev {
@@ -4300,7 +4300,7 @@ a.bx-next, a.bx-prev {
 
 /* Footer 6 */
 /*footer#pattern_3 {
-	background: #333 url(/WebUI/images/pattern_4.png) repeat 0 0;
+	background: #333 url(/frontend/img/pattern_4.png) repeat 0 0;
 }
 footer .post{
 	position:relative;
@@ -4335,7 +4335,7 @@ footer.post i{
 
 /* Footer 7 */
 /*footer#pattern_4 {
-	background: #333 url(/WebUI/images/pattern_5.png) repeat 0 0;
+	background: #333 url(/frontend/img/pattern_5.png) repeat 0 0;
 }
 
 footer .gallery-image {
@@ -5436,7 +5436,7 @@ color:#16b7cd;
 }
 
 .summary-table {
-    background: rgba(44,62,80,0.7) url( /WebUI/images/pattern_5.png); color: #fff;
+    background: rgba(44,62,80,0.7) url( /frontend/img/pattern_5.png); color: #fff;
 }
 
         .summary-table span {

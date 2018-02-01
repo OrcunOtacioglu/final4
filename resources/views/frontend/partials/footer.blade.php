@@ -70,8 +70,8 @@
                     </ul>
                 </div>
                 <div class="col-md-4 ">
-                    <img src="http://tripoki.com/Content/WebUI/images/pay-logos.png" class="pay-logos fr ml10 mt5" />
-                    <img src="http://tripoki.com/Content/WebUI/images/ssl.png" class="lSSlide fr" />
+                    <img src="{{ asset('frontend/img/pay-logos.png') }}" class="pay-logos fr ml10 mt5" />
+                    <img src="{{ asset('frontend/img/ssl.png') }}" class="lSSlide fr" />
                 </div>
             </div>
         </div>

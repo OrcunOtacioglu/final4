@@ -54,7 +54,7 @@
         <!-- Header Area -->
         <section class="parallax-window" data-parallax="scroll" style="height: 350px; min-height: 350px;">
             <div class="widget-overlay transtation"></div>
-            <img alt="Image" class="img-blur sp-image hotel-top-image" src="/img/cover-photos/{{ $event->cover_photo }}">
+            <img alt="Image" class="img-blur sp-image hotel-top-image" src="{{ $event->cover_photo }}">
             <div class="parallax-content-2">
                 <div class="container" id="wrapper">
                     <div class="row">
@@ -136,9 +136,11 @@
                 </div>
 
                 <div class="col-md-4">
+
+                    <!-- Rates of the Event -->
                     <div class="back-white p15">
                         <h3>Package Categories</h3>
-                        <img src="/img/venue-photos/{{ $event->seatMap->venue->photo }}" alt="" class="img-responsive">
+                        <img src="{{ $event->seatMap->category_map_photo }}" alt="" class="img-responsive">
                         <div class="rate-list">
                             <div class="rate p10 mb10" style="border-left: 3px solid #e7983b">
                                 <div class="row">
@@ -146,7 +148,7 @@
                                         <p class="rate-name">Hospitality Package</p>
                                     </div>
                                     <div class="col-md-4 text-center">
-                                        <a href="#" class="btn btn-xs btn-primary">More Info</a>
+                                        <a href="#" class="btn btn-xs btn-primary">Request Info</a>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -173,7 +175,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ \Acikgise\Helpers\Helpers::formatMoney($rate->price/100) }}</p>
                                             </div>
                                             <div class="col-md-4 text-center">
                                                 <small class="color-green">Available</small>
@@ -216,7 +218,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-8">
-                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ $rate->price }}€</p>
+                                                <p class="text-muted m0" style="font-size: 12px">Starting from {{ \Acikgise\Helpers\Helpers::formatMoney($rate->price/100) }}</p>
                                             </div>
                                             <div class="col-md-4 text-center">
                                                 <small class="color-green">Available</small>
@@ -227,6 +229,8 @@
                             @endforeach
                         </div>
                     </div>
+                    <!-- End Rates of the Event -->
+
                 </div>
             </div>
         </div>
@@ -240,15 +244,66 @@
     </script>
     <script>
         function initMap() {
-            var uluru = {lat: 44.814146, lng: 20.421289};
+            var kombankArena = {
+                info: '<strong>Kombank Arena</strong>',
+                lat: 44.814146,
+                lng: 20.421289
+            };
+            var holidayInn = {
+                info: '<strong>Holiday Inn Belgrade</strong>',
+                lat: 44.809755,
+                lng: 20.414288,
+            };
+            var falkensteiner = {
+                info: '<strong>Falkensteiner Hotel</strong>',
+                lat: 44.823648,
+                lng: 20.41622,
+            };
+            var hotelPrag = {
+                info: '<strong>Hotel Prag</strong>',
+                lat: 44.810905,
+                lng: 20.459725
+            };
+            var lifeDesign = {
+                info: '<strong>Life Design Hotel</strong>',
+                lat: 44.811295,
+                lng: 20.46033
+            };
+            var radissonBlu = {
+                info: 'strong>Radisson Blu Old Mill</strong>',
+                lat: 44.797564,
+                lng: 20.447181
+            };
+            var locations = [
+                [kombankArena.info, kombankArena.lat, kombankArena.lng, 0],
+                [holidayInn.info, holidayInn.lat, holidayInn.lng, 1],
+                [falkensteiner.info, falkensteiner.lat, falkensteiner.lng, 2],
+                [hotelPrag.info, hotelPrag.lat, hotelPrag.lng, 3],
+                [lifeDesign.info, lifeDesign.lat, lifeDesign.lng, 4],
+                [radissonBlu.info, radissonBlu.lat, radissonBlu.lng, 5]
+            ];
             var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
-                center: uluru
+                center: {lat: 44.814146, lng: 20.421289},
             });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
+
+            var marker, i;
+
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                    map: map
+                });
+
+                var infoWindow = new google.maps.InfoWindow({});
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(locations[i][0]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+            }
         }
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

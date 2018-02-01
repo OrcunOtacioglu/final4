@@ -27,6 +27,9 @@
                     <span>Check out</span>
                     <h3 class="ng-binding">21/05/2018</h3>
                 </div>
+                <div class="col-sm-2">
+                    <a href="" class="modify-search-btn t-center" style="width:100%;display:inline-block;margin-top:2px;">3 NIGHTS</a>
+                </div>
             </div>
         </div>
     </div>
