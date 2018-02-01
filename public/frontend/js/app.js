@@ -30853,7 +30853,7 @@ var render = function() {
                 _c("ul", [
                   _c("li", {}, [
                     _c("a", {
-                      staticClass: "transtation flight",
+                      staticClass: "transtation",
                       attrs: { href: event.url }
                     }),
                     _vm._v(" "),

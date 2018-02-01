@@ -38,7 +38,7 @@
 	
 	ul#top_tools,
 	.sticky ul#top_tools {
-		margin: 0px 55px 0 0;
+		margin: 0 55px 0 0;
 	}
 
     header {
@@ -179,12 +179,10 @@
 	
 	.row-height {
 		height: auto;
-		min-height: ;
 	}
 	
 	.content-left {
 		height: auto;
-		min-height: ;
 		overflow-y: scroll;
 	}
 	
@@ -244,12 +242,10 @@
 	
 	.row-height {
 		height: auto;
-		min-height: ;
 	}
 	
 	.content-left {
 		height: auto;
-		min-height: ;
 		overflow-y: scroll;
 	}
 	
@@ -366,7 +362,7 @@
 		height: 50px;
 		margin: 0;
 		font-weight: 400;
-		-moz-appearance: window;
+		-moz-appearance: inherit;
 		-webkit-appearance: none;
 		cursor: pointer;
 		color: #888;
@@ -609,8 +605,8 @@
 	
 	.col-md-4.plan:first-child,
 	.col-md-4.plan:last-child {
-		margin-right: 0px;
-		margin-left: 0px;
+		margin-right: 0;
+		margin-left: 0;
 		border-width: 1px 1px 1px 1px;
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
@@ -674,7 +670,7 @@
 	
 	#lang_link:before,
 	#currency_link:before {
-		text-indent: 0px;
+		text-indent: 0;
 		font-size: 20px;
 	}
 	
@@ -693,7 +689,7 @@
 	
 	#wishlist_link:before,
 	#access_link:before {
-		text-indent: 0px;
+		text-indent: 0;
 		font-size: 20px;
 	}
 	/* New v3.2 */

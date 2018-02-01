@@ -25,10 +25,10 @@
     <!-- End Meta Tags -->
 
     <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('WebUI/images/favicon/favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('WebUI/images/favicon/apple-icon-57x57.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('WebUI/images/favicon/apple-icon-114x114.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('WebUI/images/favicon/apple-icon-144x144.png') }}">
+    <link rel="shortcut icon" href="{{ asset('frontend/img/favicon/favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('frontend/img/favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('frontend/img/favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('frontend/img/favicon/apple-icon-144x144.png') }}">
 
     <!-- Stylesheets -->
     @include('frontend.assets.global-css')

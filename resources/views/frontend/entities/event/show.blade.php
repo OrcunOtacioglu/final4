@@ -9,7 +9,7 @@
 @stop
 
 @section('custom.css')
-    <link rel="stylesheet" href="{{ asset('WebUI/css/hoteldetail.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/hoteldetail.css') }}">
     <style>
         #logo_home h1 a {
             margin-top: 8px;
@@ -46,7 +46,7 @@
             background-color: grey;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 @stop
 
 @section('content')
@@ -307,7 +307,7 @@
         }
     </script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="{{ asset('js/frontend/plugins/axios.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/plugins/axios.min.js') }}"></script>
     <script>
         function setSeatSelectionCookie(zone) {
             var eventID = $('meta[name="event"]').attr('content');

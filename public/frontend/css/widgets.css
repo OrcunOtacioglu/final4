@@ -117,7 +117,7 @@
         padding-left: 10px !important;
         width: 10px;
         height: 10px;
-        margin:0px;
+        margin:0;
     }
 
 .puzzle-content .content-box {
@@ -142,9 +142,9 @@
         -moz-transition: top .3s;
         transition: top .3s;
         position: absolute;
-        right: 0px;
+        right: 0;
         top: 50%;
-        left: 0px;
+        left: 0;
         color: #fff;
         z-index: 1;
         margin-top: -5px;
@@ -186,15 +186,15 @@
     }
 
         .puzzle-content.animated .content-box .text-container .group-btn ul li a.flight{
-            background:url("/Content/WebUI/images/plane.png")no-repeat top center;
+            background:url("/frontend/img/plane.png")no-repeat top center;
         }
 
         .puzzle-content.animated .content-box .text-container .group-btn ul li a.hotel {
-            background: url("/Content/WebUI/images/hotel.png")no-repeat top center;
+            background: url("/frontend/img/hotel.png")no-repeat top center;
         }
 
         .puzzle-content.animated .content-box .text-container .group-btn ul li a.car {
-            background: url("/Content/WebUI/images/car.png")no-repeat top center;
+            background: url("/frontend/img/car.png")no-repeat top center;
         }
         
         .puzzle-content .content-box img {
@@ -211,7 +211,7 @@
         font-size: 30px;
         color: #fff;
         margin: 0;
-        right: 0px;
+        right: 0;
         text-align: center;
         z-index: 2;
         font-weight:600;
@@ -220,7 +220,6 @@
 .puzzle-content .text-container p {
     color: #fff;
     font-size: 16px;
-    color: #fff;
     margin-top: 5px !important;
     text-align: center;
     z-index: 2;

@@ -15,7 +15,7 @@
                              style="border-bottom: 1px solid rgba(255,255,255,0.4);"></div>
                         <ul>
                             <li class="">
-                                <a v-bind:href="event.url" class="transtation flight"></a>
+                                <a v-bind:href="event.url" class="transtation"></a>
                                 <p class="m0 font-11">Buy Tickets</p>
                             </li>
                         </ul>

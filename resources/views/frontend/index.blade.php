@@ -3,7 +3,7 @@
 @section('title', 'Special Events and Tours')
 
 @section('custom.css')
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 @stop
 
 @section('content')

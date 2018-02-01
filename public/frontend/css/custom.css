@@ -26,7 +26,7 @@
     HEADER
  **/
 .main-page {
-    background-image: url("/img/authentication-bg-1.jpg");
+    background-image: url("/frontend/img/hero-banner.jpg");
     height: 700px;
     background-size: cover;
     background-position: center;
