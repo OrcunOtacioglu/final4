@@ -40,23 +40,15 @@ class Event extends Model
     {
         $event = new Event();
 
-        $event->seat_map_id = $request->seat_map_id;
+        $event->reference = str_random(12);
 
         $event->name = $request->name;
+        $event->subtitle = $request->subtitle;
         $event->slug = Helpers::generateSlug($request->name);
         $event->description = $request->description;
-        $event->cover_photo = Helpers::uploadImage($request, 'cover-photos', 'cover_photo');
-
-        $event->start_date = Helpers::getDateTimeFormat($request->start_date);
-        $event->end_date = Helpers::getDateTimeFormat($request->end_date);
-        $event->on_sale_date = Helpers::getDateTimeFormat($request->on_sale_date);
-
+        $event->contact = $request->contact;
         $event->category = $request->category;
-        $event->status = $request->status;
         $event->listing = $request->listing;
-
-        $event->is_seated = $request->is_seated;
-        $event->allow_only_ticket_purchase = $request->allow_only_ticket_purchase;
 
         $event->created_at = Carbon::now();
         $event->updated_at = Carbon::now();

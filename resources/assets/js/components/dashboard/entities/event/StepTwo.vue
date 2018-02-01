@@ -1,0 +1,291 @@
+<template>
+    <!-- End Basic Information Setup -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- Basic Setup -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary panel-line dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Basic Information</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Event Name -->
+                                    <div class="form-group">
+                                        <label for="name">Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" v-model="event.name" placeholder="Make it a short and catchy title">
+                                    </div>
+                                    <!-- End Event Name -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="subtitle">Subtitle</label>
+                                        <input type="text" name="subtitle" id="subtitle" class="form-control" v-model="event.subtitle" placeholder="e.g. Weekend Pass">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <!-- Event Description -->
+                                    <div class="form-group">
+                                        <label for="description" class="mb-0">Description</label>
+                                        <span class="text-help m-0">This description will appear on the event listing page.</span>
+                                        <textarea name="description" id="description" cols="30" rows="5" class="form-control" v-model="event.description"></textarea>
+                                    </div>
+                                    <!-- End Event Description -->
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="contact" class="mb-0">Contact details</label>
+                                        <span class="text-help m-0">Your contact information is kept private and shown only to attendees who book a ticket.</span>
+                                        <input type="text" class="form-control" name="contact" id="contact" v-model="event.contact" placeholder="Enter an email address or phone number">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Event Category -->
+                                    <div class="form-group">
+                                        <label for="category">Add a category</label>
+                                        <select name="category" id="category" v-model="event.category" class="form-control">
+                                            <option value="">Select category</option>
+                                            <option v-for="option in options" :value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <!-- End Event Category -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!-- Event Listing -->
+                                    <div class="form-group">
+                                        <label for="listing">Who can see the event?</label>
+                                        <select name="listing" id="listing" v-model="event.listing" class="form-control">
+                                            <option value="">Select listing option</option>
+                                            <option value="1">Public</option>
+                                            <option value="0">Private</option>
+                                        </select>
+                                    </div>
+                                    <!-- End Event Listing -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Basic Setup -->
+
+            <!-- Rate Setup -->
+            <rate-setup></rate-setup>
+            <!-- End Rate Setup -->
+
+            <!-- Location Setup -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary panel-line dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">When and where is the event?</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <!-- Event Start Date -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="start_date">Event starts</label>
+                                        <div class="input-group">
+                                            <input type="text" name="start_date" id="start_date" class="form-control dateTime">
+                                            <div class="input-group-addon">
+                                                <i class="icon wb-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Event Start Date -->
+                                <!-- Event End Date -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="end_date">Event ends</label>
+                                        <div class="input-group">
+                                            <input type="text" name="end_date" id="end_date" class="form-control dateTime">
+                                            <div class="input-group-addon">
+                                                <i class="icon wb-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Event End Date -->
+                                <!-- Event OnSale Date -->
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="on_sale_date">Sales start</label>
+                                        <div class="input-group">
+                                            <input type="text" name="on_sale_date" id="on_sale_date" class="form-control dateTime">
+                                            <div class="input-group-addon">
+                                                <i class="icon wb-calendar"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Event OnSale Date -->
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!-- Event Seated or Not -->
+                                    <div class="form-group">
+                                        <label for="is_seated">Have seating map?</label>
+                                        <select name="is_seated" id="is_seated" class="form-control">
+                                            <option value="0">No</option>
+                                            <option value="1">Yes</option>
+                                        </select>
+                                    </div>
+                                    <!-- End Event Seated or Not -->
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="seat_map_id">Choose seatmap if seated</label>
+                                        <select name="seat_map_id" id="seat_map_id" class="form-control">
+                                            <option value="">Choose SeatMap</option>
+
+                                            <option value=""></option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="city">Host city</label>
+                                        <input type="text" class="form-control" name="city" id="city">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="country">Host country</label>
+                                        <input type="text" class="form-control" name="country" id="country">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea name="address" id="address" cols="30" rows="3" class="form-control"></textarea>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="longitude">Longitude</label>
+                                                <input type="text" class="form-control" name="longitude" id="longitude">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="latitude">Latitude</label>
+                                                <input type="text" class="form-control" name="latitude" id="latitude">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <span class="text-help">Google maps placeholder</span>
+                                    <img src="http://via.placeholder.com/500x330" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Location Setup -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary panel-line dashboard-panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Design your event</h3>
+                        </div>
+                        <div class="panel-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation -->
+            <div class="col-md-12">
+                <div class="confirmation-footer">
+                    <div class="container">
+                        <div class="row ml-0 mr-0">
+                            <div class="col-md-9">
+                                <p class="text-muted">You can edit these details at any time.</p>
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <button class="btn btn-success" v-on:click="sendEventData()">
+                                    Next Step <i class="icon ti-angle-double-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Confirmation -->
+        </div>
+    </div>
+</template>
+
+<script>
+    export default {
+        data: function () {
+            return {
+                eventID: $('meta[name=event]').attr("content"),
+                options: [],
+                event: {}
+            }
+        },
+        methods: {
+            setOptions: function () {
+                this.options = [
+                    { text: 'Business', value: 'business' },
+                    { text: 'Comedy', value: 'comedy' },
+                    { text: 'Fashion', value: 'fashion' },
+                    { text: 'Festival', value: 'festival' },
+                    { text: 'Performance', value: 'performance' },
+                    { text: 'Tech', value: 'tech' },
+                    { text: 'Sports', value: 'sports' }
+                ]
+            },
+            getEvent: function () {
+                axios.get('/dashboard/event/' + this.eventID)
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.setEvent(response);
+                        }
+                    })
+                    .catch(error => {
+                        swal({
+                            title: 'Ooops! Something went wrong!',
+                            text: error,
+                            icon: 'error',
+                            button: true,
+                            timer: 3000
+                        })
+                    })
+            },
+            setEvent: function (response) {
+                this.event = response.data;
+            }
+        },
+        mounted() {
+            this.getEvent();
+            this.setOptions();
+        }
+    }
+</script>
+
+<style scoped>
+
+</style>

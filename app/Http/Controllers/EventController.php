@@ -41,7 +41,7 @@ class EventController extends Controller
     {
         $event = Event::createNew($request);
 
-        return redirect()->action('EventController@edit', ['id' => $event->id]);
+        return response()->json($event, 201);
     }
 
     public function show($slug)
@@ -100,5 +100,19 @@ class EventController extends Controller
             'event' => $request->eventId
         ];
         return response()->json($data, 200);
+    }
+
+    public function eventInfo($id)
+    {
+        $event = Event::findOrFail($id);
+
+        return response()->json($event, 200);
+    }
+
+    public function rates($id)
+    {
+        $event = Event::findOrFail($id);
+
+        return response()->json($event->rates, 200);
     }
 }

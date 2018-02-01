@@ -42,6 +42,8 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/sale', 'SaleController');
     Route::resource('/booking', 'BookingController');
     Route::resource('/event', 'EventController', ['except' => 'show']);
+    Route::get('/event/{id}', 'EventController@eventInfo');
+    Route::get('/event/{id}/rate', 'EventController@rates');
     Route::resource('/venue', 'VenueController');
     Route::resource('/seat-map','SeatMapController');
     Route::post('/confirmation-mail/{saleReference}', 'SaleController@sendConfirmationMail');

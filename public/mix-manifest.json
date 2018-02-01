@@ -1,5 +1,5 @@
 {
+    "/admin/js/core/dashboard.js": "/admin/js/core/dashboard.js",
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css",
-    "/admin/js/core/dashboard.js": "/admin/js/core/dashboard.js"
+    "/css/app.css": "/css/app.css"
 }
