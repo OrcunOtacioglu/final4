@@ -21,7 +21,7 @@
 
         .theiaStickySidebar:after {content: ""; display: table; clear: both;}
     </style>
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 @stop
 
 @section('content')

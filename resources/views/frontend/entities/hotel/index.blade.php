@@ -3,9 +3,9 @@
 @section('title', 'Choose your hotel')
 
 @section('custom.css')
-    <link rel="stylesheet" href="{{ asset('WebUI/css/hotels.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/frontend/plugins/fotorama/fotorama.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/hotels.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/plugins/fotorama/fotorama.css') }}">
 @stop
 
 @section('content')
@@ -44,7 +44,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="img_list back-black">
                                     <a href="#" data-toggle="modal" data-target="#{{ $hotel->reference }}G">
-                                        <img src="/img/hotel-images/{{ $hotel->media_path }}/1.jpg" alt="">
+                                        <img src="/img/hotel-images/life_design_hotel/1.jpg" class="img-responsive" alt="">
                                         <i class="icon-camera-6"></i>
                                     </a>
                                 </div>
@@ -55,7 +55,7 @@
                                         <strong>{{ $hotel->name }}</strong>
                                     </h3>
                                     <div class="rating">
-                                        <img src="{{ asset('WebUI/images/stars/4.png') }}" alt="">
+                                        <img src="{{ asset('frontend/img/stars/4.png') }}" alt="">
                                     </div>
                                     <p class="hotel-list-info">{{ substr($hotel->description, 0, 180) }}...</p>
                                     <a href data-toggle="modal" data-target="#{{ $hotel->reference }}M" class="show-map w100 p0 relative font-600">
@@ -105,7 +105,7 @@
 @stop
 
 @section('footer.scripts')
-    <script src="{{ asset('js/frontend/plugins/maps.js') }}"></script>
+    <script src="{{ asset('frontend/js/plugins/maps.js') }}"></script>
     <script>
         @foreach($hotels as $hotel)
             $('#{{ $hotel->reference }}M').on('shown.bs.modal', function () {
@@ -117,5 +117,5 @@
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdpMB_vp0CXlEy49kSEO42duzmTXbTMQw">
     </script>
     {{--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>--}}
-    <script src="{{ asset('js/frontend/plugins/fotorama.js') }}"></script>
+    <script src="{{ asset('frontend/js/plugins/fotorama.js') }}"></script>
 @stop
