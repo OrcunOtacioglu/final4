@@ -73,43 +73,7 @@
             </li>
             <!-- End Search Bar -->
 
-            <!-- Shopping Cart -->
-            <li>
-                <div class="dropdown dropdown-cart">
-                    <a id="basketicon" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <div class="cartloading" style="display:none;">
-                            <i class="font-50 loading-icon icon-spin6 animate-spin" style="position: absolute; z-index: 1;"></i>
-                        </div>
-                        <i class="pe-7s-cart font-26"></i>
-                        <span class="cart-length">1</span>
-                    </a>
-                    <ul class="dropdown-menu" id="cart_items">
-                        <li class="relative cart-items">
-                            <div id="loading-1" style="display:none;">
-                                <i class="font-50 loading-icon icon-spin6 animate-spin" style="position: absolute; z-index: 1;margin-left: 330px; "></i>
-                            </div>
-                            <div class="cart-wrapper w100 p0">
-                                <div class="image">
-                                    <img src="/" alt="image">
-                                </div>
-                                <div class="font-12 mb5 text-dot color-black pr30">Turkish Airlines Euroleague</div>
-                                {{--<span class="font-bold font-14 color-black">157 €</span>--}}
-                            </div>
-                            <a class="action remove-basket" style="cursor:pointer;">
-                                <i class="icon-trash"></i>
-                            </a>
-                        </li>
-                        <li class="">
-                            <div class="col-sm-6 p8 font-bold font-14" style="padding-left:0 !important; padding-right:0 !important;">
-                                Total:
-                                {{--<span>157 €</span>--}}
-                            </div>
-                            <a href="/hotel" class="button_drop outline">PROCEED</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <!-- End Shopping Cart -->
+            <cart ref="cart"></cart>
         </ul>
         <!-- End Search Bar & Cart -->
     </div>
