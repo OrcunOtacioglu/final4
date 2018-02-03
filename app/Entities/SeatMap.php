@@ -12,8 +12,10 @@ class SeatMap extends Model
     protected $table = 'seat_maps';
 
     protected $fillable = [
-        'venue_id',
+        'reference',
+        'event_id',
         'name',
+        'category_map_photo',
         'mapping'
     ];
 

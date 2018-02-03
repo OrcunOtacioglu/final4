@@ -33,7 +33,7 @@ class Event extends Model
 
     public function seatMap()
     {
-        return $this->hasOne(SeatMap::class, 'id', 'seat_map_id');
+        return $this->hasOne(SeatMap::class);
     }
 
     public static function createNew(Request $request)

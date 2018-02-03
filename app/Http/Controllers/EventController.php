@@ -6,6 +6,7 @@ use App\Entities\Event;
 use App\Entities\SeatMap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use JavaScript;
 use Jenssegers\Agent\Facades\Agent;
 
 class EventController extends Controller
@@ -21,7 +22,7 @@ class EventController extends Controller
                 'name' => $event->name,
                 'url' => env('APP_URL') . '/event/' . $event->slug,
                 'description' => $event->description,
-                'cover_photo' => '/img/cover-photos/' . $event->cover_photo,
+                'cover_photo' => $event->cover_photo,
             ];
 
             array_push($data, $singleEvent);
@@ -49,7 +50,8 @@ class EventController extends Controller
         // @TODO Add Venue mapping for the Event and detect the mobile users. If the user
         // @is not on mobile device, show seat mapping.
         $event = Event::where('slug', '=', $slug)->first();
-        $rates = $event->rates;
+        $rates = $event->rates->where('available_online', '=', true);
+
 
         if (Agent::isMobile() || Agent::isTablet()) {
             return 'This is mobile.';
@@ -88,7 +90,7 @@ class EventController extends Controller
     public function seatSelection($id)
     {
         $event = Event::findOrFail($id);
-        $rates = $event->rates;
+        $rates = $event->rates->where('available_online', '=', true);
 
         return view('frontend.entities.event.seat-selection', compact('event', 'rates'));
     }

@@ -198,7 +198,7 @@ class ZoneController extends Controller
 
                 $seat->rate_id = $object['categoryID'] == 0 ? null : $object['categoryID'];
                 $seat->zone_id = $id;
-                $seat->order_id = null;
+                $seat->cart_id = null;
                 $seat->reference = $object['reference'];
                 $seat->category = $object['category'];
                 $seat->row = $object['row'];
