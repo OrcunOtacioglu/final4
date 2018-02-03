@@ -14,29 +14,6 @@ var canvas = new fabric.Canvas('venue', {
     selection: false
 });
 var eventID = $('meta[name="event"]').attr('content');
-//
-// axios({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     },
-//     method: 'get',
-//     url: '/event/' + eventID + '/seat-map'
-// })
-//     .then(function (response) {
-//         canvas.loadFromJSON(response.data, canvas.renderAll.bind(canvas));
-//         canvas.off('mouse:down');
-//         canvas.on('mouse:down', function (el) {
-//             var zone = el.target;
-//
-//             if (zone === null) {
-//                 return false;
-//             }
-//
-//             if (zone.type === 'zone') {
-//                 getSeatsOf(zone.name);
-//             }
-//         })
-//     });
 
 /**
  * Sets height and width of canvas for responsive changes.
@@ -53,28 +30,13 @@ function responsiveWidth() {
 function watchResponsive() {
     var venue = $('#venue');
     $(window).resize(function () {
-        $('#sidebar').height(responsiveHeight());
         venue.height(responsiveHeight());
         venue.width(responsiveWidth());
     });
 }
 
-/**
- * Sets sidebar and category wrapper heights
- * @returns {jQuery}
- */
-function setSidebarHeight()
-{
-    return $('#sidebar').height(responsiveHeight());
-}
-
-function setCategoriesHeight()
-{
-    return $('#categories').height(responsiveHeight());
-}
-
 var cart = new Vue({
-    el: '#sidebar',
+    el: '#cart',
     data: {
         items: [],
         displayCart: false
@@ -170,7 +132,6 @@ function getSeatsOf(zone) {
     axios.get('/zone/data/' + zone)
         .then(function (response) {
             drawSeats(response.data.objects);
-            appendZoneView(zone);
         })
         .catch(function (error) {
             console.log(error);
@@ -192,7 +153,6 @@ function drawSeats(objects) {
     canvas.clear();
     canvas.off('mouse:down');
     canvas.loadFromJSON(seats, canvas.renderAll.bind(canvas));
-
     canvas.setZoom(0.66);
     canvas.setZoom(canvas.getZoom() * 1.3);
 
@@ -203,37 +163,52 @@ function drawSeats(objects) {
         if (seat === null) {
             return false;
         } else {
+            var item = {};
             if (seat.status === '1') {
-                if (cart.getItemCount() >= 8) {
+                if (app.__vue__.$refs.cart.getItemCount() >= 8) {
                     swal('Oops!', 'You can not purchase more than 8 tickets per purchase!', 'warning');
                 } else {
                     seat.set('status', '5');
                     seat.set('stroke', '#89BCEB');
                     seat.set('fill', '#89BCEB');
-                    cart.add(seat);
+
+                    item = {
+                        'reference': seat.reference,
+                        'type': seat.type,
+                        'name': seat.category,
+                        'zone': seat.zone,
+                        'row': seat.row,
+                        'number': seat.number
+                    };
+
+                    app.__vue__.$refs.cart.add(item);
                     canvas.renderAll();
                 }
             } else if (seat.status === '5') {
                 seat.setStatus('1');
                 seat.set('stroke', '#46BE8A');
                 seat.set('fill', '#46BE8A');
-                cart.remove(seat);
+                item = {
+                    'reference': seat.reference,
+                    'type': seat.type,
+                    'name': seat.category,
+                    'zone': seat.zone,
+                    'row': seat.row,
+                    'number': seat.number
+                };
+                app.__vue__.$refs.cart.remove(item);
                 canvas.renderAll();
             }
         }
     })
 }
 
-function appendZoneView(zone) {
-    $('#zone-view').html('<img src="/img/zone-images/' + zone + '.png" class="img-responsive">')
-}
-
 /**
  * Initialize application.
  */
 $(document).ready(function () {
-    setSidebarHeight();
     watchResponsive();
-    setCategoriesHeight();
+    var zone = $('meta[name="zone"]').attr('content');
+    getSeatsOf(zone);
     canvas.setZoom(canvas.getZoom() / 1.5);
 });
