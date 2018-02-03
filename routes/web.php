@@ -10,6 +10,15 @@ Route::get('/event/{slug}', 'EventController@show');
 Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
 Route::post('/set-zone', 'EventController@setZone');
 
+
+/**
+ * Cart Routes
+ */
+Route::get('/cart', 'CartController@index');
+Route::post('/cart', 'CartController@store');
+Route::put('/cart/{id}', 'CartController@update');
+Route::post('/calculate-cart', 'CartController@calculate');
+
 // New API
 Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');
 
