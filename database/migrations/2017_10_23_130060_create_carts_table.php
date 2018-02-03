@@ -21,16 +21,16 @@ class CreateCartsTable extends Migration
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('status');
+            $table->integer('status')->nullable();
 
-            $table->integer('cost');
-            $table->integer('subtotal');
-            $table->integer('comission');
-            $table->integer('fee');
-            $table->integer('tax');
-            $table->integer('total');
+            $table->integer('cost')->nullable();
+            $table->integer('subtotal')->nullable();
+            $table->integer('comission')->nullable();
+            $table->integer('fee')->nullable();
+            $table->integer('tax')->nullable();
+            $table->integer('total')->nullable();
 
-            $table->integer('currency_code');
+            $table->integer('currency_code')->nullable();
 
             $table->timestamps();
         });
