@@ -33,6 +33,10 @@ class CreateEventsTable extends Migration
             $table->dateTime('on_sale_date')->nullable();
 
             $table->boolean('is_seated')->nullable();
+            $table->integer('seat_map_id')->unsigned()->nullable();
+            $table->foreign('seat_map_id')->references('id')->on('seat_maps')->onDelete('set null');
+
+
             $table->boolean('allow_only_ticket_purchase')->nullable();
             $table->string('refund_policy')->nullable();
 
@@ -46,6 +50,7 @@ class CreateEventsTable extends Migration
             $table->string('timezone')->nullable();
 
             $table->string('cover_photo')->nullable();
+            $table->string('category_map_photo')->nullable();
 
             $table->timestamps();
         });

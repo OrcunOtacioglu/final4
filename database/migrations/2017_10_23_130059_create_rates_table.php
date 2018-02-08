@@ -27,7 +27,6 @@ class CreateRatesTable extends Migration
             $table->integer('cost')->nullable(); // Should be stored in cents
             $table->integer('profit_margin')->nullable();
             $table->integer('price')->nullable(); // Face value. Will be deprecated
-            $table->integer('minimum_profit_amount')->nullable();
 
             $table->string('zones')->nullable(); // Will be depracated if found a new way.
             $table->integer('available')->nullable();
@@ -35,12 +34,8 @@ class CreateRatesTable extends Migration
             $table->boolean('available_online')->nullable();
             $table->boolean('available_box_office')->nullable();
 
-            $table->integer('online_fee_percentage')->nullable();
-            $table->integer('box_office_fee_percentage')->nullable();
-
-            $table->integer('online_comission_percentage')->nullable();
-            $table->integer('box_office_comission_percentage')->nullable();
-
+            $table->integer('fee_percentage')->nullable();
+            $table->integer('comission_percentage')->nullable();
             $table->integer('tax_percentage')->nullable();
 
             $table->timestamps();

@@ -23,14 +23,15 @@ class CreateHotelRoomsTable extends Migration
 
             // General Hotel Room info
             $table->string('name')->nullable();
-            $table->integer('type')->nullable();
+            $table->string('room_type')->nullable();
+            $table->string('type');
 
             // Financial Hotel Room info
-            $table->integer('cost')->nullable(); // Should be stored in cents
-            $table->integer('profit_margin')->nullable();
+            $table->integer('cost')->nullable();
             $table->integer('comission_percentage')->nullable();
             $table->integer('fee_percentage')->nullable();
             $table->integer('tax_percentage')->nullable();
+            $table->integer('profit_margin')->nullable();
 
             // Additional Hotel Room info
             $table->jsonb('misc')->nullable();
