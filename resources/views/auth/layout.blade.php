@@ -1,16 +1,28 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <!-- Meta Tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    @yield('custom.meta')
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="title" content="Special Events on Tripoki">
+    <meta name="keywords" content="event, tour, special event">
+    <meta name="description" content="Tripoki offers special events and packages">
 
-    <title>@yield('title') | Detur Official Travel Agency</title>
+    <meta name="revisit-after" content="10 days">
+    <meta name="publisher" content="">
+    <meta name="copyright" content="">
+    <meta name="author" content="DETUR">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @yield('custom.meta')
+    <!-- End Meta Tags -->
+
+    <title>@yield('title') | Tripoki Events</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/general/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/general/custom.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/misc/authentication.css') }}">
+    @include('frontend.assets.global-css')
+    <link rel="stylesheet" href="{{ asset('frontend/css/misc/authentication.css') }}">
     @yield('custom.css')
 
     <!-- Custom Fonts -->
@@ -20,15 +32,15 @@
 </head>
 <body class="page-login-v2 layout-full page-dark">
 
-    <div class="page">
+    <div class="page" id="app">
         <div class="page-content">
             <div class="page-brand-info">
                 <div class="page-brand-info">
                     <div class="brand">
-                        <img class="brand-img" src="{{ asset('img/logo.png') }}">
-                        <h2 class="brand-text font-size-40">Official Travel Agency</h2>
+                        <img class="brand-img" src="{{ asset('frontend/img/tripoki-logo.png') }}">
+                        <h2 class="brand-text font-size-40">Tripoki Events</h2>
                     </div>
-                    <p class="font-size-20">Turkish Airlines EuroLeague Final Four 2018 Belgrade</p>
+                    <p class="font-size-20">Special Events & Hospitality Packages</p>
                 </div>
             </div>
             <div class="page-login-main">
@@ -38,11 +50,7 @@
         </div>
     </div>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('js/base/jquery-3.2.1.slim.min.js') }}"></script>
-    <script src="{{ asset('js/base/popper.min.js') }}"></script>
-    <script src="{{ asset('js/base/bootstrap.min.js') }}"></script>
+    @include('frontend.assets.global-js')
     @yield('footer.scripts')
 </body>
 </html>

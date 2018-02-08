@@ -169,10 +169,10 @@
     </div>
 
     <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6 col-md-6">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             <div class="form-group">
-                <button type="submit" class="btn btn-detur btn-block">
+                <button type="submit" class="btn btn-tripoki btn-block">
                     <i class="wb-user-add"></i> Register
                 </button>
             </div>

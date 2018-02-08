@@ -33,9 +33,9 @@
 
     <div class="form-group">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8">
-                <button type="submit" class="btn btn-detur btn-block">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+                <button type="submit" class="btn btn-tripoki btn-block">
                     <i class="wb-unlock"></i> Login
                 </button>
             </div>
@@ -44,9 +44,9 @@
 
     <div class="form-group">
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-8 text-center">
-                <a href="{{ route('password.request') }}">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 text-center">
+                <a href="{{ route('password.request') }}" class="tripoki-link">
                     Forgot Your Password?
                 </a>
             </div>
