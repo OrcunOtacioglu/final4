@@ -16,3 +16,27 @@
     z-index: 999;
     padding: 20px;
 }
+
+.custom-header {
+    color: #1C232B;
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+.required::after {
+    content: "*";
+    color: #FF6F56;
+}
+
+.advanced-rate-setup {
+    margin-left: -30px;
+    margin-right: -30px;
+    background: #f1f4f5;
+    margin-bottom: 15px;
+}
+
+.custom-card {
+    margin-bottom: 0;
+    padding: 10px 15px 0 15px;
+    background: #f1f4f5;
+}
