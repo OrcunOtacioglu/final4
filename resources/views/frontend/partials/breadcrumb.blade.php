@@ -10,17 +10,8 @@
                         </li>
                         <div class="fl breadline"></div>
                         <li>
-                            <a href="/">Events</a>
-                        </li>
-                        <div class="fl breadline"></div>
-                        <li>
                             <a href="" class="ng-binding">Sports</a>
                         </li>
-                        <div class="fl breadline"></div>
-                        <li>
-                            <a href="">Basketball</a>
-                        </li>
-
                         <div class="fl breadline"></div>
                         <li class="color-aqua">Euroleague Final Four</li>
                     </ul>
