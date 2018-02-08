@@ -4,20 +4,12 @@ Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
 
-//@TODO This should be implemented via API.
-Route::get('/event', 'EventController@index');
-Route::get('/event/{slug}', 'EventController@show');
-Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
-Route::post('/set-zone', 'EventController@setZone');
-
-
 /**
  * Cart Routes
  */
 Route::get('/cart', 'CartController@index');
-Route::post('/cart', 'CartController@store');
-Route::put('/cart/{id}', 'CartController@update');
-Route::post('/calculate-cart', 'CartController@calculate');
+Route::post('/cart', 'CartController@addItems');
+Route::post('/calculate/{cart}', 'CartController@calculate');
 
 // New API
 Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');
@@ -35,6 +27,12 @@ Route::get('/page/{slug}', 'PageController@show');
 Route::get('/profile/{id}', 'UserController@show');
 Route::put('/profile/{id}', 'UserController@profileUpdate');
 
+// New Routes
+Route::get('/event', 'EventController@index');
+Route::get('/event/{slug}', 'EventController@show');
+Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
+Route::post('/set-zone', 'EventController@setZone');
+
 /**
  * DASHBOARD ROUTES
  */
@@ -51,8 +49,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::resource('/sale', 'SaleController');
     Route::resource('/booking', 'BookingController');
     Route::resource('/event', 'EventController', ['except' => 'show']);
+    // New API
+    Route::get('/seatmap', 'SeatMapController@all');
     Route::get('/event/{id}', 'EventController@eventInfo');
     Route::get('/event/{id}/rate', 'EventController@rates');
+    Route::post('/event/{id}/photo/{columnName}', 'EventController@addPhoto');
     Route::resource('/venue', 'VenueController');
     Route::resource('/seat-map','SeatMapController');
     Route::post('/confirmation-mail/{saleReference}', 'SaleController@sendConfirmationMail');
