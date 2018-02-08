@@ -24,9 +24,10 @@ class CreateCartsTable extends Migration
             $table->integer('status')->nullable();
 
             $table->integer('cost')->nullable();
-            $table->integer('subtotal')->nullable();
             $table->integer('comission')->nullable();
             $table->integer('fee')->nullable();
+            $table->integer('profit')->nullable();
+            $table->integer('subtotal')->nullable();
             $table->integer('tax')->nullable();
             $table->integer('total')->nullable();
 
