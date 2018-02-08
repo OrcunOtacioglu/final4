@@ -14,14 +14,14 @@
                         <div class="col-md-6">
                             <!-- Event Name -->
                             <div class="form-group">
-                                <label for="name">Name</label>
+                                <label class="custom-header required" for="name">Name</label>
                                 <input type="text" name="name" id="name" class="form-control" v-model="name" placeholder="Make it a short and catchy title">
                             </div>
                             <!-- End Event Name -->
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="subtitle">Subtitle</label>
+                                <label class="custom-header" for="subtitle">Subtitle</label>
                                 <input type="text" name="subtitle" id="subtitle" class="form-control" v-model="subtitle" placeholder="e.g. Weekend Pass">
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                             <!-- Event Description -->
                             <div class="form-group">
-                                <label for="description" class="mb-0">Description</label>
+                                <label class="custom-header" for="description">Description</label>
                                 <span class="text-help m-0">This description will appear on the event listing page.</span>
                                 <textarea name="description" id="description" cols="30" rows="5" class="form-control" v-model="description"></textarea>
                             </div>
@@ -40,7 +40,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="contact" class="mb-0">Contact details</label>
+                                <label class="custom-header" for="contact">Contact details</label>
                                 <span class="text-help m-0">Your contact information is kept private and shown only to attendees who book a ticket.</span>
                                 <input type="text" class="form-control" name="contact" id="contact" v-model="contact" placeholder="Enter an email address or phone number">
                             </div>
@@ -51,7 +51,7 @@
                         <div class="col-md-6">
                             <!-- Event Category -->
                             <div class="form-group">
-                                <label for="category">Add a category</label>
+                                <label class="custom-header" for="category">Add a category</label>
                                 <select name="category" id="category" v-model="category" class="form-control">
                                     <option value="">Select category</option>
                                     <option v-for="option in options" :value="option.value">
@@ -64,7 +64,7 @@
                         <div class="col-md-6">
                             <!-- Event Listing -->
                             <div class="form-group">
-                                <label for="listing">Who can see the event?</label>
+                                <label class="custom-header" for="listing">Who can see the event?</label>
                                 <select name="listing" id="listing" v-model="listing" class="form-control">
                                     <option value="">Select listing option</option>
                                     <option value="1">Public</option>

@@ -12,6 +12,7 @@ window.Vue = require('vue');
 Vue.component('step-one', require('./components/dashboard/entities/event/StepOne'));
 Vue.component('step-two', require('./components/dashboard/entities/event/StepTwo'));
 Vue.component('rate-setup', require('./components/dashboard/entities/rate/RateSetup'));
+Vue.component('new-rate', require('./components/dashboard/entities/rate/NewRate'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -16,132 +16,127 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table class="table table-light">
-                                <thead>
-                                <tr>
-                                    <th>Ticket name</th>
-                                    <th>Availability</th>
-                                    <th>Cost</th>
-                                    <th class="text-nowrap">Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- New Rate Area -->
-                                <tr>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="rate" id="rate" placeholder="e.g. General Admission">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="qty" id="qty" placeholder="e.g. 100">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="price" id="price" placeholder="Cost">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn-toolbar" aria-label="Toolbar with button groups" role="toolbar">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-icon btn-pure btn-success">
-                                                    <i class="icon ti-save" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-icon btn-pure btn-primary" data-toggle="collapse" data-target="#advancedSetup" aria-expanded="false" aria-controls="advancedRateSetup">
-                                                    <i class="icon ti-settings" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-icon btn-pure btn-danger">
-                                                    <i class="icon ti-trash color-red" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td colspan="4">
-                                        <div class="collapse" id="advancedSetup">
-                                            <div class="card card-default">
-                                                <div class="card-block">
-                                                    <p>
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-                                                        ad squid. Nihil anim keffiyeh helvetica, craft beer labore
-                                                        wes anderson cred nesciunt sapiente ea proident.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- End New Rate Area -->
-
-                                <!-- Rates List -->
-                                <tr v-for="rate in rates">
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="rate" :id="rate.reference + 'rate'" placeholder="e.g. General Admission">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="qty" :id="rate.reference + 'qty'">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <input type="text" class="form-control" name="price" :id="rate.reference + 'price'" placeholder="Cost">
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="btn-toolbar" aria-label="Toolbar with button groups" role="toolbar">
-                                            <div class="btn-group" role="group">
-                                                <button type="button" class="btn btn-icon btn-pure btn-success">
-                                                    <i class="icon ti-save" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-icon btn-pure btn-primary" data-toggle="collapse" :data-target="'#' + rate.reference + 'advancedSetup'" aria-expanded="false" aria-controls="advancedRateSetup">
-                                                    <i class="icon ti-settings" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" class="btn btn-icon btn-pure btn-danger">
-                                                    <i class="icon ti-trash color-red" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td colspan="4">
-                                        <div class="collapse" :id="rate.reference + 'advancedSetup'">
-                                            <div class="card card-default">
-                                                <div class="card-block">
-                                                    <p>
-                                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-                                                        ad squid. Nihil anim keffiyeh helvetica, craft beer labore
-                                                        wes anderson cred nesciunt sapiente ea proident.
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- End Rates List -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <label for="refund_policy">Set a refund policy</label>
-                                <select name="refund_policy" id="refund_policy" class="form-control">
-                                    <option value="1">Refunds available until 1 day before the event</option>
-                                    <option value="2">Refunds available until 2 days before the event</option>
-                                    <option value="3">Refunds available until 3 days before the event</option>
-                                    <option value="7">Refunds available until 7 days before the event</option>
-                                    <option value="30">Refunds available until 30 days before the event</option>
-                                    <option value="60">Refunds available until 60 days before the event</option>
-                                    <option value="90">Refunds available until 90 days before the event</option>
-                                    <option value="0">No refunds at any time</option>
-                                </select>
+                            <div class="row" style="border-bottom: 1px solid #E2E5E7; margin-bottom: 10px;">
+                                <div class="col-md-5">
+                                    <p class="custom-header required">Ticket name</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="custom-header">Availability</p>
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="custom-header">Cost</p>
+                                </div>
+                                <div class="col-md-3">
+                                    <p class="custom-header">Actions</p>
+                                </div>
                             </div>
-                            <p class="text-muted">If your refund policy is changed after tickets have been sold, the new policy will apply to future orders only.</p>
+                            <new-rate></new-rate>
+                            <div v-for="rate in rates">
+                                <!-- Single Rate Area -->
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="rate" id="rate" placeholder="e.g. General Admission" v-model="rate.name">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="qty" id="qty" placeholder="e.g. 100" v-model="rate.available">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="cost" id="cost" placeholder="Cost" v-model="rate.cost">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="btn-toolbar" aria-label="Toolbar with button groups" role="toolbar">
+                                            <div class="btn-group" role="group">
+                                                <button type="button" class="btn btn-icon btn-pure btn-success">
+                                                    <i class="icon ti-save" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-pure btn-primary" data-toggle="collapse" :data-target="'#' + rate.reference" aria-expanded="false" aria-controls="advancedRateSetup">
+                                                    <i class="icon ti-settings" aria-hidden="true"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-icon btn-pure btn-danger">
+                                                    <i class="icon ti-trash color-red" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row advanced-rate-setup">
+                                    <div class="col-md-12">
+                                        <div class="collapse" :id="rate.reference">
+                                            <div class="card card-default custom-card">
+                                                <div class="card-block" style="padding: 0;">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="color_code">Color code</label>
+                                                                <input type="text" name="color_code" id="color_code" class="form-control" v-model="rate.color_code">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="profit_margin">Profit margin</label>
+                                                                <input type="text" name="profit_margin" id="profit_margin" class="form-control" v-model="rate.profit_margin">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="price">Price</label>
+                                                                <input type="text" name="price" id="price" class="form-control" v-model="rate.price">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="available_online">Available online?</label>
+                                                                <select name="available_online" id="available_online" class="form-control" v-model="rate.available_online">
+                                                                    <option value="false">No</option>
+                                                                    <option value="true">Yes</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="available_box_office">Available box office?</label>
+                                                                <select name="available_box_office" id="available_box_office" class="form-control" v-model="rate.available_box_office">
+                                                                    <option value="false">No</option>
+                                                                    <option value="true">Yes</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="fee_percentage">Fee percentage</label>
+                                                                <input type="text" name="fee_percentage" id="fee_percentage" class="form-control" v-model="rate.fee_percentage">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="comission_percentage">Comission percentage</label>
+                                                                <input type="text" name="comission_percentage" id="comission_percentage" class="form-control" v-model="rate.comission_percentage">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group">
+                                                                <label class="custom-header" for="tax_percentage">Tax percentage</label>
+                                                                <input type="text" name="tax_percentage" id="tax_percentage" class="form-control" v-model="rate.tax_percentage">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Single Rate Area -->
+                            </div>
                         </div>
                     </div>
                 </div>
