@@ -30945,14 +30945,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
             this.calculateCart();
         },
-        // removeFromCart: function (item) {
-        //     item.set('stroke', '#46BE8A');
-        //     item.set('fill', '#46BE8A');
-        //     item.set('status', '1');
-        //     canvas.renderAll();
-        //
-        //     this.items.splice(this.items.indexOf(item), 1);
-        // },
         getItemCount: function getItemCount() {
             return this.items.length;
         },
@@ -31016,8 +31008,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         window.location.replace('/hotel');
                     }
                 }
-            }).catch(function (error) {});
+            }).catch(function (error) {
+                swal('Problem occured!', 'Please try again!', 'error');
+            });
+        },
+        getCart: function getCart() {
+            var cart = $('meta[name="cart"]').attr('content');
         }
+    },
+    mounted: function mounted() {
+        this.getCart();
     }
 });
 
