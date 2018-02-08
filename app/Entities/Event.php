@@ -2,28 +2,20 @@
 
 namespace App\Entities;
 
-use Acikgise\Helpers\Helpers;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Acikgise\Helpers\Helpers;
+use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
     protected $table = 'events';
 
     protected $fillable = [
-        'seat_map_id',
-        'name',
-        'slug',
-        'description',
-        'cover_photo',
-        'start_date',
-        'end_date',
-        'on_sale_date',
-        'category',
-        'status',
-        'listing',
-        'allow_only_ticket_purchase'
+        'reference', 'name', 'subtitle', 'slug', 'description', 'category', 'listing', 'contact', 'status',
+        'start_date', 'end_date', 'on_sale_date', 'is_seated', 'seat_map_id', 'allow_only_ticket_purchase',
+        'refund_policy', 'city', 'country', 'address', 'longitude', 'latitude', 'timezone', 'cover_photo',
+        'category_map_photo'
     ];
 
     public function rates()

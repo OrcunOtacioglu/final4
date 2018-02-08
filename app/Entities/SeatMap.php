@@ -9,20 +9,22 @@ use Illuminate\Support\Facades\Storage;
 
 class SeatMap extends Model
 {
+    /**
+     * Table name
+     *
+     * @var string
+     */
     protected $table = 'seat_maps';
 
+    /**
+     * Mass assignable fields.
+     *
+     * @var array
+     */
     protected $fillable = [
         'reference',
-        'event_id',
-        'name',
-        'category_map_photo',
-        'mapping'
+        'name'
     ];
-
-    public function venue()
-    {
-        return $this->belongsTo(Venue::class);
-    }
 
     public function zones()
     {
@@ -38,10 +40,8 @@ class SeatMap extends Model
     {
         $seatmap = new SeatMap();
 
-        $seatmap->venue_id = $request->venue_id;
+        $seatmap->reference = str_random(12);
         $seatmap->name = $request->name;
-
-        $seatmap->mapping = $request->mapping;
 
         $seatmap->created_at = Carbon::now();
         $seatmap->updated_at = Carbon::now();
@@ -55,13 +55,9 @@ class SeatMap extends Model
     {
         $seatmap = SeatMap::findOrFail($id);
 
-        $seatmap->venue_id = $request->venue_id;
         $seatmap->name = $request->name;
 
-        $seatmap->mapping = $request->mapping;
-
         $seatmap->updated_at = Carbon::now();
-
         $seatmap->save();
 
         return $seatmap;

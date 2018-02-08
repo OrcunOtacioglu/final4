@@ -69,8 +69,6 @@ class Hotel extends Model
         $hotel->available_online = $request->available_online;
         $hotel->available_box_office = $request->available_box_office;
 
-        $hotel->media_path = strtolower(str_replace(' ', '_', $request->name));
-
         $hotel->stars = $request->stars;
         $hotel->review_point = $request->review_point;
         $hotel->review_count = $request->review_count;

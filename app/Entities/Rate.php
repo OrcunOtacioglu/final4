@@ -165,15 +165,6 @@ class Rate extends Model
         return $available;
     }
 
-    public static function hasMultipleZones($rate)
-    {
-        if (sizeof(explode('.', $rate->zones)) > 1) {
-            return true;
-        }
-
-        return false;
-    }
-
     public static function listZones($data)
     {
         $zones = explode('.', $data);
