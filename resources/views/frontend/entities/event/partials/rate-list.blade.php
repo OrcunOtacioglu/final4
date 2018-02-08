@@ -1,15 +1,15 @@
 <!-- Rates of the Event -->
 <div class="back-white p15">
     <h3>Package Categories</h3>
-    <img src="{{ $event->seatMap->category_map_photo }}" alt="" class="img-responsive">
+    <img src="{{ $event->category_map_photo }}" alt="" class="img-responsive">
     <div class="rate-list">
-        <div class="rate p10 mb10" style="border-left: 3px solid #e7983b">
+        <div class="rate p10 mb10" style="border-left: 7px solid #e7983b">
             <div class="row">
                 <div class="col-md-8">
                     <p class="rate-name">Hospitality Package</p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <a href="#" class="btn btn-xs btn-primary">Request Info</a>
+                    <a href="mailto:info@deturf4.com" class="btn btn-xs btn-primary">Request Info</a>
                 </div>
             </div>
             <div class="row">
@@ -22,8 +22,7 @@
             </div>
         </div>
         @foreach($rates as $rate)
-            @if(\App\Entities\Rate::hasMultipleZones($rate))
-                <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
+            <div class="rate p10 mb10" style="border-left: 7px solid #{{ $rate->color_code }}">
                     <div class="row">
                         <div class="col-md-8">
                             <p class="rate-name">{{ $rate->name }}</p>
@@ -39,7 +38,7 @@
                             <p class="text-muted m0" style="font-size: 12px">Starting from {{ \Acikgise\Helpers\Helpers::formatMoney($rate->price/100) }}</p>
                         </div>
                         <div class="col-md-4 text-center">
-                            <small class="color-green">Available</small>
+                            <small class="color-green" style="font-size: 14px;">Available</small>
                         </div>
                     </div>
                     <div class="collapse" id="{{ $rate->color_code }}">
@@ -67,26 +66,6 @@
                         @endforeach
                     </div>
                 </div>
-            @else
-                <div class="rate p10 mb10" style="border-left: 3px solid #{{ $rate->color_code }}">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p class="rate-name">{{ $rate->name }}</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <button onclick="setSeatSelectionCookie({{ $rate->zones }})" class="btn btn-xs btn-primary">Select Seats</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <p class="text-muted m0" style="font-size: 12px">Starting from {{ \Acikgise\Helpers\Helpers::formatMoney($rate->price/100) }}</p>
-                        </div>
-                        <div class="col-md-4 text-center">
-                            <small class="color-green">Available</small>
-                        </div>
-                    </div>
-                </div>
-            @endif
         @endforeach
     </div>
 </div>
