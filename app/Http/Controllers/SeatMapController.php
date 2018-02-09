@@ -94,4 +94,11 @@ class SeatMapController extends Controller
     {
         //
     }
+
+    public function all()
+    {
+        $seatmaps = SeatMap::all();
+
+        return response()->json($seatmaps, 200);
+    }
 }

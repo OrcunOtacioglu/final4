@@ -15,8 +15,41 @@ class HotelController extends Controller
     public function all()
     {
         $hotels = Hotel::all();
+        $data = [];
 
-        return view('frontend.entities.hotel.index', compact('hotels'));
+        foreach ($hotels as $hotel) {
+            $hotelItem = [
+                'name' => $hotel->name,
+                'description' => $hotel->description,
+                'stars' => $hotel->stars,
+                'review_point' => $hotel->review_point,
+                'review_count' => $hotel->review_count,
+                'city' => $hotel->city,
+                'country' => $hotel->country,
+                'address' => $hotel->address,
+                'longitude' => $hotel->longitude,
+                'latitude' => $hotel->latitude,
+                'availability' => $hotel->online_availability,
+                'available' => $hotel->available_online,
+                'photos' => $hotel->photos,
+                'rooms' => []
+            ];
+
+            foreach ($hotel->rooms as $room) {
+                $roomData = [
+                    'name' => $hotel->name,
+                    'reference' => $room->reference,
+                    'type' => 'hotel',
+                    'room_type' => $room->room_type
+                ];
+
+                array_push($hotelItem['rooms'], $roomData);
+            }
+
+            array_push($data, $hotelItem);
+        }
+
+        return response()->json($data, 200);
     }
 
     /**
@@ -26,9 +59,12 @@ class HotelController extends Controller
      */
     public function index()
     {
+        //        if (!\request()->hasCookie('cart_uuid')) {
+//            return redirect()->to('/');
+//        }
         $hotels = Hotel::all();
 
-        return view('dashboard.entities.hotel.index', compact('hotels'));
+        return view('frontend.entities.hotel.index', compact('hotels'));
     }
 
     /**
