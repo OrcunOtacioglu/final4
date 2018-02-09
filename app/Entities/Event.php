@@ -25,7 +25,7 @@ class Event extends Model
 
     public function seatMap()
     {
-        return $this->hasOne(SeatMap::class);
+        return $this->belongsTo(SeatMap::class);
     }
 
     public static function createNew(Request $request)
