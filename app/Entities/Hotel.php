@@ -49,6 +49,11 @@ class Hotel extends Model
         return $this->hasMany(HotelRoom::class);
     }
 
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
     /**
      * Creates a new Hotel instance
      *
