@@ -1,5 +1,4 @@
 {
     "/admin/js/core/dashboard.js": "/admin/js/core/dashboard.js",
-    "/frontend/js/app.js": "/frontend/js/app.js",
-    "/frontend/css/app.css": "/frontend/css/app.css"
+    "/frontend/js/app.js": "/frontend/js/app.js"
 }
