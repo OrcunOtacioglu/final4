@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('event-list', require('./components/frontend/entities/event/EventList'));
+Vue.component('hotel-list', require('./components/frontend/entities/hotel/HotelList'));
 Vue.component('cart', require('./components/frontend/Cart'));
 
 let app = new Vue({
