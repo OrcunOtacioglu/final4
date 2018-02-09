@@ -23,8 +23,7 @@ class CreateCartItemsTable extends Migration
 
             $table->string('type');
             $table->string('name');
-
-            $table->jsonb('details')->nullable();
+            $table->string('details');
 
             $table->integer('cost');
             $table->integer('comission');
