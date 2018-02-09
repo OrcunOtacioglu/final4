@@ -4,21 +4,12 @@ Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
 
-/**
- * Cart Routes
- */
-Route::get('/cart', 'CartController@index');
-Route::post('/cart', 'CartController@addItems');
-Route::post('/calculate/{cart}', 'CartController@calculate');
-
-// New API
-Route::get('/event/{id}/seat-map', 'EventController@getSeatMap');
 
 /**
  * WEB-UI ROUTES
  */
-Route::get('/hotel', 'HotelController@all');
-Route::get('/hotel/{name}', 'HotelController@show');
+Route::get('/hotel', 'HotelController@index');
+Route::get('/hotel-list', 'HotelController@all');
 Route::resource('/order', 'OrderController');
 Route::post('/remove-item/{id}', 'OrderController@removeItem');
 Route::get('/complete-order/{reference}', 'OrderController@completeOrder');
@@ -32,6 +23,12 @@ Route::get('/event', 'EventController@index');
 Route::get('/event/{slug}', 'EventController@show');
 Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
 Route::post('/set-zone', 'EventController@setZone');
+/**
+ * Cart Routes
+ */
+Route::get('/cart/{reference}', 'CartController@get');
+Route::post('/cart', 'CartController@addItems');
+Route::post('/calculate/{cart}', 'CartController@calculate');
 
 /**
  * DASHBOARD ROUTES
