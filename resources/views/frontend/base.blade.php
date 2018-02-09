@@ -21,6 +21,7 @@
     <meta name="author" content="DETUR">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="cart" content="{{ \Illuminate\Support\Facades\Cookie::get('cart_uuid') }}">
     @yield('custom.meta')
     <!-- End Meta Tags -->
 

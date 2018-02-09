@@ -21,8 +21,9 @@
     <meta name="author" content="DETUR">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
-@yield('custom.meta')
-<!-- End Meta Tags -->
+    <meta name="cart" content="{{ \Illuminate\Support\Facades\Cookie::get('cart_uuid') }}">
+    @yield('custom.meta')
+    <!-- End Meta Tags -->
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="{{ asset('frontend/img/favicon/favicon.ico') }}" type="image/x-icon">
