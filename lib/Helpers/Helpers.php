@@ -6,8 +6,10 @@ namespace Acikgise\Helpers;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Webpatser\Uuid\Uuid;
 
 class Helpers
 {
@@ -135,5 +137,22 @@ class Helpers
     public static function getDateTimeFormat($time)
     {
         return Carbon::parse($time);
+    }
+
+    public static function checkCartCookie()
+    {
+        if (!\request()->hasCookie('cart_uuid')) {
+            $cart = Uuid::generate()->string;
+            return Cookie::queue(Cookie::make('cart_uuid', $cart, 20));
+        }
+    }
+
+    public static function generateNewCartID()
+    {
+        $cart = Uuid::generate()->string;
+
+        Cookie::queue(Cookie::make('cart_uuid', $cart, 20));
+
+        return $cart;
     }
 }

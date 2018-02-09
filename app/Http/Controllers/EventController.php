@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Acikgise\Helpers\Helpers;
 use App\Entities\Event;
 use App\Entities\SeatMap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
-use JavaScript;
 use Jenssegers\Agent\Facades\Agent;
 
 class EventController extends Controller
@@ -80,15 +80,10 @@ class EventController extends Controller
 
     }
 
-    public function getSeatMap($id)
-    {
-        $event = Event::findOrFail($id);
-
-        return json_encode($event->seatMap->mapping, true);
-    }
-
     public function seatSelection($id)
     {
+        Helpers::checkCartCookie();
+
         $event = Event::findOrFail($id);
         $rates = $event->rates->where('available_online', '=', true);
 
