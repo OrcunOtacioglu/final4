@@ -90,8 +90,9 @@
             },
             calculateCart: function () {
 
-                if (this.items.length > 0) {
+                if (this.getItemCount() > 0) {
                     this.showCart = true;
+
                 } else {
                     this.showCart = false;
                 }
@@ -99,12 +100,12 @@
                 if (this.hotelCount > 0) {
                     this.hasHotel = true;
                     this.hasTicket = false;
+
                 } else if (this.ticketCount > 0) {
                     this.hasTicket = true;
                 }
 
                 // Send the items to an API endpoint to calculate the total
-                // Change the properties accordingly (hasHotel, hasTicket)
             },
             sendCartData: function () {
                 axios({
@@ -155,7 +156,17 @@
                     });
             },
             getCart: function () {
-                var cart = $('meta[name="cart"]').attr('content')
+                let cart = $('meta[name="cart"]').attr('content');
+
+                axios.get('/cart/' + cart)
+                    .then(response => {
+                        if (response.data.items !== null) {
+                            this.items = response.data.items;
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             }
         },
         mounted() {

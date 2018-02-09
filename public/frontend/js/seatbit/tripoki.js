@@ -15,6 +15,14 @@ var canvas = new fabric.Canvas('venue', {
 });
 var eventID = $('meta[name="event"]').attr('content');
 
+function watchResponsive() {
+    var venue = $('#venue');
+    $(window).resize(function () {
+        venue.height(responsiveHeight());
+        venue.width(responsiveWidth());
+    });
+}
+
 /**
  * Sets height and width of canvas for responsive changes.
  * @returns {jQuery}
@@ -26,104 +34,6 @@ function responsiveHeight() {
 function responsiveWidth() {
     return $('#wrapper').width() - $('.col-3').width();
 }
-
-function watchResponsive() {
-    var venue = $('#venue');
-    $(window).resize(function () {
-        venue.height(responsiveHeight());
-        venue.width(responsiveWidth());
-    });
-}
-
-var cart = new Vue({
-    el: '#cart',
-    data: {
-        items: [],
-        displayCart: false
-    },
-    computed: {
-        total: function () {
-            var total = 0;
-            for (var i = 0; i < this.items.length; i++) {
-            }
-
-            return total;
-        }
-    },
-    methods: {
-        add: function (item) {
-            this.items.push(item);
-            this.cartVisibility();
-        },
-        remove: function (item) {
-            this.items.splice(this.items.indexOf(item), 1);
-            this.cartVisibility();
-        },
-        removeFromCart: function (item) {
-            item.set('stroke', '#46BE8A');
-            item.set('fill', '#46BE8A');
-            item.set('status', '1');
-            canvas.renderAll();
-
-            this.items.splice(this.items.indexOf(item), 1);
-        },
-        getItemCount: function () {
-            return this.items.length;
-        },
-        cartVisibility: function () {
-            this.displayCart = this.items.length > 0;
-        },
-        sendCardData: function () {
-            axios({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                method: 'post',
-                url: '/order',
-                data: {
-                    items: this.items
-                }
-            })
-                .then(function (response) {
-                    if (response.data.status === 0) {
-                        if (response.data.reference !== null) {
-                            swal({
-                                title: 'Oops!',
-                                text: 'You can not purchase more than 8 tickets!',
-                                icon: 'warning',
-                                buttons: {
-                                    confirm: {
-                                        text: 'View Current Package',
-                                        value: true,
-                                        visible: true,
-                                        closeModal: true
-                                    }
-                                }
-                            }).then(function (result) {
-                                console.log(result);
-                                if (result) {
-                                    window.location.replace('/order/' + response.data.reference);
-                                } else {
-                                    window.location.replace('/order/' + response.data.reference);
-                                }
-                            });
-                        } else {
-                            swal(response.data.message, 'Please try again!', 'warning');
-                        }
-                    } else {
-                        if (response.data.reference === undefined) {
-                            swal('Problem occured!', 'Please try again!', 'error');
-                        } else {
-                            window.location.replace('/order/' + response.data.reference);
-                        }
-                    }
-                })
-                .catch(function (response) {
-                    swal(response.status, response.statusText, 'error');
-                });
-        }
-    }
-});
 
 /**
  * Draws Zones and Seats
@@ -159,7 +69,6 @@ function drawSeats(objects) {
     canvas.on('mouse:down', function (el) {
         var seat = el.target;
 
-        // @TODO MAKE THIS COUNT DYNAMICALLY SETABLE FROM DASHBOARD.
         if (seat === null) {
             return false;
         } else {

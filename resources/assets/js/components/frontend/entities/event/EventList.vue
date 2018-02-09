@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-sm-6 col-lg-6" v-for="event in events">
+        <div class="col-sm-12 col-lg-12" v-for="event in events">
             <div class="content-box widget-general relative t-center">
                 <div class="widget-overlay transtation"></div>
                 <img v-bind:src="event.cover_photo" class="w100 p0">
