@@ -4,7 +4,6 @@ Route::get('/', 'ApplicationController@index');
 
 Auth::routes();
 
-
 /**
  * WEB-UI ROUTES
  */
@@ -23,12 +22,17 @@ Route::get('/event', 'EventController@index');
 Route::get('/event/{slug}', 'EventController@show');
 Route::get('/event/{id}/seat-selection', 'EventController@seatSelection');
 Route::post('/set-zone', 'EventController@setZone');
+
 /**
  * Cart Routes
  */
+Route::get('/cart/extras', 'CartController@show');
+Route::get('/cart/login', 'CartController@authenticate');
+Route::get('/cart/payment', 'CartController@payment');
 Route::get('/cart/{reference}', 'CartController@get');
 Route::post('/cart', 'CartController@addItems');
-Route::post('/calculate/{cart}', 'CartController@calculate');
+Route::post('/calculate', 'CartController@calculate');
+
 
 /**
  * DASHBOARD ROUTES
