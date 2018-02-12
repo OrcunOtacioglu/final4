@@ -105,8 +105,8 @@ class CartItem extends Model
         $itemData = [
             'reference' => $room->reference,
             'type' => 'hotel',
-            'name' => $room->hotel->name,
-            'details' => $room->room_type,
+            'name' => $room->room_type,
+            'details' => $room->hotel->name,
             'comission_percentage' => $room->comission_percentage,
             'fee_percentage' => $room->fee_percentage,
             'cost' => $room->cost,
