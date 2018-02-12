@@ -47,28 +47,29 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="collapse pt-30" :id="hotel.reference + 'R'">
-                    <hr>
-                    <div class="room" v-for="room in hotel.rooms">
-                        <div class="row">
-                            <div class="col-md-4 text-center">
-                                <p class="form-control-static mb5">Room Type</p>
-                                <p class="text-uppercase" style="font-size: 16px;">{{ room.room_type }}</p>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="roomQty">Select Room Quantity</label>
-                                <select name="roomQty" id="roomQty" class="form-control">
-                                    <option value="">Select Room Qty</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                            <div class="col-md-4 text-center">
-                                <button class="btn btn-primary mt25" v-on:click="addToCart(room)">Add to Package</button>
+                    <div class="other-price-wrap" v-for="room in hotel.rooms">
+                        <div class="room-type col fl ">
+                            <div class="w100 p0 font-bold text-dot t-uppercase">{{ room.room_type }} room</div>
+                            <p class="font-10 color-red font-bold">No Cancellation</p>
+                        </div>
+
+                        <div class="accordion-type fl col">
+                            <div>Bed & Breakfast</div>
+                            <span class="radius-50 font-11 font-bold color-orange ng-scope" style="padding: 2px 15px">Non Refundable</span>
+                        </div>
+
+                        <div class="total-price fl col">
+                            <div class="w100 p0">
+                                3 Nights Stay
                             </div>
                         </div>
+
+                        <div class="add-to-cart col fl">
+                            <a class="w48 btn_1 blue radius-50 font-600 medium mt3" v-on:click="addToCart(room)">ADD TO PACKAGE</a>
+                        </div>
+
+                        <div class="clearfix"></div>
                     </div>
-                    <hr>
                 </div>
             </div>
         </div>
