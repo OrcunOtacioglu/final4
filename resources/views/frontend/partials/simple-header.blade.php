@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-3 col-xs-3">
                     <div id="logo_home">
-                        <a href="/" title="Detur, search click and travel"></a>
+                        <a href="/" title="Tripoki, search click and travel"></a>
                     </div>
                 </div>
 
@@ -16,29 +16,29 @@
                     </a>
                     <div class="main-menu fr m0 p0">
                         <div id="header_menu">
-                            <img src="http://tripoki.com/content/webui/images/tripoki-logo-black.png" width="120" alt="" data-retina="true">
+                            <img src="{{ asset('frontend/img/tripoki-logo-black.png') }}" width="120" alt="" data-retina="true">
                         </div>
                         <a href="#" class="open_close" id="close_in">
                             <i class="icon_set_1_icon-77"></i>
                         </a>
                         <ul id="cd-primary-nav" class="cd-primary-nav is-fixed">
                             <li>
-                                <a href="#">EVENTS</a>
+                                <a href="https://www.tripoki.com/hotels">HOTELS</a>
                             </li>
                             <li>
-                                <a href="#">HOTELS</a>
+                                <a href="https://www.tripoki.com/flights">FLIGHTS</a>
                             </li>
                             <li>
-                                <a href="#">FLIGHTS</a>
+                                <a href="https://www.tripoki.com/cars">CARS</a>
                             </li>
                             <li>
-                                <a href="#">CARS</a>
+                                <a href="https://www.tripoki.com/transfers">TRANSFERS</a>
                             </li>
                             <li>
-                                <a href="#">TRANSFERS</a>
+                                <a href="https://www.tripoki.com/tours">TOURS</a>
                             </li>
                             <li>
-                                <a href="#">TOURS</a>
+                                <a href="{{ url('/') }}">EVENTS</a>
                             </li>
                         </ul>
                     </div>

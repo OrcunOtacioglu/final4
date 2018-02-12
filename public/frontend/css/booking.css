@@ -139,7 +139,7 @@ s
 #bnr_2 {
     position: relative;
     height: 220px;
-    background: #4d536d url(/content/webui/images/booking_banner.jpg) no-repeat center center;
+    background: #4d536d url(/frontend/img/booking_banner.jpg) no-repeat center center;
     background-size: cover;
     color: #fff;
     width: 100%;
@@ -150,7 +150,7 @@ s
 }
 
     #bnr_2.restaurant_bg {
-        background: #4d536d url(/content/webui/images/restaurant_top_in.jpg) no-repeat center center;
+        background: #4d536d url(/frontend/img/restaurant_top_in.jpg) no-repeat center center;
         background-size: cover;
     }
 

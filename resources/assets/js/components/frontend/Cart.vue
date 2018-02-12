@@ -38,9 +38,9 @@
                 <li v-if="hasHotel" class="">
                     <div class="col-sm-6 p8 font-bold font-14" style="padding-left:0 !important; padding-right:0 !important;">
                         Total:
-                        <span>{{ total }} €</span>
+                        <span>{{ total }}</span>
                     </div>
-                    <a href="/hotel" class="button_drop outline">PROCEED</a>
+                    <a href="#" v-on:click="proceedToCheckOut()" class="button_drop outline">PROCEED</a>
                 </li>
 
                 <!-- If the cart has only ticket -->
@@ -63,6 +63,7 @@
                 showCart: false,
                 ticketCount: 0,
                 hotelCount: 0,
+                serviceFees: 0,
                 total: 0,
             }
         },
@@ -78,11 +79,13 @@
             },
             remove: function (item) {
                 this.items.splice(this.items.indexOf(item), 1);
+
                 if (item.type === 'seat') {
                     this.ticketCount -= 1;
                 } else {
-                    this.hotelCount -= 0;
+                    this.hotelCount -= 1;
                 }
+
                 this.calculateCart();
             },
             getItemCount: function () {
@@ -99,13 +102,48 @@
 
                 if (this.hotelCount > 0) {
                     this.hasHotel = true;
+                    this.showCart = false;
                     this.hasTicket = false;
-
-                } else if (this.ticketCount > 0) {
+                }
+                if (this.ticketCount > 0 || this.hotelCount === 0) {
                     this.hasTicket = true;
+                    this.hasHotel = false;
+                    this.showCart = true;
                 }
 
-                // Send the items to an API endpoint to calculate the total
+                this.calculateCartTotal()
+            },
+            calculateCartTotal: function () {
+                axios({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'post',
+                    url: '/calculate',
+                    data: {
+                        items: this.items
+                    }
+                })
+                    .then(response => {
+                        this.serviceFees = response.data.serviceFees;
+                        this.total = response.data.total;
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
+            },
+            getCart: function () {
+                let cart = $('meta[name="cart"]').attr('content');
+
+                axios.get('/cart/' + cart)
+                    .then(response => {
+                        if (response.data.items !== null) {
+                            this.items = response.data.items;
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    })
             },
             sendCartData: function () {
                 axios({
@@ -152,20 +190,27 @@
                         }
                     })
                     .catch(error => {
-                        swal('Problem occured!', 'Please try again!', 'error');
+                        swal('Problem occured!', error, 'error');
                     });
             },
-            getCart: function () {
-                let cart = $('meta[name="cart"]').attr('content');
-
-                axios.get('/cart/' + cart)
+            proceedToCheckOut: function () {
+                axios({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'post',
+                    url: '/cart',
+                    data: {
+                        items: this.items
+                    }
+                })
                     .then(response => {
-                        if (response.data.items !== null) {
-                            this.items = response.data.items;
+                        if (response.status === 200) {
+                            window.location.replace('/cart/extras')
                         }
                     })
                     .catch(error => {
-                        console.log(error);
+                        swal('Problem occured!', error, 'error');
                     })
             }
         },

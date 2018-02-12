@@ -30543,6 +30543,7 @@ window.Vue = __webpack_require__(34);
 Vue.component('event-list', __webpack_require__(40));
 Vue.component('hotel-list', __webpack_require__(45));
 Vue.component('cart', __webpack_require__(50));
+Vue.component('package-summary', __webpack_require__(55));
 
 var app = new Vue({
   el: '#app'
@@ -30847,7 +30848,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -30858,6 +30859,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -31096,50 +31098,43 @@ var render = function() {
               staticClass: "collapse pt-30",
               attrs: { id: hotel.reference + "R" }
             },
-            [
-              _c("hr"),
-              _vm._v(" "),
-              _vm._l(hotel.rooms, function(room) {
-                return _c("div", { staticClass: "room" }, [
-                  _c("div", { staticClass: "row" }, [
-                    _c("div", { staticClass: "col-md-4 text-center" }, [
-                      _c("p", { staticClass: "form-control-static mb5" }, [
-                        _vm._v("Room Type")
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "p",
-                        {
-                          staticClass: "text-uppercase",
-                          staticStyle: { "font-size": "16px" }
-                        },
-                        [_vm._v(_vm._s(room.room_type))]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _vm._m(2, true),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "col-md-4 text-center" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary mt25",
-                          on: {
-                            click: function($event) {
-                              _vm.addToCart(room)
-                            }
-                          }
-                        },
-                        [_vm._v("Add to Package")]
-                      )
-                    ])
+            _vm._l(hotel.rooms, function(room) {
+              return _c("div", { staticClass: "other-price-wrap" }, [
+                _c("div", { staticClass: "room-type col fl " }, [
+                  _c(
+                    "div",
+                    { staticClass: "w100 p0 font-bold text-dot t-uppercase" },
+                    [_vm._v(_vm._s(room.room_type) + " room")]
+                  ),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "font-10 color-red font-bold" }, [
+                    _vm._v("No Cancellation")
                   ])
-                ])
-              }),
-              _vm._v(" "),
-              _c("hr")
-            ],
-            2
+                ]),
+                _vm._v(" "),
+                _vm._m(2, true),
+                _vm._v(" "),
+                _vm._m(3, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "add-to-cart col fl" }, [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "w48 btn_1 blue radius-50 font-600 medium mt3",
+                      on: {
+                        click: function($event) {
+                          _vm.addToCart(room)
+                        }
+                      }
+                    },
+                    [_vm._v("ADD TO PACKAGE")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "clearfix" })
+              ])
+            })
           )
         ])
       ])
@@ -31172,27 +31167,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4" }, [
-      _c("label", { attrs: { for: "roomQty" } }, [
-        _vm._v("Select Room Quantity")
-      ]),
+    return _c("div", { staticClass: "accordion-type fl col" }, [
+      _c("div", [_vm._v("Bed & Breakfast")]),
       _vm._v(" "),
       _c(
-        "select",
+        "span",
         {
-          staticClass: "form-control",
-          attrs: { name: "roomQty", id: "roomQty" }
+          staticClass: "radius-50 font-11 font-bold color-orange ng-scope",
+          staticStyle: { padding: "2px 15px" }
         },
-        [
-          _c("option", { attrs: { value: "" } }, [_vm._v("Select Room Qty")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "2" } }, [_vm._v("2")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "3" } }, [_vm._v("3")])
-        ]
+        [_vm._v("Non Refundable")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "total-price fl col" }, [
+      _c("div", { staticClass: "w100 p0" }, [
+        _vm._v(
+          "\n                            3 Nights Stay\n                        "
+        )
+      ])
     ])
   }
 ]
@@ -31367,6 +31364,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             showCart: false,
             ticketCount: 0,
             hotelCount: 0,
+            serviceFees: 0,
             total: 0
         };
     },
@@ -31382,11 +31380,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         remove: function remove(item) {
             this.items.splice(this.items.indexOf(item), 1);
+
             if (item.type === 'seat') {
                 this.ticketCount -= 1;
             } else {
-                this.hotelCount -= 0;
+                this.hotelCount -= 1;
             }
+
             this.calculateCart();
         },
         getItemCount: function getItemCount() {
@@ -31402,12 +31402,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (this.hotelCount > 0) {
                 this.hasHotel = true;
+                this.showCart = false;
                 this.hasTicket = false;
-            } else if (this.ticketCount > 0) {
+            }
+            if (this.ticketCount > 0 || this.hotelCount === 0) {
                 this.hasTicket = true;
+                this.hasHotel = false;
+                this.showCart = true;
             }
 
-            // Send the items to an API endpoint to calculate the total
+            this.calculateCartTotal();
+        },
+        calculateCartTotal: function calculateCartTotal() {
+            var _this = this;
+
+            axios({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'post',
+                url: '/calculate',
+                data: {
+                    items: this.items
+                }
+            }).then(function (response) {
+                _this.serviceFees = response.data.serviceFees;
+                _this.total = response.data.total;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        getCart: function getCart() {
+            var _this2 = this;
+
+            var cart = $('meta[name="cart"]').attr('content');
+
+            axios.get('/cart/' + cart).then(function (response) {
+                if (response.data.items !== null) {
+                    _this2.items = response.data.items;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
         },
         sendCartData: function sendCartData() {
             axios({
@@ -31452,20 +31488,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     }
                 }
             }).catch(function (error) {
-                swal('Problem occured!', 'Please try again!', 'error');
+                swal('Problem occured!', error, 'error');
             });
         },
-        getCart: function getCart() {
-            var _this = this;
-
-            var cart = $('meta[name="cart"]').attr('content');
-
-            axios.get('/cart/' + cart).then(function (response) {
-                if (response.data.items !== null) {
-                    _this.items = response.data.items;
+        proceedToCheckOut: function proceedToCheckOut() {
+            axios({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'post',
+                url: '/cart',
+                data: {
+                    items: this.items
+                }
+            }).then(function (response) {
+                if (response.status === 200) {
+                    window.location.replace('/cart/extras');
                 }
             }).catch(function (error) {
-                console.log(error);
+                swal('Problem occured!', error, 'error');
             });
         }
     },
@@ -31555,7 +31596,7 @@ var render = function() {
                     _vm._v(
                       "\n                    Total:\n                    "
                     ),
-                    _c("span", [_vm._v(_vm._s(_vm.total) + " €")])
+                    _c("span", [_vm._v(_vm._s(_vm.total))])
                   ]
                 ),
                 _vm._v(" "),
@@ -31563,7 +31604,12 @@ var render = function() {
                   "a",
                   {
                     staticClass: "button_drop outline",
-                    attrs: { href: "/hotel" }
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        _vm.proceedToCheckOut()
+                      }
+                    }
                   },
                   [_vm._v("PROCEED")]
                 )
@@ -31614,6 +31660,382 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-29dece16", module.exports)
+  }
+}
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(56)
+}
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(58)
+/* template */
+var __vue_template__ = __webpack_require__(59)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-36b553b1"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/frontend/entities/package/PackageSummary.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-36b553b1", Component.options)
+  } else {
+    hotAPI.reload("data-v-36b553b1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(57);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("31cb9c3a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-36b553b1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageSummary.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-36b553b1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageSummary.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 58 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            items: [],
+            subtotal: null,
+            total: null,
+            serviceFees: null
+        };
+    },
+    methods: {
+        getCart: function getCart() {
+            var _this = this;
+
+            var cart = $('meta[name="cart"]').attr('content');
+
+            axios.get('/cart/' + cart).then(function (response) {
+                if (response.data.items !== null) {
+                    _this.subtotal = response.data.subtotal;
+                    _this.serviceFees = response.data.serviceFees;
+                    _this.total = response.data.total;
+                    _this.items = response.data.items;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+    },
+    mounted: function mounted() {
+        this.getCart();
+    }
+});
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "aside",
+    {
+      staticClass: "col-md-4",
+      staticStyle: {
+        position: "relative",
+        overflow: "visible",
+        "box-sizing": "border-box",
+        "min-height": "1px"
+      },
+      attrs: { id: "sidebar" }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "theiaStickySidebar",
+          staticStyle: {
+            "padding-top": "0px",
+            "padding-bottom": "1px",
+            position: "static"
+          }
+        },
+        [
+          _c("div", { staticClass: "box_style_1" }, [
+            _c("h3", { staticClass: "inner" }, [_vm._v("Package Summary")]),
+            _vm._v(" "),
+            _c("table", { staticClass: "table table_summary" }, [
+              _c(
+                "tbody",
+                [
+                  _vm._l(_vm.items, function(item) {
+                    return _c("tr", [
+                      _c("td", [
+                        _c(
+                          "h5",
+                          { staticClass: "mt0 mb3 font-13 ng-binding" },
+                          [_vm._v(_vm._s(item.details))]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "text-right font-14" }, [
+                        _c("strong", [_vm._v(_vm._s(item.name))])
+                      ])
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right font-14" }, [
+                      _c("strong", [_vm._v(_vm._s(_vm.subtotal))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right font-14" }, [
+                      _c("strong", [_vm._v(_vm._s(_vm.serviceFees))])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("tr", [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("td", { staticClass: "text-right font-14" }, [
+                      _c("strong", [_vm._v(_vm._s(_vm.total))])
+                    ])
+                  ])
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _c("a", { staticClass: "btn_full" }, [_vm._v("Continue Booking")]),
+            _vm._v(" "),
+            _vm._m(4)
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
+        _c("strong", [_vm._v("Subtotal")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
+        _c("strong", [_vm._v("Service Fees")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
+        _c("strong", [_vm._v("Total Price")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p0", attrs: { id: "policy" } }, [
+      _c("h4", { staticClass: "font-16 font-600 mb5" }, [
+        _vm._v("Cancellation Policy")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group mb10" }, [
+        _c("label", { staticClass: "font-12" }, [
+          _c("input", {
+            staticStyle: { margin: "0 5px 0 0" },
+            attrs: {
+              "data-required": "checkbox",
+              required: "",
+              name: "policy_terms",
+              id: "policy_terms",
+              type: "checkbox"
+            }
+          }),
+          _vm._v(
+            "I accept terms and conditions and general policy.\n                    "
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticStyle: { display: "none" }, attrs: { id: "sendtosteploading" } },
+      [
+        _c("h5", { staticClass: "font-500 mb20 color-white" }, [
+          _vm._v("Please wait...")
+        ]),
+        _vm._v(" "),
+        _c("i", { staticClass: "font-50 loading-icon icon-spin6 animate-spin" })
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-36b553b1", module.exports)
   }
 }
 

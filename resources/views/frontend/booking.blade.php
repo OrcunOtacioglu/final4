@@ -45,7 +45,7 @@
     <!-- End Header Start -->
 
     <!-- Content -->
-    <main class="relative">
+    <main class="relative" id="app">
         @yield('content')
     </main>
     <!-- End Content -->
