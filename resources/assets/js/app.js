@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.EventBus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -18,8 +19,7 @@ window.Vue = require('vue');
 Vue.component('event-list', require('./components/frontend/entities/event/EventList'));
 Vue.component('hotel-list', require('./components/frontend/entities/hotel/HotelList'));
 Vue.component('cart', require('./components/frontend/Cart'));
-Vue.component('package-summary', require('./components/frontend/entities/package/PackageSummary'));
-
+Vue.component('package-calculator', require('./components/frontend/entities/package/PackageCalculator'));
 let app = new Vue({
     el: '#app'
 });

@@ -49,9 +49,7 @@
                 {{--@endforeach--}}
             </div>
             <div class="col-lg-3 col-md-3">
-                <div class="alert alert-info mt50" role="alert">
-                    <p>City TAX not included in the price</p>
-                </div>
+                <package-calculator></package-calculator>
             </div>
         </div>
     </div>

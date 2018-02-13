@@ -60,7 +60,7 @@ class CartController extends Controller
 
         if (!is_null($cart)) {
             Cart::addItems($cart, $request);
-            Cart::checkForRemovedItems($cart, $request);
+//            Cart::checkForRemovedItems($cart, $request);
         } else {
             $cart = Cart::createNew($request);
             Cart::addItems($cart, $request);
@@ -85,13 +85,13 @@ class CartController extends Controller
             }
         }
 
+        $data['subtotal'] = Helpers::formatMoney($total / 100);
+
         $serviceFees = $total / 100 * 2.2;
         $total = $total + $serviceFees;
 
-        $data = [
-            'serviceFees' => Helpers::formatMoney($serviceFees / 100),
-            'total' => Helpers::formatMoney($total / 100)
-        ];
+        $data['serviceFees'] = Helpers::formatMoney($serviceFees / 100);
+        $data['total'] = Helpers::formatMoney($total / 100);
 
         return response()->json($data, 200);
     }

@@ -3,9 +3,6 @@
     <li>
         <div class="dropdown dropdown-cart">
             <a id="basketicon" href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <div class="cartloading" style="display:none;">
-                    <i class="font-50 loading-icon icon-spin6 animate-spin" style="position: absolute; z-index: 1;"></i>
-                </div>
                 <i class="pe-7s-cart font-26"></i>
                 <span class="cart-length">{{ items.length }}</span>
             </a>
@@ -78,15 +75,25 @@
                 this.calculateCart();
             },
             remove: function (item) {
-                this.items.splice(this.items.indexOf(item), 1);
-
-                if (item.type === 'seat') {
-                    this.ticketCount -= 1;
-                } else {
-                    this.hotelCount -= 1;
+                let found = false;
+                for(let i = 0; i < this.items.length; i++) {
+                    if (this.items[i].reference === item.reference) {
+                        found = true;
+                        break;
+                    }
                 }
 
-                this.calculateCart();
+                if (found) {
+                    this.items.splice(this.items.indexOf(item), 1);
+
+                    if (item.type === 'seat') {
+                        this.ticketCount -= 1;
+                    } else {
+                        this.hotelCount -= 1;
+                    }
+                    EventBus.$emit('item-removed', item);
+                    this.calculateCart();
+                }
             },
             getItemCount: function () {
                 return this.items.length;
@@ -139,6 +146,7 @@
                     .then(response => {
                         if (response.data.items !== null) {
                             this.items = response.data.items;
+                            this.calculateCart();
                         }
                     })
                     .catch(error => {
@@ -216,6 +224,8 @@
         },
         mounted() {
             this.getCart();
+            EventBus.$on('item-added', (item) => this.add(item));
+            EventBus.$on('item-removed', (item) => this.remove(item));
         }
     }
 </script>

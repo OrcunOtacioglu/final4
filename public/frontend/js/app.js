@@ -30533,6 +30533,7 @@ module.exports = __webpack_require__(39);
 __webpack_require__(12);
 
 window.Vue = __webpack_require__(34);
+window.EventBus = new Vue();
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30543,8 +30544,7 @@ window.Vue = __webpack_require__(34);
 Vue.component('event-list', __webpack_require__(40));
 Vue.component('hotel-list', __webpack_require__(45));
 Vue.component('cart', __webpack_require__(50));
-Vue.component('package-summary', __webpack_require__(55));
-
+Vue.component('package-calculator', __webpack_require__(55));
 var app = new Vue({
   el: '#app'
 });
@@ -30848,7 +30848,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -30949,10 +30949,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var item = {
                 'reference': room.reference,
                 'type': room.type,
-                'name': room.name
+                'details': room.name,
+                'name': this.makeRoomName(room.room_type)
             };
 
-            app.__vue__.$refs.cart.add(item);
+            // app.__vue__.$refs.cart.add(item);
+            EventBus.$emit('item-added', item);
+        },
+        makeRoomName: function makeRoomName(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1) + ' Room';
         }
     },
     mounted: function mounted() {
@@ -31351,9 +31356,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -31379,15 +31381,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.calculateCart();
         },
         remove: function remove(item) {
-            this.items.splice(this.items.indexOf(item), 1);
-
-            if (item.type === 'seat') {
-                this.ticketCount -= 1;
-            } else {
-                this.hotelCount -= 1;
+            var found = false;
+            for (var i = 0; i < this.items.length; i++) {
+                if (this.items[i].reference === item.reference) {
+                    found = true;
+                    break;
+                }
             }
 
-            this.calculateCart();
+            if (found) {
+                this.items.splice(this.items.indexOf(item), 1);
+
+                if (item.type === 'seat') {
+                    this.ticketCount -= 1;
+                } else {
+                    this.hotelCount -= 1;
+                }
+                EventBus.$emit('item-removed', item);
+                this.calculateCart();
+            }
         },
         getItemCount: function getItemCount() {
             return this.items.length;
@@ -31440,6 +31452,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.get('/cart/' + cart).then(function (response) {
                 if (response.data.items !== null) {
                     _this2.items = response.data.items;
+                    _this2.calculateCart();
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -31511,7 +31524,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
+        var _this3 = this;
+
         this.getCart();
+        EventBus.$on('item-added', function (item) {
+            return _this3.add(item);
+        });
+        EventBus.$on('item-removed', function (item) {
+            return _this3.remove(item);
+        });
     }
 });
 
@@ -31532,8 +31553,6 @@ var render = function() {
           attrs: { id: "basketicon", href: "#", "data-toggle": "dropdown" }
         },
         [
-          _vm._m(0),
-          _vm._v(" "),
           _c("i", { staticClass: "pe-7s-cart font-26" }),
           _vm._v(" "),
           _c("span", { staticClass: "cart-length" }, [
@@ -31637,23 +31656,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "cartloading", staticStyle: { display: "none" } },
-      [
-        _c("i", {
-          staticClass: "font-50 loading-icon icon-spin6 animate-spin",
-          staticStyle: { position: "absolute", "z-index": "1" }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -31682,7 +31685,7 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-36b553b1"
+var __vue_scopeId__ = "data-v-28435747"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
@@ -31693,7 +31696,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/frontend/entities/package/PackageSummary.vue"
+Component.options.__file = "resources/assets/js/components/frontend/entities/package/PackageCalculator.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -31702,9 +31705,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-36b553b1", Component.options)
+    hotAPI.createRecord("data-v-28435747", Component.options)
   } else {
-    hotAPI.reload("data-v-36b553b1", Component.options)
+    hotAPI.reload("data-v-28435747", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -31725,13 +31728,13 @@ var content = __webpack_require__(57);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("31cb9c3a", content, false);
+var update = __webpack_require__(2)("46b2c170", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-36b553b1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageSummary.vue", function() {
-     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-36b553b1\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageSummary.vue");
+   module.hot.accept("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28435747\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageCalculator.vue", function() {
+     var newContent = require("!!../../../../../../../node_modules/css-loader/index.js!../../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-28435747\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./PackageCalculator.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -31749,7 +31752,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.displayBlock[data-v-28435747] {\n    display: block;\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background: rgba(0,0,0,0.4);\n    text-align: center;\n    padding: 25%;\n    margin: 0 auto;\n    vertical-align: middle;\n}\n.displayNone[data-v-28435747] {\n    display: none;\n}\n#sidebar[data-v-28435747] {\n    position: relative;\n}\n", ""]);
 
 // exports
 
@@ -31805,39 +31808,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             items: [],
-            subtotal: null,
-            total: null,
-            serviceFees: null
+            subtotal: 0,
+            total: 0,
+            serviceFees: 0,
+            hotelCount: 0,
+            ticketCount: 0,
+            showProceed: false,
+            loadingEffect: false
         };
     },
     methods: {
+        add: function add(item) {
+            this.items.push(item);
+            if (item.type === 'seat') {
+                this.ticketCount += 1;
+            } else {
+                this.hotelCount += 1;
+            }
+            if (this.hotelCount > 0) {
+                this.showProceed = true;
+            }
+            this.calculateCart();
+        },
+        remove: function remove(item) {
+
+            var found = false;
+            for (var i = 0; i < this.items.length; i++) {
+                if (this.items[i].reference === item.reference) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                this.items.splice(this.items.indexOf(item), 1);
+
+                if (item.type === 'seat') {
+                    this.ticketCount -= 1;
+                } else {
+                    this.hotelCount -= 1;
+                }
+                EventBus.$emit('item-removed', item);
+                this.calculateCart();
+            }
+        },
         getCart: function getCart() {
             var _this = this;
 
@@ -31845,18 +31864,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.get('/cart/' + cart).then(function (response) {
                 if (response.data.items !== null) {
-                    _this.subtotal = response.data.subtotal;
                     _this.serviceFees = response.data.serviceFees;
                     _this.total = response.data.total;
+                    _this.subtotal = response.data.subtotal;
                     _this.items = response.data.items;
                 }
             }).catch(function (error) {
                 console.log(error);
             });
+        },
+        calculateCart: function calculateCart() {
+            var _this2 = this;
+
+            this.loadingEffect = true;
+
+            axios({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'post',
+                url: '/calculate',
+                data: {
+                    items: this.items
+                }
+            }).then(function (response) {
+                _this2.serviceFees = response.data.serviceFees;
+                _this2.total = response.data.total;
+                _this2.subtotal = response.data.subtotal;
+
+                if (_this2.hotelCount < 1) {
+                    _this2.showProceed = false;
+                }
+                _this2.loadingEffect = false;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        proceedToCheckOut: function proceedToCheckOut() {
+            axios({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method: 'post',
+                url: '/cart',
+                data: {
+                    items: this.items
+                }
+            }).then(function (response) {
+                if (response.status === 200) {
+                    window.location.replace('/cart/extras');
+                }
+            }).catch(function (error) {
+                swal('Problem occured!', error, 'error');
+            });
         }
     },
     mounted: function mounted() {
+        var _this3 = this;
+
         this.getCart();
+        EventBus.$on('item-added', function (item) {
+            return _this3.add(item);
+        });
+        EventBus.$on('item-removed', function (item) {
+            return _this3.remove(item);
+        });
     }
 });
 
@@ -31868,166 +31940,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "aside",
-    {
-      staticClass: "col-md-4",
-      staticStyle: {
-        position: "relative",
-        overflow: "visible",
-        "box-sizing": "border-box",
-        "min-height": "1px"
+  return _c("aside", { attrs: { id: "sidebar" } }, [
+    _c(
+      "div",
+      {
+        class: {
+          displayBlock: _vm.loadingEffect,
+          displayNone: !_vm.loadingEffect,
+          cartloading: true
+        }
       },
-      attrs: { id: "sidebar" }
-    },
-    [
+      [
+        _c("i", {
+          staticClass: "font-50 loading-icon icon-spin6 animate-spin",
+          staticStyle: { "z-index": "1" }
+        })
+      ]
+    ),
+    _vm._v(" "),
+    _c("table", { staticClass: "table text-left" }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c(
-        "div",
-        {
-          staticClass: "theiaStickySidebar",
-          staticStyle: {
-            "padding-top": "0px",
-            "padding-bottom": "1px",
-            position: "static"
-          }
-        },
-        [
-          _c("div", { staticClass: "box_style_1" }, [
-            _c("h3", { staticClass: "inner" }, [_vm._v("Package Summary")]),
-            _vm._v(" "),
-            _c("table", { staticClass: "table table_summary" }, [
+        "tbody",
+        { staticStyle: { background: "#ffffff" } },
+        _vm._l(_vm.items, function(item) {
+          return _c("tr", [
+            _c("td", { staticClass: "bt-none", attrs: { colspan: "4" } }, [
+              _c("p", { staticClass: "mb-0" }, [_vm._v(_vm._s(item.details))]),
+              _vm._v(" "),
+              _c("small", [_vm._v(_vm._s(item.name))]),
+              _vm._v(" "),
               _c(
-                "tbody",
-                [
-                  _vm._l(_vm.items, function(item) {
-                    return _c("tr", [
-                      _c("td", [
-                        _c(
-                          "h5",
-                          { staticClass: "mt0 mb3 font-13 ng-binding" },
-                          [_vm._v(_vm._s(item.details))]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "text-right font-14" }, [
-                        _c("strong", [_vm._v(_vm._s(item.name))])
-                      ])
-                    ])
-                  }),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right font-14" }, [
-                      _c("strong", [_vm._v(_vm._s(_vm.subtotal))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right font-14" }, [
-                      _c("strong", [_vm._v(_vm._s(_vm.serviceFees))])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("tr", [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "text-right font-14" }, [
-                      _c("strong", [_vm._v(_vm._s(_vm.total))])
-                    ])
-                  ])
-                ],
-                2
+                "button",
+                {
+                  staticClass: "close text-danger",
+                  staticStyle: { "font-size": "14px" },
+                  attrs: { "aria-label": "Remove" },
+                  on: {
+                    click: function($event) {
+                      _vm.remove(item)
+                    }
+                  }
+                },
+                [_c("i", { staticClass: "icon-trash" })]
               )
+            ])
+          ])
+        })
+      ),
+      _vm._v(" "),
+      _vm.showProceed
+        ? _c("tfoot", { staticClass: "detur-details" }, [
+            _c("tr", [
+              _c("td", { attrs: { colspan: "3" } }, [_vm._v("Subtotal")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(_vm.subtotal))
+              ])
             ]),
             _vm._v(" "),
-            _vm._m(3),
+            _c("tr", [
+              _c("td", { staticClass: "bt-none", attrs: { colspan: "3" } }, [
+                _vm._v("Service Fees")
+              ]),
+              _vm._v(" "),
+              _c("td", { staticClass: "bt-none text-center" }, [
+                _vm._v(_vm._s(_vm.serviceFees))
+              ])
+            ]),
             _vm._v(" "),
-            _c("a", { staticClass: "btn_full" }, [_vm._v("Continue Booking")]),
-            _vm._v(" "),
-            _vm._m(4)
+            _c("tr", { staticClass: "detur-summary" }, [
+              _c("td", { attrs: { colspan: "3" } }, [_vm._v("TOTAL")]),
+              _vm._v(" "),
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(_vm.total))
+              ])
+            ])
           ])
-        ]
-      )
-    ]
-  )
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    !_vm.showProceed
+      ? _c(
+          "div",
+          { staticClass: "alert alert-warning", attrs: { role: "alert" } },
+          [
+            _c("i", { staticClass: "wb-warning" }),
+            _vm._v(" Please add at least one hotel to your package!\n    ")
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showProceed
+      ? _c("p", { staticClass: "text-muted text-center" }, [
+          _vm._v("*Please check your order details.")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showProceed
+      ? _c(
+          "a",
+          {
+            staticClass: "btn btn-block btn-success",
+            attrs: { href: "#" },
+            on: { click: _vm.proceedToCheckOut }
+          },
+          [_vm._v("Proceed to Checkout")]
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
-        _c("strong", [_vm._v("Subtotal")])
+    return _c("thead", { staticClass: "detur-thead" }, [
+      _c("tr", [
+        _c("th", { attrs: { colspan: "4" } }, [_vm._v("Package Summary")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
-        _c("strong", [_vm._v("Service Fees")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("h5", { staticClass: "mt0 mb3 font-14 fr" }, [
-        _c("strong", [_vm._v("Total Price")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p0", attrs: { id: "policy" } }, [
-      _c("h4", { staticClass: "font-16 font-600 mb5" }, [
-        _vm._v("Cancellation Policy")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group mb10" }, [
-        _c("label", { staticClass: "font-12" }, [
-          _c("input", {
-            staticStyle: { margin: "0 5px 0 0" },
-            attrs: {
-              "data-required": "checkbox",
-              required: "",
-              name: "policy_terms",
-              id: "policy_terms",
-              type: "checkbox"
-            }
-          }),
-          _vm._v(
-            "I accept terms and conditions and general policy.\n                    "
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticStyle: { display: "none" }, attrs: { id: "sendtosteploading" } },
-      [
-        _c("h5", { staticClass: "font-500 mb20 color-white" }, [
-          _vm._v("Please wait...")
-        ]),
-        _vm._v(" "),
-        _c("i", { staticClass: "font-50 loading-icon icon-spin6 animate-spin" })
-      ]
-    )
   }
 ]
 render._withStripped = true
@@ -32035,7 +32068,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-36b553b1", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-28435747", module.exports)
   }
 }
 

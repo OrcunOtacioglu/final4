@@ -88,10 +88,15 @@
                 let item = {
                     'reference': room.reference,
                     'type': room.type,
-                    'name': room.name
+                    'details': room.name,
+                    'name': this.makeRoomName(room.room_type)
                 };
 
-                app.__vue__.$refs.cart.add(item);
+                // app.__vue__.$refs.cart.add(item);
+                EventBus.$emit('item-added', item);
+            },
+            makeRoomName: function (string) {
+                return string.charAt(0).toUpperCase() + string.slice(1) + ' Room';
             }
         },
         mounted() {
