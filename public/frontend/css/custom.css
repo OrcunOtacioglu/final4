@@ -35,7 +35,7 @@
 #banner {
     position: relative;
     height: 220px;
-    background: #4d536d url('https://www.tripoki.com/content/webui/images/booking_banner.jpg') no-repeat center center;
+    background: #4d536d url('/frontend/img/booking_banner.jpg') no-repeat center center;
     background-size: auto auto;
     background-size: cover;
     color: #fff;

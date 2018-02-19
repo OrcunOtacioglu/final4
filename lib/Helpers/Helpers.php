@@ -143,6 +143,7 @@ class Helpers
     {
         if (!\request()->hasCookie('cart_uuid')) {
             $cart = Uuid::generate()->string;
+
             return Cookie::queue(Cookie::make('cart_uuid', $cart, 20));
         }
     }

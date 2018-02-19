@@ -6,7 +6,9 @@
         <table class="table text-left">
             <thead class="detur-thead">
             <tr>
-                <th colspan="4">Package Summary</th>
+                <th colspan="4" class="text-center">
+                    <h3 class="package">PACKAGE SUMMARY</h3>
+                </th>
             </tr>
             </thead>
             <tbody style="background: #ffffff;">
@@ -38,8 +40,7 @@
         <div class="alert alert-warning" role="alert" v-if="!showProceed">
             <i class="wb-warning"></i> Please add at least one hotel to your package!
         </div>
-        <p class="text-muted text-center" v-if="showProceed">*Please check your order details.</p>
-        <a href="#" class="btn btn-block btn-success" v-if="showProceed" v-on:click="proceedToCheckOut">Proceed to Checkout</a>
+        <a href="#" class="btn_full" v-if="showProceed" v-on:click="proceedToCheckOut">Proceed to Checkout</a>
     </aside>
 </template>
 
@@ -102,6 +103,7 @@
                             this.total = response.data.total;
                             this.subtotal = response.data.subtotal;
                             this.items = response.data.items;
+                            this.calculateCart();
                         }
                     })
                     .catch(error => {
@@ -126,9 +128,18 @@
                         this.total = response.data.total;
                         this.subtotal = response.data.subtotal;
 
+                        for (let item in this.items) {
+                            if (this.items[item].type === "hotel") {
+                                this.hotelCount += 1;
+                            }
+                        }
+
                         if (this.hotelCount < 1) {
                             this.showProceed = false;
+                        } else {
+                            this.showProceed = true;
                         }
+
                         this.loadingEffect = false;
                     })
                     .catch(error => {
@@ -181,5 +192,18 @@
     }
     #sidebar {
         position: relative;
+    }
+    .package {
+        background-color: rgba(44,62,80,1);
+        color: #fff;
+        -webkit-border-top-left-radius: 3px;
+        text-align: center;
+        -webkit-border-top-right-radius: 3px;
+        -moz-border-radius-topleft: 3px;
+        -moz-border-radius-topright: 3px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        margin: 5px;
+        font-size: 18px;
     }
 </style>

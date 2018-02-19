@@ -38,15 +38,6 @@ class LoginController extends Controller
 
         if ($user->hasPermissionTo('view-dashboard')) {
             return '/dashboard';
-        } elseif (request()->hasCookie('orderRef')) {
-            $order = Order::where('reference', '=', request()->cookie('orderRef'))->first();
-
-            // If added Hotel to package, redirect to Complete-Order
-            if ($order->status === 2) {
-                return '/complete-order/' . $order->reference;
-            } else {
-                return '/order/' . $order->reference;
-            }
         } else {
             return url(request()->headers->get('referer'));
         }

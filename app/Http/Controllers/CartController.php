@@ -6,6 +6,7 @@ use Acikgise\Helpers\Helpers;
 use App\Entities\Cart;
 use App\Entities\CartItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -110,6 +111,17 @@ class CartController extends Controller
         // @TODO Book the seats and set a timer.
 
         return view('frontend.entities.cart.show', compact('cart'));
+    }
+
+    public function authenticate(Request $request)
+    {
+        $cart = Cart::where('reference', '=', $request->cookie('cart_uuid'))->first();
+
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+
+        return view('frontend.entities.cart.authenticate', compact('cart', 'user'));
     }
 
     /**

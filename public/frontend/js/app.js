@@ -31752,7 +31752,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.displayBlock[data-v-28435747] {\n    display: block;\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background: rgba(0,0,0,0.4);\n    text-align: center;\n    padding: 25%;\n    margin: 0 auto;\n    vertical-align: middle;\n}\n.displayNone[data-v-28435747] {\n    display: none;\n}\n#sidebar[data-v-28435747] {\n    position: relative;\n}\n", ""]);
+exports.push([module.i, "\n.displayBlock[data-v-28435747] {\n    display: block;\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background: rgba(0,0,0,0.4);\n    text-align: center;\n    padding: 25%;\n    margin: 0 auto;\n    vertical-align: middle;\n}\n.displayNone[data-v-28435747] {\n    display: none;\n}\n#sidebar[data-v-28435747] {\n    position: relative;\n}\n.package[data-v-28435747] {\n    background-color: rgba(44,62,80,1);\n    color: #fff;\n    -webkit-border-top-left-radius: 3px;\n    text-align: center;\n    -webkit-border-top-right-radius: 3px;\n    -moz-border-radius-topleft: 3px;\n    -moz-border-radius-topright: 3px;\n    border-top-left-radius: 3px;\n    border-top-right-radius: 3px;\n    margin: 5px;\n    font-size: 18px;\n}\n", ""]);
 
 // exports
 
@@ -31763,6 +31763,7 @@ exports.push([module.i, "\n.displayBlock[data-v-28435747] {\n    display: block;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -31868,6 +31869,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this.total = response.data.total;
                     _this.subtotal = response.data.subtotal;
                     _this.items = response.data.items;
+                    _this.calculateCart();
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -31892,9 +31894,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.total = response.data.total;
                 _this2.subtotal = response.data.subtotal;
 
+                for (var item in _this2.items) {
+                    if (_this2.items[item].type === "hotel") {
+                        _this2.hotelCount += 1;
+                    }
+                }
+
                 if (_this2.hotelCount < 1) {
                     _this2.showProceed = false;
+                } else {
+                    _this2.showProceed = true;
                 }
+
                 _this2.loadingEffect = false;
             }).catch(function (error) {
                 console.log(error);
@@ -32033,16 +32044,10 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _vm.showProceed
-      ? _c("p", { staticClass: "text-muted text-center" }, [
-          _vm._v("*Please check your order details.")
-        ])
-      : _vm._e(),
-    _vm._v(" "),
-    _vm.showProceed
       ? _c(
           "a",
           {
-            staticClass: "btn btn-block btn-success",
+            staticClass: "btn_full",
             attrs: { href: "#" },
             on: { click: _vm.proceedToCheckOut }
           },
@@ -32058,7 +32063,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "detur-thead" }, [
       _c("tr", [
-        _c("th", { attrs: { colspan: "4" } }, [_vm._v("Package Summary")])
+        _c("th", { staticClass: "text-center", attrs: { colspan: "4" } }, [
+          _c("h3", { staticClass: "package" }, [_vm._v("PACKAGE SUMMARY")])
+        ])
       ])
     ])
   }

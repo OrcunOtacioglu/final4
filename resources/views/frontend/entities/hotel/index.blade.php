@@ -41,7 +41,6 @@
     <div class="container mt20">
         <div class="row">
             <div class="col-lg-9 col-md-9">
-                <h3>Please choose your hotel</h3>
                 <hotel-list></hotel-list>
                 {{--@foreach($hotels as $hotel)--}}
                     {{--@include('frontend.entities.hotel.partials.gallery')--}}

@@ -20,6 +20,25 @@
         }
 
         .theiaStickySidebar:after {content: ""; display: table; clear: both;}
+
+        .package {
+            background-color: rgba(44,62,80,1);
+            color: #fff;
+            -webkit-border-top-left-radius: 3px;
+            text-align: center;
+            -webkit-border-top-right-radius: 3px;
+            -moz-border-radius-topleft: 3px;
+            -moz-border-radius-topright: 3px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            margin: 5px;
+            font-size: 18px;
+        }
+
+        .summary {
+            border-radius: 3px;
+            border: 1px solid #ddd;
+        }
     </style>
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 @stop
@@ -96,10 +115,6 @@
                                     <i class="font-50 loading-icon icon-spin6 animate-spin" style="position: absolute; z-index: 1;margin-left: -35px; margin-top: -10px;"></i>
                                 </div>
                                 <div class="remove options t-center fr">
-                                    <a class="">
-                                        <i class="icon-trash"></i>
-                                        <p class="font-12 m0">Remove</p>
-                                    </a>
                                     <a data-toggle="modal" href="" data-target="#ModalHotelBookInfo1640">
                                         <i class="icon-info-circled"></i>
                                         <p class="font-12 m0">Cancellation Policy</p>
@@ -161,7 +176,56 @@
                 </div>
                 <!-- End Left Side -->
 
-                <package-summary></package-summary>
+                <div class="col-md-4">
+                    <aside id="sidebar">
+                        <table class="table text-left summary">
+                            <thead class="detur-thead">
+                            <tr>
+                                <th colspan="4" class="text-center">
+                                    <h3 class="package">PACKAGE SUMMARY</h3>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody style="background: #ffffff;">
+                            @foreach($cart->items as $item)
+                                <tr>
+                                    <td colspan="4" class="bt-none">
+                                        <p class="mb-0">{{ $item->details }}</p>
+                                        <small>{{ $item->name }}</small>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                            <tfoot class="detur-details">
+                            <tr>
+                                <td colspan="3">Subtotal</td>
+                                <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($cart->subtotal / 100) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="bt-none">Service Fees</td>
+                                <td class="bt-none text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($cart->fee / 100) }}</td>
+                            </tr>
+                            <tr class="detur-summary">
+                                <td colspan="3">TOTAL</td>
+                                <td class="text-center">{{ \Acikgise\Helpers\Helpers::formatMoney($cart->total / 100) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <div id="policy" class="p0">
+                                        <h4 class="font-16 font-600 mb5">Cancellation policy</h4>
+                                        <div class="form-group mb10">
+                                            <label class="font-12">
+                                                <input style="margin:0 5px 0 0;" type="checkbox" name="policy_terms" id="policy_terms" checked>I accept terms and conditions and general policy.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                        <a href="{{ action('CartController@authenticate') }}" class="btn_full">Confirm Booking</a>
+                    </aside>
+                </div>
             </div>
         </div>
     </div>

@@ -58,7 +58,7 @@
                                         @endif
                                     </div>
                                     <div class="col-md-4 text-center pt20">
-                                        <button onclick="setSeatSelectionCookie({{ $zone }})" class="btn btn-xs btn-primary">Select Seats</button>
+                                        <button onclick="setSeatSelectionCookie({{ $zone }})" class="btn_1 orange">Select Seats</button>
                                         <small class="color-green">Available</small>
                                     </div>
                                 </div>
