@@ -27,6 +27,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109535935-1"></script>
     <script>
+        window.location = 'https://event.tripoki.com/tr/event/turkish-airlines-euroleague-final-four-2018-belgrade';
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
