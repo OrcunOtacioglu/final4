@@ -204,8 +204,10 @@ class Sale extends Model
             if ($item->type === 1) {
                 $seat = Seat::where('reference', '=', $item->reference)->first();
                 $rate = Rate::where('id', '=', $seat->rate_id)->first();
-                dd($rate);
-                $totalCost = $totalCost + $rate->cost;
+
+                if (!is_null($rate)) {
+                    $totalCost = $totalCost + $rate->cost;
+                }
             }
         }
 
