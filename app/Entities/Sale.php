@@ -203,10 +203,9 @@ class Sale extends Model
         foreach ($sale->order->items as $item) {
             if ($item->type === 1) {
                 $seat = Seat::where('reference', '=', $item->reference)->first();
+                $rate = Rate::where('id', '=', $seat->rate_id)->first();
 
-                if (!is_null($seat)) {
-                    $totalCost = $totalCost + $seat->rate->cost;
-                }
+                $totalCost = $totalCost + $rate->cost;
             }
         }
 
