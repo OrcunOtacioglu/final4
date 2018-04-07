@@ -204,7 +204,9 @@ class Sale extends Model
             if ($item->type === 1) {
                 $seat = Seat::where('reference', '=', $item->reference)->first();
 
-                $totalCost = $totalCost + $seat->rate->cost;
+                if (!is_null($seat)) {
+                    $totalCost = $totalCost + $seat->rate->cost;
+                }
             }
         }
 
