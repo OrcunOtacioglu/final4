@@ -186,7 +186,7 @@ class Sale extends Model
         $totalCost = 0;
 
         foreach ($sale->order->items as $item) {
-            if ($item->type === 1) {
+            if ($item->type === 2) {
                 $room = HotelRoom::where('reference', '=', $item->reference)->first();
 
                 $totalCost = $totalCost + $room->cost;
