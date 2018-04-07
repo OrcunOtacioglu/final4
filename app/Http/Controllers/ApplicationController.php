@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Acikgise\Helpers\Helpers;
 use App\Entities\Analytics;
 use App\Entities\Hotel;
+use App\Entities\Order;
 use App\Entities\Rate;
 use App\Entities\Sale;
 use App\User;
@@ -50,12 +52,13 @@ class ApplicationController extends Controller
 
         foreach ($sales as $sale) {
             $individualSale = [
-                'person' => $sale->user->name . ' ' . $sale->user->surname,
-                'identifier' => $sale->user->identifier,
-                'address' => $sale->user->address,
-                'cost' => $sale->cost,
-                'total' => $sale->total,
-                'package' => []
+                'Ad' => $sale->user->name,
+                'Soyad' => $sale->user->surname,
+                'TCKN / Pasaport No' => $sale->user->identifier,
+                'Adres' => $sale->user->address,
+                'Giriş' => '18 Mayıs',
+                'Çıkış' => '21 Mayıs',
+                'Toplam' => $sale->total,
             ];
 
             if ($sale->user->citizenship === 'TR') {
@@ -64,14 +67,14 @@ class ApplicationController extends Controller
                 $individualSale['profit'] = $sale->profit;
             }
 
-            foreach ($sale->order->items as $item) {
-                $orderItem = [
-                    'name' => $item->name,
-                    'cost' => $item->unit_price
-                ];
-
-                array_push($individualSale['package'], $orderItem);
-            }
+            $individualSale['Otel'] = Sale::getHotelName($sale);
+            $individualSale['Oda Sayısı'] = Sale::getHotelCount($sale);
+            $individualSale['SGL Use Sayısı'] = Sale::getSGLRoomCount($sale);
+            $individualSale['DBL Use Sayısı'] = Sale::getDBLRoomCount($sale);
+            $individualSale['Bilet Sayısı'] = Sale::getTicketCount($sale);
+            $individualSale['Bilet Kategorisi'] = Sale::getCatName($sale);
+            $individualSale['Otel Maliyet'] = Sale::getHotelCost($sale);
+            $individualSale['Bilet Maliyet'] = Sale::getTicketCost($sale);
 
             array_push($data, $individualSale);
         }

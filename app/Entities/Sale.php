@@ -92,4 +92,122 @@ class Sale extends Model
 
         return $totalNetIncome;
     }
+
+    public static function getHotelName($sale)
+    {
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 2) {
+                $room = HotelRoom::where('reference', '=', $item->reference)->first();
+
+            } else {
+                return false;
+            }
+        }
+
+        return $room->hotel->name;
+    }
+
+    public static function getHotelCount($sale)
+    {
+        $hotelCount = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 2) {
+                $hotelCount = $hotelCount + 1;
+            }
+        }
+
+        return $hotelCount;
+    }
+
+    public static function getSGLRoomCount($sale)
+    {
+        $sglRoom = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 2) {
+                $room = HotelRoom::where('reference', '=', $item->reference)->first();
+
+                if ($room->type === 0) {
+                    $sglRoom = $sglRoom + 1;
+                }
+            }
+        }
+
+        return $sglRoom;
+    }
+
+    public static function getDBLRoomCount($sale)
+    {
+        $dblRoom = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 2) {
+                $room = HotelRoom::where('reference', '=', $item->reference)->first();
+
+                if ($room->type === 1) {
+                    $dblRoom = $dblRoom + 1;
+                }
+            }
+        }
+
+        return $dblRoom;
+    }
+
+    public static function getTicketCount($sale)
+    {
+        $ticketCount = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 1) {
+                $ticketCount = $ticketCount +1;
+            }
+        }
+
+        return $ticketCount;
+    }
+
+    public static function getCatName($sale)
+    {
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 1) {
+                $seat = Seat::where('reference', '=', $item->reference)->first();
+
+            } else {
+                return false;
+            }
+        }
+
+        return $seat->rate->name;
+    }
+
+    public static function getHotelCost($sale)
+    {
+        $totalCost = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 1) {
+                $room = HotelRoom::where('reference', '=', $item->reference)->first();
+
+                $totalCost = $totalCost + $room->cost;
+            }
+        }
+
+        return $totalCost;
+    }
+
+    public static function getTicketCost($sale)
+    {
+        $totalCost = 0;
+
+        foreach ($sale->order->items as $item) {
+            if ($item->type === 1) {
+                $seat = Seat::where('reference', '=', $item->reference)->first();
+
+                $totalCost = $totalCost + $seat->rate->cost;
+            }
+        }
+
+        return $totalCost;
+    }
 }
