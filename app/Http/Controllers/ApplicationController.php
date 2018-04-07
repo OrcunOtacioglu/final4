@@ -54,7 +54,8 @@ class ApplicationController extends Controller
                 'identifier' => $sale->user->identifier,
                 'address' => $sale->user->address,
                 'cost' => $sale->cost,
-                'total' => $sale->total
+                'total' => $sale->total,
+                'package' => []
             ];
 
             if ($sale->user->citizenship === 'TR') {
