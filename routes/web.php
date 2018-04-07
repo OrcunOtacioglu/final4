@@ -46,6 +46,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'admin'], function () {
     Route::post('/booking/{reference}/convert', 'BookingController@convertBooking');
     Route::get('/analytics', 'AnalyticsController@index');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+    Route::get('/excel', 'ApplicationController@excel');
 });
 
 /**

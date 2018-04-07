@@ -41,4 +41,40 @@ class ApplicationController extends Controller
         $venue = Storage::read('/public/venue.json');
         return $venue;
     }
+
+    public function excel()
+    {
+        $sales = Sale::all();
+
+        $data = [];
+
+        foreach ($sales as $sale) {
+            $individualSale = [
+                'person' => $sale->user->name . ' ' . $sale->user->surname,
+                'identifier' => $sale->user->identifier,
+                'address' => $sale->user->address,
+                'cost' => $sale->cost,
+                'total' => $sale->total
+            ];
+
+            if ($sale->user->citizenship === 'TR') {
+                $individualSale['profit'] = $sale->profit - $sale->tax;
+            } else {
+                $individualSale['profit'] = $sale->profit;
+            }
+
+            foreach ($sale->order->items as $item) {
+                $orderItem = [
+                    'name' => $item->name,
+                    'cost' => $item->unit_price
+                ];
+
+                array_push($individualSale['package'], $orderItem);
+            }
+
+            array_push($data, $individualSale);
+        }
+
+        return $data;
+    }
 }
