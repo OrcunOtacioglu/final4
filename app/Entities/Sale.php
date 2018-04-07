@@ -98,13 +98,9 @@ class Sale extends Model
         foreach ($sale->order->items as $item) {
             if ($item->type === 2) {
                 $room = HotelRoom::where('reference', '=', $item->reference)->first();
-
-            } else {
-                return false;
+                return $room->hotel->name;
             }
         }
-
-        return $room->hotel->name;
     }
 
     public static function getHotelCount($sale)
@@ -172,13 +168,9 @@ class Sale extends Model
         foreach ($sale->order->items as $item) {
             if ($item->type === 1) {
                 $seat = Seat::where('reference', '=', $item->reference)->first();
-
-            } else {
-                return false;
+                return $seat->rate->name;
             }
         }
-
-        return $seat->rate->name;
     }
 
     public static function getHotelCost($sale)
