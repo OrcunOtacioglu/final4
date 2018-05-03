@@ -81,4 +81,11 @@ class ApplicationController extends Controller
 
         return $data;
     }
+
+    public function exportUsers()
+    {
+        $users = User::all();
+
+        return $users;
+    }
 }
