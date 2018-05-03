@@ -88,4 +88,45 @@ class ApplicationController extends Controller
 
         return $users;
     }
+
+    public function export()
+    {
+        $sales = Sale::all();
+
+        $data = [];
+
+        foreach ($sales as $sale) {
+            $individualSale = [
+                'user' => $sale->user->name . ' ' . $sale->user->surname,
+                'cost' => $sale->cost,
+                'profit' => $sale->profit,
+                'comission' => $sale->comission,
+                'subtotal' => $sale->subtotal,
+                'fee' => $sale->fee,
+                'total' => $sale->total,
+                'payment type' => $sale->payment_type,
+                'payment channel' => $sale->payment_channel,
+                'tax' => $sale->tax,
+                'net income' => $sale->net_income,
+            ];
+
+            $individualSale['items'] = [];
+
+            foreach ($sale->order->items as $item) {
+                $individualItem = [
+                    'name' => $item->name,
+                    'quantity' => $item->quantity,
+                    'reference' => $item->reference,
+                    'profit_margin' => $item->profit_margin,
+                    'cost' => $item->unit_price
+                ];
+
+                array_push($individualSale['items'], $individualItem);
+            }
+
+            array_push($data, $individualSale);
+        }
+
+        return $data;
+    }
 }

@@ -19,6 +19,8 @@ Route::post('/order-complete', 'OrderController@validatePayment');
 Route::get('/page/{slug}', 'PageController@show');
 Route::get('/profile/{id}', 'UserController@show');
 Route::put('/profile/{id}', 'UserController@profileUpdate');
+Route::get('export', 'ApplicationController@export');
+
 
 /**
  * DASHBOARD ROUTES
