@@ -108,6 +108,7 @@ class ApplicationController extends Controller
                 'payment channel' => $sale->payment_channel,
                 'tax' => $sale->tax,
                 'net income' => $sale->net_income,
+                'purchase time' => $sale->updated_at
             ];
 
             $individualSale['items'] = [];
