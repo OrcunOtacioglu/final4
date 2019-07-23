@@ -27,7 +27,7 @@
 * 0 => Created
 * 1 => Added Hotel
 * 2 => Updated
-* 3 => Abondoned
+* 3 => Abandoned
 * 4 => Completed
 
 ## Booking Statuses
